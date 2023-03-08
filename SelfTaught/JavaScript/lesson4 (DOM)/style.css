@@ -1,0 +1,30 @@
+body{
+    background-color: #262927;
+    color: #D75C68;
+    
+    font: bold 20pt Arial;
+}
+h5{
+    color: #FBEBE8;   
+}
+
+.btn{
+
+    margin-top: 50px;
+
+    /* text settings */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+
+    /* btn shape settings */
+    width: 100px;
+    padding: 10px;
+    background-color: black;
+    border-radius: 8px;
+    border: none;
+
+}
