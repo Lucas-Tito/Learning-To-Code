@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 
 var users = require('./routes/users');
 var professorsRouter = require('./routes/professors');
+var alunosRouter = require('./routes/aluno');
 
 var app = express();
 //sus
@@ -22,5 +23,6 @@ app.use(function (req, res, next) {
 
 app.use('/api/v1/users', users);
 app.use('/professor/', professorsRouter);
+app.use('/aluno/', alunosRouter);
 
 module.exports = app;
