@@ -69,7 +69,7 @@ const ListarAluno = () => {
     let media =0
 
     alunoes.forEach(aluno => {
-        media+=aluno.ira
+        media+=Number(aluno.ira)
     });
 
     media /= alunoes.length
@@ -108,7 +108,7 @@ const ListarAluno = () => {
                                             <DeleteIcon />
                                         </IconButton>
                                         
-                                        <IconButton color="primary" aria-label="edit" component={Link} to={"../editaraluno/"+aluno.id}>
+                                        <IconButton color="primary" aria-label="edit" component={Link} to={"../editaraluno/"+aluno._id}>
                                             <EditIcon />
                                         </IconButton>
                                     </Stack>

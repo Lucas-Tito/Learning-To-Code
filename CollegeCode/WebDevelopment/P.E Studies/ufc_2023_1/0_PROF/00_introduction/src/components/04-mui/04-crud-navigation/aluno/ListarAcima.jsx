@@ -66,7 +66,7 @@ const ListarAcima = () => {
     let media =0
 
     alunoes.forEach(aluno => {
-        media+=aluno.ira
+        media+=Number(aluno.ira)
     });
 
     media /= alunoes.length
@@ -75,6 +75,8 @@ const ListarAcima = () => {
    })
 
    console.log(alunoes)
+   console.log(resultado)
+
     
     return (
         <>
@@ -105,11 +107,11 @@ const ListarAcima = () => {
                                 <StyledTableCell align="left">
 
                                     <Stack direction="row" spacing={1}>
-                                        <IconButton aria-label="delete" color="primary" onClick={()=>deletealuno(aluno.id)}>
+                                        <IconButton aria-label="delete" color="primary" onClick={()=>deletealuno(aluno._id)}>
                                             <DeleteIcon />
                                         </IconButton>
                                         
-                                        <IconButton color="primary" aria-label="edit" component={Link} to={"../editaraluno/"+aluno.id}>
+                                        <IconButton color="primary" aria-label="edit" component={Link} to={"../editaraluno/"+aluno._id}>
                                             <EditIcon />
                                         </IconButton>
                                     </Stack>

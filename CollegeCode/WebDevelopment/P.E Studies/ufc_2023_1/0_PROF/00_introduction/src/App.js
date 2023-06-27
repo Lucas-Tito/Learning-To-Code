@@ -28,6 +28,7 @@ import EditarProfessor from "./components/04-mui/04-crud-navigation/professor/Ed
 import ListarAluno from "./components/04-mui/04-crud-navigation/aluno/Lista"
 import ListarAcima from "./components/04-mui/04-crud-navigation/aluno/ListarAcima"
 import CadastrarAluno from "./components/04-mui/04-crud-navigation/aluno/Cadastrar"
+import EditarAluno from "./components/04-mui/04-crud-navigation/aluno/Editar"
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
                     <Route path="listarAluno/" element={<ListarAluno/>}/>
                     <Route path="alunoAcima" element={<ListarAcima/>}/>
                     <Route path="cadastrarAluno" element={<CadastrarAluno/>}/>
+                    <Route path="editarAluno/:id" element={<EditarAluno/>} />
                     <Route path="/" element={<Signin/>}/>
                 </Routes>
             </Container>
