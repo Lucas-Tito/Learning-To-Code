@@ -3,12 +3,15 @@ import { AppBar, Container, Toolbar, Typography, Box, Menu, MenuItem, Button, To
 import { Link } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
 import AdbIcon from "@mui/icons-material/Adb"
+import { useNavigate } from "react-router-dom";
 
 const MyMenu = () => {
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElProf, setAnchorElProf] = React.useState(null);
     const [anchorElAluno, setAnchorElAluno] = React.useState(null);
+
+    const navigate = useNavigate();
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -143,11 +146,18 @@ const MyMenu = () => {
                     onClose={handleCloseAlunoMenu}
                     sx={{ marginLeft: 1 }}
                 >
-                    <MenuItem onClick={handleCloseAlunoMenu}>
+
+                    <MenuItem onClick={handleCloseAlunoMenu} component={Link} to={"cadastrarAluno"}>
                         <Typography textAlign="center">Cadastrar</Typography>
                     </MenuItem>
-                    <MenuItem onClick={handleCloseAlunoMenu}>
+
+                    <MenuItem onClick={handleCloseAlunoMenu} component={Link} to={"alunoAcima"}>
+                        <Typography textAlign="center">Acima da media</Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseAlunoMenu} component={Link} to={"listarAluno"}>
                         <Typography textAlign="center">Listar</Typography>
+                        
+
                     </MenuItem>
                 </Menu>
             </Box>

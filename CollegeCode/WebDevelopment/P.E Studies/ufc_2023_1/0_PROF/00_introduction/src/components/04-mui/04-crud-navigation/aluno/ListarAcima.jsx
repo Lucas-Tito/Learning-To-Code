@@ -26,17 +26,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-const Listar = () => {
+//executa novamente a requisição ao express
+//Faz a média
+//Filtra os resultados de acordo com a média e renderiza esses resultados
+const ListarAcima = () => {
 
-    const [professores, setProfessores] = useState([])
+    const [alunoes, setALunos] = useState([])
 
     useEffect(        
         ()=>{
-          axios.get("http://localhost:3001/professor/list")
+          axios.get("http://localhost:3001/aluno/list")
           .then(
               (response)=>{
                   //console.log(response.data)
-                  setProfessores(response.data)
+                  setALunos(response.data)
               }
           )
           .catch(error=>console.log(error))
@@ -44,7 +47,7 @@ const Listar = () => {
         []
     )
 
-    /*const professores = [
+    /*const alunoes = [
         { id: 0, nome: "Vito Corleone", curso: "Sistemas de Informação", titulacao: "DOUT" },
         { id: 1, nome: "Michael Corleone", curso: "Sistemas de Informação", titulacao: "DOUT" },
         { id: 2, nome: "Kay Adams", curso: "Sistemas de Informação", titulacao: "DOUT" },
@@ -53,24 +56,33 @@ const Listar = () => {
         { id: 5, nome: "Luca Brasi", curso: "Sistemas de Informação", titulacao: "GRAD" }
     ]*/
 
-    function deleteProfessor(id) {
+    function deletealuno(id) {
         if (window.confirm("Deseja Excluir?")){
-            alert(`Professor ${id} excluído!`)
+            alert(`aluno ${id} excluído!`)
         }
     }
 
+    
     let media =0
 
-    professores.forEach(professor => {
-        media+=professor.ira
+    alunoes.forEach(aluno => {
+        media+=aluno.ira
     });
 
+    media /= alunoes.length
+   const resultado = alunoes.filter((alunoAcima) =>{
+    return alunoAcima.ira >= media
+   })
+
+   console.log(alunoes)
+    
     return (
         <>
             {/* <h1>Listar {id} {nome}</h1> */}
             <Typography variant="h5" fontWeight="bold">
-                Listar Professores
+                Listar acima
             </Typography>
+            
 
             <TableContainer component={Paper} sx={{ marginTop: 2 }}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -78,42 +90,42 @@ const Listar = () => {
                         <TableRow >
                             <StyledTableCell>ID</StyledTableCell>
                             <StyledTableCell>Nome</StyledTableCell>
-                            <StyledTableCell>Curso</StyledTableCell>
-                            <StyledTableCell>Titulação</StyledTableCell>
-                            <StyledTableCell>Ações</StyledTableCell>
+                            <StyledTableCell>CURSO</StyledTableCell>
+                            <StyledTableCell>IRA</StyledTableCell>
+                            <StyledTableCell>AÇÕES</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {professores.map((professor) => (
-                            <StyledTableRow key={professor.id}>
-                                <StyledTableCell>{professor.id}</StyledTableCell>
-                                <StyledTableCell align="left">{professor.nome}</StyledTableCell>
-                                <StyledTableCell align="left">{professor.curso}</StyledTableCell>
-                                <StyledTableCell align="left">{professor.titulacao}</StyledTableCell>
+                        {resultado.map((aluno) => (
+                            <StyledTableRow key={aluno.id} sx={{backgroundColor:"red"}}>
+                                <StyledTableCell>{aluno.id}</StyledTableCell>
+                                <StyledTableCell align="left">{aluno.nome}</StyledTableCell>
+                                <StyledTableCell align="left">{aluno.curso}</StyledTableCell>
+                                <StyledTableCell align="left">{aluno.ira}</StyledTableCell>
                                 <StyledTableCell align="left">
 
                                     <Stack direction="row" spacing={1}>
-                                        <IconButton aria-label="delete" color="primary" onClick={()=>deleteProfessor(professor.id)}>
+                                        <IconButton aria-label="delete" color="primary" onClick={()=>deletealuno(aluno.id)}>
                                             <DeleteIcon />
                                         </IconButton>
                                         
-                                        <IconButton color="primary" aria-label="edit" component={Link} to={"../editarProfessor/"+professor.id}>
+                                        <IconButton color="primary" aria-label="edit" component={Link} to={"../editaraluno/"+aluno.id}>
                                             <EditIcon />
                                         </IconButton>
                                     </Stack>
-
                                 </StyledTableCell>
                             </StyledTableRow>
                         ))}
-                        {/* {professores.map(
-                            (professor) => (
+                        <StyledTableRow>Media: {media}</StyledTableRow>
+                        {/* {alunoes.map(
+                            (aluno) => (
                                 <TableRow
-                                    key={professor.id}
+                                    key={aluno.id}
                                 >
-                                    <TableCell align="left">{professor.id}</TableCell>
-                                    <TableCell align="left">{professor.nome}</TableCell>
-                                    <TableCell align="left">{professor.curso}</TableCell>
-                                    <TableCell align="left">{professor.titulacao}</TableCell>
+                                    <TableCell align="left">{aluno.id}</TableCell>
+                                    <TableCell align="left">{aluno.nome}</TableCell>
+                                    <TableCell align="left">{aluno.curso}</TableCell>
+                                    <TableCell align="left">{aluno.titulacao}</TableCell>
                                     <TableCell align="left">XX XX</TableCell>
                                 </TableRow>
                             )
@@ -127,4 +139,4 @@ const Listar = () => {
     )
 }
 
-export default Listar
+export default ListarAcima
