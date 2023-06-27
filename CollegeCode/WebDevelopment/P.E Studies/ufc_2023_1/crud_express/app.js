@@ -2,10 +2,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+require("./db/mongodb.connection")
 
 var users = require('./routes/users');
 var professorsRouter = require('./routes/professors');
 var alunosRouter = require('./routes/aluno');
+var loginRouter = require('./routes/login');
 
 var app = express();
 //sus
@@ -24,5 +26,6 @@ app.use(function (req, res, next) {
 app.use('/api/v1/users', users);
 app.use('/professor/', professorsRouter);
 app.use('/aluno/', alunosRouter);
+app.use('/login/', loginRouter);
 
 module.exports = app;

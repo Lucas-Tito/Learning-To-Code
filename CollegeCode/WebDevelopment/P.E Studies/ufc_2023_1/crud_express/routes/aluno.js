@@ -11,47 +11,26 @@ router.get('/', function(req, res, next) {
 router.get(
     "/list",
     (request, response, next)=>{
-        response.json(alunoService.list())
+        alunoService.list(request, response);
     }
 )
 
-router.post(
-  "/criar",
-  (request, response, next)=>{
-    const aluno = alunoService.register(request.body)
-    console.log(request.body);
-    return response.json(aluno)
-  }
-)
+router.post("/criar", (req, res, next) => {
+  alunoService.register(req, res);
+});
 
-router.put(
-  "/update/:id",
-  (request, response, next)=>{
-    const professor = alunoService.update(request.params.id, request.body)
-    // console.log(request.body);
-    return response.json(professor)
-  }
-)
 
-router.delete(
-  "/delete/:id",
-  (request, response, next)=>{
-    const ok = alunoService.delete(request.params.id);
-    if(ok)
-      return response.json({"sucess":true})
-    else
-      return response.json({"sucess":false})
-  }
-)
+router.put("/update/:id", function (req, res, next) {
+  alunoService.update(req, res);
+});
 
-router.get(
-  "/retrieve/:id",
-  (request, response, next)=>{
-    const output = alunoService.retrieve(request.params.id);
+router.delete("/delete/:id", function (req, res, next) {
+  alunoService.delete(req, res);
+});
 
-    return response.json(output)
-  }
-)
+router.get("/retrieve/:id", function (req, res, next) {
+  alunoService.retrieve(req, res);
+});
 
 
 

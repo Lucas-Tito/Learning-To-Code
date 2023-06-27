@@ -1,12 +1,17 @@
-class AlunoModel {
+var mongoose = require("mongoose");
+var AlunoSchema = mongoose.Schema( {
     
-    constructor(id, nome, curso, ira){
-        this.id = id
-        this.nome = nome
-        this.curso = curso
-        this.ira = ira
-    }
+    
+    nome: { type: String, required: true },
+    curso: { type: String, required: true },
+    ira: { type: String,required: true },
+    
 
-}
+});
 
+var AlunoModel = mongoose.model("alunos", AlunoSchema);
 module.exports = AlunoModel
+
+
+
+
