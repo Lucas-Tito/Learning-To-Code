@@ -1,0 +1,1 @@
+window.confirm("Programming is exciting, innit?")

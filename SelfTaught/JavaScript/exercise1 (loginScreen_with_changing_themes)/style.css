@@ -1,0 +1,71 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--background-color);
+}
+
+h1{
+    color: var(--primary-text-color);
+    font-weight: bolder;
+    font-size: 35pt;
+}
+
+header{
+    text-align: start;
+    font-size: small;
+    color: var(--secondary-text-color);
+}
+
+button{
+
+    /* text settings */
+    font-size: medium;
+    font-weight: bold;
+
+    /* shape settings */
+    color: var(--background-color);
+    background-color: var(--button-color);;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    width: 100%;
+}
+
+
+input{
+    padding: 8px;
+    border: none; /* gets rid of extra border */
+    border:solid 1px #ccc;
+    border-radius: 5px;
+   
+}
+
+a{
+    color: var(--secondary-text-color);
+    font-size: small;
+}
+
+#central_div{
+    /*parent div is used to center the div inside this one*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /*parent div needs to occupy all screen space*/
+    height: 60%;
+    width: 100%;
+    position: absolute;
+}
+
+/* change div children settings 
+   except for the second children
+*/
+#email_div > *:not(:nth-child(2)){
+    margin-bottom: 20px;
+}
+
+#input_div{
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+
+

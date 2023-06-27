@@ -1,0 +1,7 @@
+/* make variables global */
+:root{
+    --background-color: #1A1C22;
+    --primary-text-color: #F7F7F7;
+    --secondary-text-color: grey;
+    --button-color: #D75C68;
+}

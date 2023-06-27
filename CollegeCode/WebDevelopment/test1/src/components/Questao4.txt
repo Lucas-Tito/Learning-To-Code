@@ -1,0 +1,20 @@
+Hooks são formas de gerenciar o estado o ciclo de vida de um componente no React.
+
+Exemplos: 
+1 - useState
+Gerencia estados. Além disso, ele retorna o valor do estado e uma função para atualizar seu valor.
+
+const [cont, setCount] = useState(0);
+
+2 - useEffect
+Utilizado para gerenciar efeitos ecternos no componente.
+Como requisições a APIs e promisses.
+Espera uma dependencia e executa a função passada. 
+Caso não tenha dependência executa apenas uma vez passando [].
+
+useEffect(
+    () => {
+      getAPI();
+    }
+    , []
+  )

@@ -1,0 +1,7 @@
+#ignores all except those specified
+
+*
+
+!.gitignore
+!server.c
+!Client.java

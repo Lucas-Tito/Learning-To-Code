@@ -1,0 +1,31 @@
+body{
+    background-color: #262927;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+div#parent_div{
+    /*parent div is used to center the div inside this one*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /*parent div needs to occupy all screen space*/
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+div#interacting_div{
+    background: #D75C68;
+    color: white;
+    width: 220px;
+    height: 150px;
+    text-align: center;
+
+    /*centering div contents*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+}

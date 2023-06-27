@@ -1,0 +1,22 @@
+.array_display{
+    display: flex;
+    gap: 10px;
+    color: rgb(206, 204, 204);
+    align-self: center;
+    border: 2px solid rgb(206, 204, 204);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.calc_results{
+    color: rgb(124, 121, 121);
+    padding-top: 20px;
+}
+
+.calc_btn{
+    display: flex;
+    gap: 10px;
+    padding-top: 20px;
+    margin: auto;
+    
+}
