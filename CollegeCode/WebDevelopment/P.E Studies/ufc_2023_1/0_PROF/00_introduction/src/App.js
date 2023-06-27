@@ -19,11 +19,37 @@ import MainPage from "./components/04-mui/04-crud-navigation/MainPage";
 //import { Questao01A } from "./test01/Questao01";
 //import Questao02 from "./test01/Questao02";
 //import Questao03 from "./test01/Questao03";
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { Container } from "@mui/material"
+import MyMenu from "./components/04-mui/04-crud-navigation/MyMenu"
+import CadastrarProfessor from "./components/04-mui/04-crud-navigation/professor/Cadastrar"
+import ListarProfessor from "./components/04-mui/04-crud-navigation/professor/Listar"
+import EditarProfessor from "./components/04-mui/04-crud-navigation/professor/Editar"
+import ListarAluno from "./components/04-mui/04-crud-navigation/aluno/Lista"
+import ListarAcima from "./components/04-mui/04-crud-navigation/aluno/ListarAcima"
+import CadastrarAluno from "./components/04-mui/04-crud-navigation/aluno/Cadastrar"
+
 
 function App() {
   return (
     <>
-     <MainPage/>
+     <BrowserRouter>
+            <MyMenu />
+            <Container 
+                sx={{marginTop:5}}
+            >
+                <Routes>
+                    <Route path="cadastrarProfessor/" element={<CadastrarProfessor />} />
+                    {/* <Route path="listarProfessor/:id/:nome" element={<ListarProfessor />} /> */}
+                    <Route path="listarProfessor/" element={<ListarProfessor />} /> 
+                    <Route path="editarProfessor/:id" element={<EditarProfessor />} />
+                    <Route path="listarAluno/" element={<ListarAluno/>}/>
+                    <Route path="alunoAcima" element={<ListarAcima/>}/>
+                    <Route path="cadastrarAluno" element={<CadastrarAluno/>}/>
+                    <Route path="/" element={<Signin/>}/>
+                </Routes>
+            </Container>
+        </BrowserRouter>
      </>
   )
 }

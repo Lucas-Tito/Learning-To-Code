@@ -98,7 +98,7 @@ const ListarAcima = () => {
                     <TableBody>
                         {resultado.map((aluno) => (
                             <StyledTableRow key={aluno.id} sx={{backgroundColor:"red"}}>
-                                <StyledTableCell>{aluno.id}</StyledTableCell>
+                                <StyledTableCell>{aluno._id}</StyledTableCell>
                                 <StyledTableCell align="left">{aluno.nome}</StyledTableCell>
                                 <StyledTableCell align="left">{aluno.curso}</StyledTableCell>
                                 <StyledTableCell align="left">{aluno.ira}</StyledTableCell>

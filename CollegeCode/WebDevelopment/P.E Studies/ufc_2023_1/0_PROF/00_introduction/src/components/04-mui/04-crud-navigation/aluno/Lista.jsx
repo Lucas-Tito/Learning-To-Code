@@ -58,7 +58,11 @@ const ListarAluno = () => {
 
     function deletealuno(id) {
         if (window.confirm("Deseja Excluir?")){
-            alert(`aluno ${id} excluído!`)
+            axios.delete("http://localhost:3001/aluno/delete/"+id).then(
+                (res)=>{
+                    
+                }
+            )
         }
     }
 
@@ -93,14 +97,14 @@ const ListarAluno = () => {
                     <TableBody>
                         {alunoes.map((aluno) => (
                             <StyledTableRow key={aluno.id} sx={{color}}>
-                                <StyledTableCell>{aluno.id}</StyledTableCell>
+                                <StyledTableCell>{aluno._id}</StyledTableCell>
                                 <StyledTableCell align="left">{aluno.nome}</StyledTableCell>
                                 <StyledTableCell align="left">{aluno.curso}</StyledTableCell>
                                 <StyledTableCell align="left">{aluno.ira}</StyledTableCell>
                                 <StyledTableCell align="left">
 
                                     <Stack direction="row" spacing={1}>
-                                        <IconButton aria-label="delete" color="primary" onClick={()=>deletealuno(aluno.id)}>
+                                        <IconButton aria-label="delete" color="primary" onClick={()=>deletealuno(aluno._id)}>
                                             <DeleteIcon />
                                         </IconButton>
                                         

@@ -4,12 +4,39 @@ import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 //import Grid from '@mui/material/Grid';
 
 import "./Signin.css"
 
 
+
 function Signin() {
+
+    const [login, setLogin] = useState("")
+    const [senha, setSenha] = useState("")
+    const navigate = useNavigate()
+
+    function SubmitHandle(e){
+        e.preventDefault();
+        const newlogin = {login, senha}
+        axios.post("http://localhost:3001/login/retrieve", newlogin)
+        .then(
+            (res) => {
+                if(res.data){
+                    alert(`Sucesso login!`)
+                    navigate("/listarAluno")
+                }
+                else{
+                    alert(`errou!`)
+                }
+
+                
+            }
+        )
+    }
     return (
         <Container component="main" maxWidth="xs">
 
@@ -37,6 +64,7 @@ function Signin() {
                     id="email"
                     name="email"
                     type="email"
+                    onChange={(event) => { setLogin(event.target.value) }}
 
                     autoComplete="email"
                 />
@@ -50,6 +78,7 @@ function Signin() {
                     id="password"
                     name="password"
                     type="password"
+                    onChange={(event) => { setSenha(event.target.value) }}
 
                     autoComplete="current-password"
                 />
@@ -59,6 +88,7 @@ function Signin() {
                     type="submit"
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
+                    onClick={SubmitHandle}
                 >
                     Sign In
                 </Button>
