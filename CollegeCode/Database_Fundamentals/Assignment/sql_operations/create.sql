@@ -27,35 +27,31 @@ CREATE TABLE funcionario(
 );
 
 CREATE TABLE quarto(
-	id_quarto INTEGER,
+	id_quarto SERIAL PRIMARY KEY,
   	preco FLOAT,
   	qtd_camas INTEGER,
   	tipo_cama VARCHAR,
-  	tipo_quarto VARCHAR,
-  	PRIMARY KEY(id_quarto)
+  	tipo_quarto VARCHAR
 );
 
 CREATE TABLE alocacao_quarto(
-	id_alocacao_quarto INTEGER,
+	id_alocacao_quarto SERIAL PRIMARY KEY,
   	rg_cliente INTEGER,
   	id_quarto INTEGER,
-  	PRIMARY KEY(id_alocacao_quarto),
   	FOREIGN KEY(rg_cliente) REFERENCES cliente(rg_cliente),
   	FOREIGN KEY(id_quarto) REFERENCES quarto(id_quarto)
 );
 
 CREATE TABLE area_lazer(
-	id_area_lazer INTEGER,
-  	ultima_manutencao DATE,
-  	PRIMARY KEY(id_area_lazer)
+	id_area_lazer SERIAL PRIMARY KEY,
+  	ultima_manutencao DATE
 );
 
 CREATE TABLE alocacao_area_lazer(
-	id_alocacao_area_lazer INTEGER,
+	id_alocacao_area_lazer SERIAL PRIMARY KEY,
   	rg_cliente INTEGER,
   	id_area_lazer INTEGER,
   	data_alocacao DATE,
-  	PRIMARY KEY(id_alocacao_area_lazer),
   	FOREIGN KEY(rg_cliente) REFERENCES cliente(rg_cliente),
  	FOREIGN KEY(id_area_lazer) REFERENCES area_lazer(id_area_lazer)
 );

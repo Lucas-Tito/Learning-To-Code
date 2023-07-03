@@ -1,17 +1,5 @@
 --
--- PostgreSQL database dump
---
 
--- Dumped from database version 15.3
--- Dumped by pg_dump version 15.3
-
--- Started on 2023-06-19 23:09:01
-
-
---
--- TOC entry 221 (class 1259 OID 16546)
--- Name: alocacao_area_lazer; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE public.alocacao_area_lazer (
     id_alocacao_area_lazer integer NOT NULL,
@@ -24,7 +12,32 @@ CREATE TABLE public.alocacao_area_lazer (
 ALTER TABLE public.alocacao_area_lazer OWNER TO postgres;
 
 --
--- TOC entry 219 (class 1259 OID 16526)
+-- TOC entry 224 (class 1259 OID 16884)
+-- Name: alocacao_area_lazer_id_alocacao_area_lazer_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.alocacao_area_lazer_id_alocacao_area_lazer_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.alocacao_area_lazer_id_alocacao_area_lazer_seq OWNER TO postgres;
+
+--
+-- TOC entry 3389 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: alocacao_area_lazer_id_alocacao_area_lazer_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.alocacao_area_lazer_id_alocacao_area_lazer_seq OWNED BY public.alocacao_area_lazer.id_alocacao_area_lazer;
+
+
+--
+-- TOC entry 221 (class 1259 OID 16861)
 -- Name: alocacao_quarto; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -38,7 +51,32 @@ CREATE TABLE public.alocacao_quarto (
 ALTER TABLE public.alocacao_quarto OWNER TO postgres;
 
 --
--- TOC entry 220 (class 1259 OID 16541)
+-- TOC entry 220 (class 1259 OID 16860)
+-- Name: alocacao_quarto_id_alocacao_quarto_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.alocacao_quarto_id_alocacao_quarto_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.alocacao_quarto_id_alocacao_quarto_seq OWNER TO postgres;
+
+--
+-- TOC entry 3390 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: alocacao_quarto_id_alocacao_quarto_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.alocacao_quarto_id_alocacao_quarto_seq OWNED BY public.alocacao_quarto.id_alocacao_quarto;
+
+
+--
+-- TOC entry 223 (class 1259 OID 16878)
 -- Name: area_lazer; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -51,7 +89,32 @@ CREATE TABLE public.area_lazer (
 ALTER TABLE public.area_lazer OWNER TO postgres;
 
 --
--- TOC entry 215 (class 1259 OID 16488)
+-- TOC entry 222 (class 1259 OID 16877)
+-- Name: area_lazer_id_area_lazer_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.area_lazer_id_area_lazer_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.area_lazer_id_area_lazer_seq OWNER TO postgres;
+
+--
+-- TOC entry 3391 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: area_lazer_id_area_lazer_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.area_lazer_id_area_lazer_seq OWNED BY public.area_lazer.id_area_lazer;
+
+
+--
+-- TOC entry 215 (class 1259 OID 16820)
 -- Name: cliente; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -66,7 +129,7 @@ CREATE TABLE public.cliente (
 ALTER TABLE public.cliente OWNER TO postgres;
 
 --
--- TOC entry 214 (class 1259 OID 16481)
+-- TOC entry 214 (class 1259 OID 16813)
 -- Name: fone_cliente; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -78,7 +141,7 @@ CREATE TABLE public.fone_cliente (
 ALTER TABLE public.fone_cliente OWNER TO postgres;
 
 --
--- TOC entry 216 (class 1259 OID 16500)
+-- TOC entry 216 (class 1259 OID 16832)
 -- Name: fone_func; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -90,7 +153,7 @@ CREATE TABLE public.fone_func (
 ALTER TABLE public.fone_func OWNER TO postgres;
 
 --
--- TOC entry 217 (class 1259 OID 16507)
+-- TOC entry 217 (class 1259 OID 16839)
 -- Name: funcionario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -105,7 +168,7 @@ CREATE TABLE public.funcionario (
 ALTER TABLE public.funcionario OWNER TO postgres;
 
 --
--- TOC entry 218 (class 1259 OID 16519)
+-- TOC entry 219 (class 1259 OID 16852)
 -- Name: quarto; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -121,8 +184,65 @@ CREATE TABLE public.quarto (
 ALTER TABLE public.quarto OWNER TO postgres;
 
 --
--- TOC entry 3371 (class 0 OID 16546)
--- Dependencies: 221
+-- TOC entry 218 (class 1259 OID 16851)
+-- Name: quarto_id_quarto_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.quarto_id_quarto_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.quarto_id_quarto_seq OWNER TO postgres;
+
+--
+-- TOC entry 3392 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: quarto_id_quarto_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.quarto_id_quarto_seq OWNED BY public.quarto.id_quarto;
+
+
+--
+-- TOC entry 3207 (class 2604 OID 16888)
+-- Name: alocacao_area_lazer id_alocacao_area_lazer; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.alocacao_area_lazer ALTER COLUMN id_alocacao_area_lazer SET DEFAULT nextval('public.alocacao_area_lazer_id_alocacao_area_lazer_seq'::regclass);
+
+
+--
+-- TOC entry 3205 (class 2604 OID 16864)
+-- Name: alocacao_quarto id_alocacao_quarto; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.alocacao_quarto ALTER COLUMN id_alocacao_quarto SET DEFAULT nextval('public.alocacao_quarto_id_alocacao_quarto_seq'::regclass);
+
+
+--
+-- TOC entry 3206 (class 2604 OID 16881)
+-- Name: area_lazer id_area_lazer; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.area_lazer ALTER COLUMN id_area_lazer SET DEFAULT nextval('public.area_lazer_id_area_lazer_seq'::regclass);
+
+
+--
+-- TOC entry 3204 (class 2604 OID 16855)
+-- Name: quarto id_quarto; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.quarto ALTER COLUMN id_quarto SET DEFAULT nextval('public.quarto_id_quarto_seq'::regclass);
+
+
+--
+-- TOC entry 3383 (class 0 OID 16885)
+-- Dependencies: 225
 -- Data for Name: alocacao_area_lazer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -139,8 +259,8 @@ INSERT INTO public.alocacao_area_lazer VALUES (10, 120185817, 10, '2022-12-01');
 
 
 --
--- TOC entry 3369 (class 0 OID 16526)
--- Dependencies: 219
+-- TOC entry 3379 (class 0 OID 16861)
+-- Dependencies: 221
 -- Data for Name: alocacao_quarto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -157,8 +277,8 @@ INSERT INTO public.alocacao_quarto VALUES (10, 120185817, 10);
 
 
 --
--- TOC entry 3370 (class 0 OID 16541)
--- Dependencies: 220
+-- TOC entry 3381 (class 0 OID 16878)
+-- Dependencies: 223
 -- Data for Name: area_lazer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -172,10 +292,11 @@ INSERT INTO public.area_lazer VALUES (7, '2005-02-20');
 INSERT INTO public.area_lazer VALUES (8, '2006-03-09');
 INSERT INTO public.area_lazer VALUES (9, '2007-06-02');
 INSERT INTO public.area_lazer VALUES (10, '2023-06-30');
+INSERT INTO public.area_lazer VALUES (11, '2023-06-30');
 
 
 --
--- TOC entry 3365 (class 0 OID 16488)
+-- TOC entry 3373 (class 0 OID 16820)
 -- Dependencies: 215
 -- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -193,7 +314,7 @@ INSERT INTO public.cliente VALUES (427037578, '558889999', '1989-02-10', 'Jim Cr
 
 
 --
--- TOC entry 3364 (class 0 OID 16481)
+-- TOC entry 3372 (class 0 OID 16813)
 -- Dependencies: 214
 -- Data for Name: fone_cliente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -211,7 +332,7 @@ INSERT INTO public.fone_cliente VALUES ('550001111');
 
 
 --
--- TOC entry 3366 (class 0 OID 16500)
+-- TOC entry 3374 (class 0 OID 16832)
 -- Dependencies: 216
 -- Data for Name: fone_func; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -229,7 +350,7 @@ INSERT INTO public.fone_func VALUES ('98765432');
 
 
 --
--- TOC entry 3367 (class 0 OID 16507)
+-- TOC entry 3375 (class 0 OID 16839)
 -- Dependencies: 217
 -- Data for Name: funcionario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -247,8 +368,8 @@ INSERT INTO public.funcionario VALUES (10, '98765432', 'Reginaldo Rossi', '1699-
 
 
 --
--- TOC entry 3368 (class 0 OID 16519)
--- Dependencies: 218
+-- TOC entry 3377 (class 0 OID 16852)
+-- Dependencies: 219
 -- Data for Name: quarto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -259,13 +380,53 @@ INSERT INTO public.quarto VALUES (4, 450, 3, 'casal', 'deluxe');
 INSERT INTO public.quarto VALUES (5, 150, 2, 'solteiro', 'standard');
 INSERT INTO public.quarto VALUES (6, 180, 1, 'casal', 'standard');
 INSERT INTO public.quarto VALUES (7, 150, 2, 'solteiro', 'standard');
-INSERT INTO public.quarto VALUES (8, 230, 2, 'solteiro', 'deluxe');
-INSERT INTO public.quarto VALUES (9, 200, 1, 'casal', 'standard');
-INSERT INTO public.quarto VALUES (10, 280, 1, 'casal', 'deluxe');
+INSERT INTO public.quarto VALUES (8, 150, 2, 'solteiro', 'standard');
+INSERT INTO public.quarto VALUES (9, 230, 2, 'solteiro', 'deluxe');
+INSERT INTO public.quarto VALUES (10, 230, 2, 'solteiro', 'deluxe');
+INSERT INTO public.quarto VALUES (11, 200, 1, 'casal', 'standard');
+INSERT INTO public.quarto VALUES (12, 200, 1, 'casal', 'standard');
+INSERT INTO public.quarto VALUES (13, 280, 1, 'casal', 'deluxe');
+INSERT INTO public.quarto VALUES (14, 280, 1, 'casal', 'deluxe');
 
 
 --
--- TOC entry 3215 (class 2606 OID 16550)
+-- TOC entry 3393 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: alocacao_area_lazer_id_alocacao_area_lazer_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.alocacao_area_lazer_id_alocacao_area_lazer_seq', 10, true);
+
+
+--
+-- TOC entry 3394 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: alocacao_quarto_id_alocacao_quarto_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.alocacao_quarto_id_alocacao_quarto_seq', 10, true);
+
+
+--
+-- TOC entry 3395 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: area_lazer_id_area_lazer_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.area_lazer_id_area_lazer_seq', 11, true);
+
+
+--
+-- TOC entry 3396 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: quarto_id_quarto_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.quarto_id_quarto_seq', 14, true);
+
+
+--
+-- TOC entry 3223 (class 2606 OID 16890)
 -- Name: alocacao_area_lazer alocacao_area_lazer_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -274,7 +435,7 @@ ALTER TABLE ONLY public.alocacao_area_lazer
 
 
 --
--- TOC entry 3211 (class 2606 OID 16530)
+-- TOC entry 3219 (class 2606 OID 16866)
 -- Name: alocacao_quarto alocacao_quarto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -283,7 +444,7 @@ ALTER TABLE ONLY public.alocacao_quarto
 
 
 --
--- TOC entry 3213 (class 2606 OID 16545)
+-- TOC entry 3221 (class 2606 OID 16883)
 -- Name: area_lazer area_lazer_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -292,7 +453,7 @@ ALTER TABLE ONLY public.area_lazer
 
 
 --
--- TOC entry 3203 (class 2606 OID 16494)
+-- TOC entry 3211 (class 2606 OID 16826)
 -- Name: cliente cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -301,7 +462,7 @@ ALTER TABLE ONLY public.cliente
 
 
 --
--- TOC entry 3201 (class 2606 OID 16487)
+-- TOC entry 3209 (class 2606 OID 16819)
 -- Name: fone_cliente fone_cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -310,7 +471,7 @@ ALTER TABLE ONLY public.fone_cliente
 
 
 --
--- TOC entry 3205 (class 2606 OID 16506)
+-- TOC entry 3213 (class 2606 OID 16838)
 -- Name: fone_func fone_func_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -319,7 +480,7 @@ ALTER TABLE ONLY public.fone_func
 
 
 --
--- TOC entry 3207 (class 2606 OID 16513)
+-- TOC entry 3215 (class 2606 OID 16845)
 -- Name: funcionario funcionario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -328,7 +489,7 @@ ALTER TABLE ONLY public.funcionario
 
 
 --
--- TOC entry 3209 (class 2606 OID 16525)
+-- TOC entry 3217 (class 2606 OID 16859)
 -- Name: quarto quarto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -337,7 +498,7 @@ ALTER TABLE ONLY public.quarto
 
 
 --
--- TOC entry 3220 (class 2606 OID 16556)
+-- TOC entry 3228 (class 2606 OID 16896)
 -- Name: alocacao_area_lazer alocacao_area_lazer_id_area_lazer_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -346,7 +507,7 @@ ALTER TABLE ONLY public.alocacao_area_lazer
 
 
 --
--- TOC entry 3221 (class 2606 OID 16551)
+-- TOC entry 3229 (class 2606 OID 16891)
 -- Name: alocacao_area_lazer alocacao_area_lazer_rg_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -355,7 +516,7 @@ ALTER TABLE ONLY public.alocacao_area_lazer
 
 
 --
--- TOC entry 3218 (class 2606 OID 16536)
+-- TOC entry 3226 (class 2606 OID 16872)
 -- Name: alocacao_quarto alocacao_quarto_id_quarto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -364,7 +525,7 @@ ALTER TABLE ONLY public.alocacao_quarto
 
 
 --
--- TOC entry 3219 (class 2606 OID 16531)
+-- TOC entry 3227 (class 2606 OID 16867)
 -- Name: alocacao_quarto alocacao_quarto_rg_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -373,7 +534,7 @@ ALTER TABLE ONLY public.alocacao_quarto
 
 
 --
--- TOC entry 3216 (class 2606 OID 16495)
+-- TOC entry 3224 (class 2606 OID 16827)
 -- Name: cliente cliente_fone_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -382,7 +543,7 @@ ALTER TABLE ONLY public.cliente
 
 
 --
--- TOC entry 3217 (class 2606 OID 16514)
+-- TOC entry 3225 (class 2606 OID 16846)
 -- Name: funcionario funcionario_fone_func_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -390,37 +551,45 @@ ALTER TABLE ONLY public.funcionario
     ADD CONSTRAINT funcionario_fone_func_fkey FOREIGN KEY (fone_func) REFERENCES public.fone_func(fone_func);
 
 
--- Completed on 2023-06-19 23:09:01
+-- Completed on 2023-07-03 00:09:58
 
 --
 -- PostgreSQL database dump complete
 --
 
-SELECT 'possuimos ' || COUNT(*) || ' quartos padrão'FROM quarto WHERE tipo_quarto = 'standard';
+--mostra quantos quartos padrão o hotel tem
+SELECT 'possuimos ' || COUNT(*) || ' quartos padrão livres'FROM quarto WHERE tipo_quarto = 'standard' 
+and quarto.id_quarto NOT IN ( SELECT id_quarto FROM alocacao_quarto);
 
-SELECT id_quarto, tipo_quarto FROM quarto WHERE qtd_camas >= 4;
+--mostra quantos quartos com quatro camas ou mais o hotel tem
+SELECT id_quarto, tipo_quarto FROM quarto WHERE qtd_camas >= 4
+and quarto.id_quarto NOT IN ( SELECT id_quarto FROM alocacao_quarto);
 
-SELECT id_quarto, tipo_quarto FROM quarto WHERE tipo_cama = 'casal';
+--mostra quantos quartos com cama de casal o hotel tem
+SELECT id_quarto, tipo_quarto FROM quarto WHERE tipo_cama = 'casal'
+and quarto.id_quarto NOT IN ( SELECT id_quarto FROM alocacao_quarto);
 
+--mostra quantos quartos estão ocupados
 SELECT 'no momento ' || COUNT(*) || ' quartos estão ocupados' FROM quarto 
 WHERE id_quarto IN (SELECT id_quarto FROM alocacao_quarto);
 
+--seleciona os clientes que alocaram a area de lazer do começo de 2023 até setembro
 SELECT cliente.nome from cliente 
 WHERE cliente.rg_cliente IN (
   SELECT alocacao_area_lazer.rg_cliente FROM alocacao_area_lazer
   WHERE data_alocacao >= '2023-01-01'AND data_alocacao <= '2023-09-30');
 
-
+--mostra id e nome de todos os quartos ocupados
 SELECT alocacao_quarto.id_alocacao_quarto, quarto.tipo_quarto FROM quarto
 INNER JOIN alocacao_quarto ON alocacao_quarto.id_quarto = quarto.id_quarto;
 
-
-SELECT alocacao_quarto.id_alocacao_quarto, quarto.tipo_quarto, SUM(preco) 
+--mostra os quartos com o preço menor que 200
+SELECT alocacao_quarto.id_alocacao_quarto, quarto.tipo_quarto, quarto.preco
 FROM quarto
 INNER JOIN alocacao_quarto ON alocacao_quarto.id_quarto = quarto.id_quarto
-GROUP BY quarto.tipo_quarto, alocacao_quarto.id_alocacao_quarto
-HAVING SUM(preco) > 1000;
+GROUP BY quarto.tipo_quarto, alocacao_quarto.id_alocacao_quarto, quarto.preco
+HAVING SUM(preco) < 200;
 
-
+--mostra as alocações e os tipos de quarto mesmo quando as alocaçãoes são nulas
 SELECT alocacao_quarto.id_alocacao_quarto, quarto.tipo_quarto FROM quarto
 LEFT OUTER JOIN alocacao_quarto ON alocacao_quarto.id_quarto = quarto.id_quarto;
