@@ -1,12 +1,13 @@
 --mostra quantos quartos padrão o hotel tem
-SELECT 'possuimos ' || COUNT(*) || ' quartos padrão livres'FROM quarto WHERE tipo_quarto = 'standard' 
+SELECT 'possuimos ' || COUNT(*) || ' quartos padrão livres'FROM quarto 
+WHERE tipo_quarto = 'standard' 
 and quarto.id_quarto NOT IN ( SELECT id_quarto FROM alocacao_quarto);
 
---mostra quantos quartos com quatro camas ou mais o hotel tem
+--mostra quais são os quartos com quatro camas ou mais o hotel tem
 SELECT id_quarto, tipo_quarto FROM quarto WHERE qtd_camas >= 4
 and quarto.id_quarto NOT IN ( SELECT id_quarto FROM alocacao_quarto);
 
---mostra quantos quartos com cama de casal o hotel tem
+--mostra quais são os quartos com cama de casal o hotel tem
 SELECT id_quarto, tipo_quarto FROM quarto WHERE tipo_cama = 'casal'
 and quarto.id_quarto NOT IN ( SELECT id_quarto FROM alocacao_quarto);
 
@@ -14,7 +15,8 @@ and quarto.id_quarto NOT IN ( SELECT id_quarto FROM alocacao_quarto);
 SELECT 'no momento ' || COUNT(*) || ' quartos estão ocupados' FROM quarto 
 WHERE id_quarto IN (SELECT id_quarto FROM alocacao_quarto);
 
---seleciona os clientes que alocaram a area de lazer do começo de 2023 até setembro
+--seleciona os clientes que alocaram a area de lazer do começo de 2023 
+--até setembro
 SELECT cliente.nome from cliente 
 WHERE cliente.rg_cliente IN (
   SELECT alocacao_area_lazer.rg_cliente FROM alocacao_area_lazer
