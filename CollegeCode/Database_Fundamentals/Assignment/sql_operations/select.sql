@@ -2,11 +2,11 @@
 SELECT 'possuimos ' || COUNT(*) || ' quartos padrão livres'FROM quarto WHERE tipo_quarto = 'standard' 
 and quarto.id_quarto NOT IN ( SELECT id_quarto FROM alocacao_quarto);
 
---mostra quantos quartos com quatro camas ou mais o hotel tem
+--mostra quantos quartos com quatro camas ou mais o hotel tem livre
 SELECT id_quarto, tipo_quarto FROM quarto WHERE qtd_camas >= 4
 and quarto.id_quarto NOT IN ( SELECT id_quarto FROM alocacao_quarto);
 
---mostra quantos quartos com cama de casal o hotel tem
+--mostra quantos quartos com cama de casal o hotel tem livres
 SELECT id_quarto, tipo_quarto FROM quarto WHERE tipo_cama = 'casal'
 and quarto.id_quarto NOT IN ( SELECT id_quarto FROM alocacao_quarto);
 
