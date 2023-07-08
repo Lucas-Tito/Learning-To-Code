@@ -1,4 +1,4 @@
-
+--o fone que aponta pra cliente e não cliente que aponta para fone
 CREATE TABLE fone_cliente(
 	fone_cliente VARCHAR,
   	PRIMARY KEY (fone_cliente)
@@ -33,7 +33,7 @@ CREATE TABLE quarto(
   	tipo_cama VARCHAR,
   	tipo_quarto VARCHAR
 );
-
+--update: data de alocação (começo e fim)
 CREATE TABLE alocacao_quarto(
 	id_alocacao_quarto SERIAL PRIMARY KEY,
   	rg_cliente INTEGER,
@@ -46,7 +46,7 @@ CREATE TABLE area_lazer(
 	id_area_lazer SERIAL PRIMARY KEY,
   	ultima_manutencao DATE
 );
-
+--update: data de alocação (começo e fim)
 CREATE TABLE alocacao_area_lazer(
 	id_alocacao_area_lazer SERIAL PRIMARY KEY,
   	rg_cliente INTEGER,
