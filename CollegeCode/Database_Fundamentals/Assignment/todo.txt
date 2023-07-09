@@ -1,3 +1,2 @@
-+ learn how to delete a row that other table points to as a foreign key
 + increase button size to show full label
-+ o que vou fazer com trigger
++ how I am gone use trigger
