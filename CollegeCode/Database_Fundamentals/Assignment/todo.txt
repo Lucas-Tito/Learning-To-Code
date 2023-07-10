@@ -1,2 +1,3 @@
 + increase button size to show full label
 + how I am gone use trigger
++ how to use labels onm ipywidgets
