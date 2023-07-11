@@ -1,3 +1,2 @@
 + how I am gone use trigger
 + how to use labels onm ipywidgets
-+ view is showing null on price

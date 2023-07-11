@@ -1,0 +1,8 @@
+Crie um banco chamado "titos_hotel" e execute as instruções presentes em dump.sql
+
+As interfaces do crud estão presentes na pasta "Interface"
+
+Os cruds com mais funcionalidades são o "crud_cliente" e o "crud_quarto"
+
+*Apesar de pesquisar sobre, não consegui ter certeza se o postgres salva o usuário, logo se tiver problemas
+com a interface na sua máquina, provavelmente estaria relacionado a senha presente na interface.
