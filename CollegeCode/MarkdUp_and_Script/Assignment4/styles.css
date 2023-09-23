@@ -113,13 +113,14 @@ article {
   display: block;
 }
 
-.sidebar {     
+.sidebar {
   display: flex;
-  background:#fff; 
-  box-shadow: 1px 0px 1.2px 0px #e3e3e3; 
-  width:150px;
+  align-self: flex-end;
+  background: #fff;
+  box-shadow: 1px 0px 1.2px 0px #e3e3e3;
+  width: 150px;
   height: 100vh;
-  padding:20px;
+  padding: 20px;
   position: absolute;
   padding-top: 70px;
 }
@@ -132,13 +133,47 @@ article {
 
 .sidebar ul li {
 
-padding: 6px 0;
+  padding: 6px 0;
 
 }
 
-.sidebar ul li a i { font-size:1.1em; }
+.sidebar ul li a i {
+  font-size: 1.1em;
+}
 
 
 .sidebar ul li button:hover {
-color: red;
+  color: red;
+}
+
+.sidebar2 {
+  display: flex;
+  background: #fff;
+  box-shadow: 1px 0px 1.2px 0px #e3e3e3;
+  width: 150px;
+  height: 100vh;
+  padding: 20px;
+  position: absolute;
+  padding-top: 70px;
+}
+
+.sidebar2 ul {
+
+  list-style-type: none;
+
+}
+
+.sidebar2 ul li {
+
+  padding: 6px 0;
+
+}
+
+.sidebar2 ul li a i {
+  font-size: 1.1em;
+}
+
+
+.sidebar2 ul li button:hover {
+  color: red;
 }
