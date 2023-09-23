@@ -188,6 +188,10 @@ footer {
   text-align: center; /* Centraliza o texto no rodapé */
 }
 
+.master{
+  display: flex;
+  justify-content: center;
+}
 
 .galeria{
   display: grid;
@@ -195,6 +199,15 @@ footer {
   grid-template-columns: 150px 150px 150px;
   padding: 0 200px;
 }
+
+@media (max-width:900px) {
+  .galeria { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width:600px) {
+  .galeria { grid-template-columns: repeat(1, 1fr); }
+}
+
 img{
   width: 150px;
 }
