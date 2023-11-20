@@ -1,1 +1,0 @@
-# It's recommended that all the images have 300 pixels width size
