@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colaboradores</title>
+    <link rel="stylesheet" href="./../../styles/pokemon.css" />
+    <link rel="stylesheet" href="./../../styles/style.css" />
+
+    <!-- Adicione um arquivo de estilo CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./../../scripts/axios.js"></script>
+  </head>
+  <body>
+    <!-- header represents a support tag that can work as a navigation section -->
+    <header>
+      <a href="./../../index.html"
+        ><img class="logo" src="./../../images/logo.svg" alt="logo"
+      /></a>
+
+      <!-- nav is a section that contains links to others pages -->
+      <nav>
+        <!-- ul is an unordered list that can contain various items -->
+        <ul class="nav-links">
+          <!-- li tag represents a list item -->
+
+          <li>
+            <div class="dropdown">
+              <button class="dropbtn">
+                MENU
+                <i class="fa fa-caret-down"></i>
+              </button>
+
+              <div class="dropdown-content">
+                <a href="./../pibic/pibic.html">PIBIC</a>
+                <a href="./../transparencia/transparencia.html"
+                  >O que é transparência?</a
+                >
+                <a href="#">Colaboradores</a>
+                <a href="./../ufc/ufc.html">UFC</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <button class="contact_btn">Contact</button>
+    </header>
+
+    <div class="header-background">
+      <h1>Nossos principais colaboradores</h1>
+    </div>
+    <div id="output" class="pokemon-grid"></div>
+    <footer>
+      <div class="footer-content">
+        <p class="message">God bless those in need</p>
+        <p>
+          Copyright &copy; 2023 LMS. Designed By
+          <span
+            >Lucas Tito, José Anderson, Pedro Rivaldo, Lazaro Lopes, Jhordanna
+            Céulazur</span
+          >
+        </p>
+      </div>
+    </footer>
+
+    <div class="popup">
+      <button class="close_btn"></button>
+      <br />
+      <img src="./../../images/phone_icon.svg" />
+      <h2>Contact Us</h2>
+      <form>
+        <input type="email" name="email" placeholder="E-mail" />
+        <input type="password" name="pass" placeholder="Telefone" />
+        <a href="#">Go</a>
+      </form>
+    </div>
+    <script src="./../../scripts/script.js"></script>
+  </body>
+</html>
