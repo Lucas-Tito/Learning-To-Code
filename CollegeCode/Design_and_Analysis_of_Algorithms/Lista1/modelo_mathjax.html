@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Modelo de uso do MathJax (HTML+Latex)</title>
+
+  <!-- MATHJAX 3 (através da CDN) -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- MATHJAX 3 (salvo no computador) -->
+  <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+</head>
+<body>
+  <h1>Avaliação Continuada 02 - Lucas Tito</h1>
+
+  <ul>
+    <li>
+    <p><strong>Questão 1.</strong> 
+
+      <p>
+        <strong>Passos Básicos:</strong> Utilize dois índices \(i\) e \(j\).
+        O índice \(i\) vai da posição \(2\) em direção em final da lista, e o índice \(j\)
+        vai da última posição em direção ao início da lista. Em cada iteração, avançe o \(i\)
+        se \(L[i]\) é menor ou igual ao pivô. Caso contrário, avançe o \(j\) se \(L[j]\)
+        é maior que o pivô. Se nenhuma destas condições ocorrer, troque \(L[i]\) com \(L[j]\)
+        e avance \(i\) e \(j\). A repetição termina quando \(j &lt; i\).
+        Finalmente, reposicione o pivô de modo que apenas elementos maiores 
+        que o pivô estejam à direita dele.
+      </p>
+
+      <p><strong>Invariante de loop:</strong><br>
+      INV1: Todos os elementos nas posições menores que \(i\) possuem valor menor ou igual ao pivô.<br>
+      INV2: Todos os elementos nas posições maiores que \(j\) possuem valor maior que o pivô.
+      </p>
+      <p>
+
+        <br>
+        <p><strong>Pseudocódigo:</strong><br>
+          Nota: o array deste pseudocodigo está começando de 0
+        <pre>
+          <code>
+            1              i = 1  
+            2              j = array.lenght - 1
+            3              pivo = 0
+
+            4              enquanto (j > i) 
+
+            5                 se (array[i] <= array[pivo])
+            6                   i++
+
+            7                 se não(array[j] >= array[pivo])
+            8                   j--
+
+            9                 caso contrário
+            10                  temp = array[i]
+            11                  array[i] = array[j]
+            12                  array[j] = temp
+
+            13                  i++
+            14                  j--
+
+            15             temp = array[pivo]    
+            16             array[pivo] = array[j]  
+            17             array[j] = temp  
+
+            18             retorne array   
+          </code>
+        </pre>
+        <br><br>
+
+        <ol type="a">
+          <li><strong>Medida de Progresso:</strong> quantidade de elementos vistos até então. 
+            Além disso, o algoritmo termina, já que i percorre de 2 até o final do vetor e j de n até o começo, o que indica que em algum momento esses índices se encontrarão, satisfazendo a condição de saída (j < i).
+          </li>
+          <br>
+          <li><strong>Primeira Iteração:</strong> O código pre loop do pseudocodigo mantém a invariante, já que: <br>
+            INV1: i <= pivo, pois o único elemento antes de i neste momento é o próprio pivo. <br>
+            INV2: neste momento, nenhuma posição é maior que j.
+          </li>
+          <br>
+
+          <li><strong>Código do loop:</strong> O código do loop no pseudocodigo mantém a invariante, já que: <br><br>
+            As linhas 5-17 fazem o seguinte: <br><br>
+            i é incrementado sempre que um elemento menor ou igual ao pivô é encontrado à direita. j é decrementado sempre que um elemento maior ou igual ao pivô é encontrado à esquerda.<br><br>
+            Quando i e j se encontram ou cruzam, o loop termina. Nesse momento, os elementos que não são o pivô estão ¨Divididos¨, na esquerda estão os numeros com valor menor ou igual ao pivô.<br><br>
+            Na direita estão os números  maiores ou iguais ao pivô. <br><br>
+            Nas linhas 15-17, o pivô é trocado por j, que nesse momento é i-1 (que corresponde ao maior número menor que o pivô). <br><br>
+            Portanto, todos os elementos nas posições menores que i possuem valor menor ou igual ao pivô e todos os elementos nas posições maiores que j possuem valor maior que o pivô.
+          <br><br>
+
+          <li><strong>Invariante do loop e a condição de saída garantem que, assim que a execução sair do loop teremos j=i−1.</strong><br>
+             Já que a condição de saída é j < i e os índice j e i se cruzam, ao final do loop temos j=i−1.<br><br>
+            
+          <li><strong>Pós condições:</strong> as pós condições são satisfeitas, já que: <br><br>
+            Como explicado no item c, as pós condições trocam o pivô por j no momento em que j corresponde ao maior número menor que o pivô.<br><br>
+            Deste modo, os itens à esquerda do pivô são menores que ele, e os itens ã direita do pivô são maiores que ele.
+          </li>
+
+          <br><br><li> Já fornecido. </li><br><br>
+
+          <li><strong>Casis Especiais:</strong><br><br>
+            (i). É necessário alteração, se não o i já começaria out of bounds.<br>
+            Uma verificação pré loop seria o bastante<br><br>
+
+            (ii). Este caso especial pede por alteração do código, já que seguindo o pseudocódigo fornecido, i vai ficar out of bounds.<br><br>
+            Assim, podemos adicionar mais uma condição no while para encerrar antes de i entrar em out of bounds<br><br>
+            As pós condições ainda seram satisfeitas, já que nesse caso o pivo seria trocado pelo último elemento.<br><br>
+
+            (iii). São necessárias alterações, caso contrário este caso resultará em loop infinito, já que o i nunca progride.<br>
+            Uma verificação antes da troca resolveria.<br><br>
+          </li>
+          <li><strong>Pior Caso:</strong> o pior caso se caracteriza quando todos os números são maiores que o pivô.<br><br>
+            Assim, i percorrerá n-1 antes do loop se encerrar, o que torna esse algoritimo O(n).
+          </li>
+        </ol>
+      </p>
+    </p></li>
+
+
+    <br> <br> <br> <br> <br> <br> 
+    <li>
+      <p><strong>Questão 2:</strong> 
+        
+          <!-- LaTeX table -->
+          <div id="latex-table">
+            \[
+            \begin{array}{|l|l|l|}
+              \hline
+              \text{Algoritmo(n)} & \text{Custo} & \text{Qnts vezes} \\
+              \hline
+              \text{1. para i de 1 até n} & c1 & n \\
+              \hline
+              \quad\text{2. f(i)} & c2 & Θ(i) * n-1 \\
+              \hline
+              \quad\text{3. para j de i+1 até n} & c3 & \sum_{i=1}^{n-1} (n-i+1) \\
+              \hline
+              \qquad \text{4. g(j)} & c4 & \sum_{i=1}^{n-1} (n-i) * Θ(logn) \\
+              \hline
+              \text{5. para i de 1 até n} & c5 & n \\ 
+              \hline \quad \text{6. h(i)} & c6 & Θ(n²) * n-1 \\ 
+              \hline  
+            \end{array} \]</p>
+
+              <p>
+                  <strong>Desenvolvendo os somatórios: </strong><br>
+                  \[ \sum_{i=1}^{n-1} (n - i) = \sum_{i=1}^{n-1} n - \sum_{i=1}^{n-1} i = n \cdot \sum_{i=1}^{n-1} 1 - \sum_{i=1}^{n-1} i = n(n-1) - \frac{n(n-1)}{2} = \frac{n(n-1)}{2} = \frac{n^2 - n}{2} \]
+                  
+                  \[ \sum_{i=1}^{n-1} (n - i + 1) = \sum_{i=1}^{n-1} (n - i) + \sum_{i=1}^{n-1} 1 = n \cdot \frac{(n-1)}{2} + (n-1) = \frac{(n-1)(n+2)}{2} = \frac{n^2 + n - 2}{2} \]
+              </p>
+              <br>
+              <p>
+                <strong>Assim, T(n) é: </strong><br>
+                \[
+                (T(n)) =
+                c_{1}*n+ c_{2}(Θ(i) * n-1) + c_{3}(\frac{N²+N-2}{2}) + c_{4} (\frac{N²-N}{2}  * Θ(logn)) + 
+                c_{5}*n + c_{6}(Θ(n²) * n-1)
+                \]
+              </p>
+              <br>
+              <p>
+                <strong>Desenvolvendo T(n): </strong><br>
+                \[
+                (T(n)) = (c_3 + c_4 \cdot Θ(\log n) + c_6 \cdot Θ(n^2)) \cdot (n-1) + (c_1 + c_5)n
+                \]
+                <br>
+                que é uma função da forma  \( T(n) = an^2 + bn + c \), onde a, b e c são constantes. Portanto, o pior caso é da ordem de uma função quadrática.
+              </p>
+              
+      </p>
+    </li>
+  
+    </ul>
+
+</body>
+</html>

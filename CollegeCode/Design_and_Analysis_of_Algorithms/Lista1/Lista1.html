@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Lista 1</title>
+
+  <!-- MATHJAX 3 (através da CDN) -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- MATHJAX 3 (salvo no computador) -->
+  <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+</head>
+
+<body>
+  <h1>Lista 1- Lucas Tito</h1>
+
+  <ul>
+    <li>
+      <p><strong>Questão 1.</strong>
+
+      <p>
+        Um algoritmo é uma sequência finita de instruções não ambíguas que descrevem um conjunto de operações a serem
+        executadas para resolver um problema. De modo que um problema computacional é definido como uma relação entre um
+        conjunto de instâncias e um conjunto de soluções.
+      </p>
+
+      <p>
+        Para que nossas instruções sejam bem definidas e não ambíguas , temos que seguir as instruções determinadas pelo
+        modelo computacional, que no caso dessa disciplina é o Random Access Machine (RAM). Este modelo possui como
+        instruções elementares as operações aritméticas (soma, subtração, produto…), acesso direto às posições da
+        memória e comandos de fluxo de controle (se, enquanto…).
+      </p>
+
+      <p>
+        Por fim, não basta elaborar algoritmos que apenas resolvem problemas, eles também devem ser eficientes. Assim,
+        para determinar a eficiência de um algoritmo usamos a complexidade de tempo que define como o tempo de execução
+        do algoritmo cresce à medida que o tamanho da entrada aumenta. Ademais, a complexidade de tempo pode ser
+        expressa em diferentes notações, bigO por exemplo, e ela pode ser separada em três casos: melhor caso (menor
+        quantidade de tempo que o algoritmo leva para resolver um problema.), pior caso (maior quantidade de tempo que o
+        algoritmo pode levar para resolver um problema) e caso médio (média ponderada do tempo de execução para todos os
+        possíveis conjuntos de entrada).
+
+      </p>
+
+      
+
+
+    <br> <br> <br> <br> <br> <br>
+    <li>
+      <p><strong>Questão 2:</strong></p>
+
+        <p>
+          <strong>Desenvolvendo 8n² < 64n lg(n) </strong><br>
+          \[ n² < \frac{64n lg(n)}{8}  =  n² < 8n lg(n)\]
+          \[ = n < \frac{8n lg(n)}{n}  =  \mathbf{n < 8 lg(n)}\]
+        </p>
+        <br>
+        <p>
+          <strong>Assim, só nos resta testar possíveis valores:</strong><br>
+          
+          <span style="color: gray;">*Recomendo você testar de 10 em 10.</span>
+          
+          <br><br>
+
+          <div style="text-align: center;">
+            <span> A partir de 27, o insertion sort passa a ser pior </span>
+          </div>
+         
+          \[ 27 < 8lg(27)  =  \mathbf{27 < 11} \]
+          
+        </p>
+        
+    </li>
+
+
+    <br> <br> <br> <br> <br> <br>
+    <li>
+      <p><strong>Questão 3:</strong></p>
+
+      <p>
+        <div style="text-align: left; display: inline-block;">
+          \[ \text{Desenvolvendo } \mathbf{100N² < 2^{N}}\]
+        </div>
+        \[ \log_{2}(100N²) < \log_{2}(2^N)  =   \log_{2}(100N²) < N \]
+
+        <span style="color: gray;">*O log de produtos positivos pode ser substituído por uma soma de logs, e também podemos usar a regra do peteleco.</span>
+
+        \[ \log_{2}(100) + log_{2}(N²) < N  =  \log_{2}(100) + 2log_{2}(N) < N \]
+
+        \[ =  \mathbf{6.65 + 2log_{2}(N) < N} \]
+      </p>
+
+      <p>
+        <strong>Testando valores descobrimos que a partir de 15, o algoritmo de execução 100N² é mais rápido.</strong><br>
+      </p>
+    </li>
+
+
+    <br> <br> <br> <br> <br> <br>
+    <li>
+      <p><strong>Questão 4:</strong></p>
+
+      <p>
+        <br>
+        Nota: o array deste pseudocodigo está começando de 1
+        <strong>Reverse-Insertion-Sort(A,N)</strong><br>
+        <pre>
+          <code>
+            1              para j = N-1 até 1 faça
+            2                 chave = A[j]
+            3                 i = j++
+            4                 enquanto i <= N  e  A[1] > chave  faça 
+            5                     A[i--] = A[i]
+            6                     i++
+            7                     A[i++] = chave
+          </code>
+        </pre>
+        <br><br>
+      </p>
+
+    </li>
+
+
+    <br> <br> <br> <br> <br> <br>
+    <li>
+      <p><strong>Questão 5:</strong></p>
+
+      <p>
+        <br>
+        Nota: o array deste pseudocodigo está começando de 1
+        <strong>Reverse-Insertion-Sort(A,N)</strong><br>
+        <pre>
+          <code>
+            1              para j = N-1 até 1 faça
+            2                 chave = A[j]
+            3                 i = j++
+            4                 enquanto i <= N  e  A[1] > chave  faça 
+            5                     A[i--] = A[i]
+            6                     i++
+            7                     A[i++] = chave
+          </code>
+        </pre>
+        <br><br>
+      </p>
+
+    </li>
+
+
+
+    <br> <br> <br> <br> <br> <br>
+    <li>
+      <p><strong>Questão 6:</strong></p>
+
+      <p>
+        <br>
+        Nota: o array deste pseudocodigo está começando de 1
+        <strong>Algoritmo D(X,N)</strong><br>
+        <pre>
+          <code>
+            1              i = 1
+            2              repita
+            3                 X[i] = X[i]+2
+            4                 i = i+2
+            5              até (i <= N) 
+
+            6              i=1
+            7              enquanto i <= piso de N/2 
+            8                 X[i] = X[i] + X[i++]
+            9                 i++
+          </code>
+        </pre>
+        <br><br>
+      </p>
+
+      <p>O lasso da linha 2 soma dois aos termos ímpares do vetor X.</p>
+      <p>Já a repetição da linha 4 soma o iésimo termo ao termo da frente para todos os termos da primeira metade do vetor X.</p>
+
+      <br>
+      <p>
+        <strong>Este algoritmo realiza as seguintes operações:</strong>
+      
+        \[
+            \begin{array}{|l|l|l|}
+              \hline
+              \text{Linha} & \text{Custo} \\
+              \hline
+              \text{1.} & 1 \\
+              \hline
+              \text{3 - 4} & N-1 (\text{cada linha}) \\
+              \hline
+              \text{8 - 9} & N-1 (\text{cada linha})\\
+              \hline
+        \end{array} \]
+      </p>
+    </li>
+
+  </ul>
+
+</body>
+
+</html>
