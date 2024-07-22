@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>AC03</title>
+
+  <!-- MATHJAX 3 (através da CDN) -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- MATHJAX 3 (salvo no computador) -->
+  <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+</head>
+
+<body>
+  <h1>AC03 - Lucas Tito</h1>
+
+  <ul>
+
+    <!-- --------- Questão 1 -------------- -->
+    <h2><strong>Questão 1</strong></h2>
+    <li>
+      
+      \[
+      \begin{array}{|l|l|l|}
+      \hline
+      \text{Algoritmo(n)} & \text{Custo} & \text{Qntd. vezes} \\
+      \hline
+      \text{1. Se n == 0 entao retorna 0} & c1 & 1 \\
+      \hline
+      \text{2. Senao} & c2 & 1 \\
+      \hline
+      \text{3.} \quad \text{ Para j = 1, ..., n faça} & c3 & n + 1 \\
+      \hline
+      \text{4.} \quad \quad \text{soma = soma + j} & c4 & n \\
+      \hline
+      \text{5. Retorne soma + Algoritmo(n/2)} & c5 & T(\lfloor n/2 \rfloor) \\
+      \hline
+      \end{array}
+      \]
+
+      <p> Observando a tabela temos que: \(T(n) = n + T(\lfloor n/2 \rfloor)\). Desse modo, <b>temos que provar que \( \mathbf{T(n) = O(N*log_2(n))} \)</b>.</p>
+      
+      <br>
+      <p><strong>Hipótese Indutiva:</strong> Suponha que para todo k com n0 <= k < n, T(k) <= ck lgk, onde c e n0 são constantes positivas.</p>
+
+      <p>Queremos provar que: <strong>T(n) <= cn lgn</strong></p>
+
+      \[ \mathbf{T(n) \ = \ n + T(\lfloor n/2 \rfloor)}\]
+
+      \[ \mathbf{= n + c (\lfloor n/2 \rfloor) \ \ \ log_2(\lfloor n/2 \rfloor)} \]
+
+      \[ \mathbf{<= n \ + \ c (n/2) \ \ (log_2(n) - 1)}\]
+      
+      \[ \mathbf{= \boxed{n} \ + \ c (n/2) \ \ log_2(n) \boxed{- c (n/2)}}\]
+      
+      <br>
+
+      <p>Observe que a parte destacada precisa ser removida para provar a nossa hipótese. Deste modo, devemos provar que \( \mathbf{n - c*(n/2) \leq 0}\).</p>
+      
+      <p>Considerando <b>c = 2</b></p>
+      
+      \[ n - 2*(n/2) \]
+      \[ n - n = 0 \]
+
+      <br> <br> <br> <br> 
+
+
+      <p align="center"> <b>Provando caso base N = 2:</b> </p>
+      <p> \( T(2) = 2 + T(1) = 2 + 2 + T(0) = 4 + T(0) = 4 \) </p>
+      <p> \(\leq 4*log_2(2) \leq 4*log_2(2) = 4*1\)</p>
+      <p> Como \(4 \leq 4, n_0 = 2\) pode ser considerado o caso base </p>
+      <br />
+
+    </li>
+
+    <br> <br> <br> <br> <br> <br>
+    <!-- --------- Questão 2 A -------------- -->
+    <li>
+      <h2><strong>Questão 2</strong></h2>
+      <p>
+        <ol type="a">
+          <li>
+            \(T(n) = T(n/2) + 15, \ \text{onde} \ T(1) = 1.\)
+            <p> Suponha que \(T(n) \text{ é } O(\lg n)\). Logo, temos: <strong>T(n) <= c lgn</strong> para n>=n0, onde c e n0 são constantes positivas.</p>
+            
+            <br>
+            <p><strong>Hipótese Indutiva:</strong> Suponha que para todo k com n0 <= k < n, T(k) <= c lgk, onde c e n0 são constantes positivas.</p>
+
+            <br>
+            
+            \begin{flalign}
+              T(n)  &= T\left( \frac{n}{2}\right) + 15 \\
+                    &\leq c \lg \left(\frac{n}{2}\right) + 15\\
+                    &= c(\lg n - 1) + 15 \\
+                    &= c \lg n - c + 15\\
+                    &\leq c \lg n
+            \end{flalign}
+            para \(c \geq 15\) e qualquer \(n_0\) positivo.
+
+            <br>
+            <p>n=2 basta como <strong>caso base</strong>.</p>
+
+            <br><br>
+
+            <p> Agora temos que provar que \(T(n) \text{ é } \Omega(\lg n)\). Logo, temos: <strong>T(n) >= c lgn</strong> para n>=n0, onde c e n0 são constantes positivas.</p>
+
+            <br>
+            <p><strong>Hipótese Indutiva:</strong> Suponha que para todo k com n0 <= k < n, T(k) >= c lgk, onde c e n0 são constantes positivas.</p>
+
+            \begin{flalign}
+              T(n)  &= T\left( \frac{n}{2}\right) + 15 \\
+                    &\geq c \lg \left(\frac{n}{2}\right) + 15\\
+                    &= c(\lg n - 1) + 15 \\
+                    &= c \lg n - c + 15\\
+                    &\geq c \lg n 
+            \end{flalign}
+            para \(c \leq 15\) e qualquer \(n_0\) positivo.
+
+            <br>
+            <p>n=1 basta como <strong>caso base</strong>.</p>
+            <br><br><br><br><br>
+          </li>
+          
+          <!-- --------- Questão 2 B -------------- -->
+          <li>
+            \(F(n) = 2F(n/2) + n, \ \text{onde} \ F(1) = 1.\)
+            
+            <p> Suponha que \(T(n) \text{ é } O(n \ lg n)\). Logo, temos: <strong>T(n) <= cn lgn</strong> para n>=n0, onde c e n0 são constantes positivas.</p>
+
+            <br>
+            <p><strong>Hipótese Indutiva:</strong> Suponha que para todo k com n0 <= k < n, T(k) <= ck lgk, onde c e n0 são constantes positivas.</p>
+
+            \begin{flalign}
+              F(n) &= 2F(n/2) + n \\
+                    &\leq \cancel{2} \cdot c \cdot \frac{n}{\cancel{2}} \lg \left( \frac{n}{2} \right) + n\\
+                    &= c \cdot n (\lg n - 1) + n\\
+                    &= c \cdot n \lg n - cn + n \\
+                    &\leq c \lg n
+            \end{flalign}
+            para \(c \geq 1\) e qualquer \(n_0\) positivo.
+
+            <br>
+            <p>n=2 basta como <strong>caso base</strong>.</p>
+
+            <br><br>
+            <p> Agora temos que provar que \(T(n) \text{ é } \Omega(\lg n)\). Logo, temos: <strong>T(n) >= cn lgn</strong> para n>=n0, onde c e n0 são constantes positivas.</p>
+
+            <br>
+            <p><strong>Hipótese Indutiva:</strong> Suponha que para todo k com n0 <= k < n, T(k) >= ck lgk, onde c e n0 são constantes positivas.</p>
+
+            \begin{flalign}
+              F(n) &= 2F(n/2) + n \\
+                    &\geq \cancel{2} \cdot c \cdot \frac{n}{\cancel{2}} \lg \left( \frac{n}{2} \right) + n\\
+                    &= c \cdot n (\lg n - 1) + n\\
+                    &= c \cdot n \lg n - cn + n \\
+                    &\geq c \cdot n \lg n
+            \end{flalign}
+            para \(1 \geq c > 0\) e qualquer \(n_0\) positivo.
+
+            <br>
+            <p>n=1 basta como <strong>caso base</strong>.</p>
+            <br><br><br><br><br>
+          </li>
+
+          <!-- --------- Questão 2 C -------------- -->
+           <li>
+            \(G(n) = 2G(\sqrt{n}), \ \text{onde} \ G(1) = 1.\)
+
+            <p>Supondo O(n)</p>
+            <p>\[ G(n) \leq c n \]</p>
+            <p>para algum \( c > 0 \) e para \( n \geq n_0 \), onde \( n_0 \) é um valor base para \( n \).</p>
+            
+            <p>Substituindo a hipótese na recorrência:</p>
+            <p>\[ G(n) = 2G(\sqrt{n}) \]</p>
+            <p>Usando a hipótese de indução:</p>
+            <p>\[ G(\sqrt{n}) \leq c \sqrt{n} \]</p>
+            <p>Substituindo na recorrência:</p>
+            <p>\[ G(n) \leq 2 \cdot c \sqrt{n} \]</p>
+            <p>\[ G(n) \leq 2c \sqrt{n} \]</p>
+            <p>Para garantir que \( G(n) \leq c n \), precisamos que:</p>
+            <p>\[ 2c \sqrt{n} \leq c n \]</p>
+            <p>Divida ambos os lados por \( c \sqrt{n} \):</p>
+            <p>\[ 2 \leq \sqrt{n} \]</p>
+            <p>\[ n \geq 4 \]</p>
+            <h4>Casos Base</h4>
+            <p>Para validar a nossa hipótese, verificamos os casos base:</p>
+            <p>Para \( n = 4 \):</p>
+            <p>\[ G(4) = 2G(\sqrt{4}) = 2G(2) \]</p>
+            <p>Se \( n_0 = 4 \), então a hipótese \( G(n) \leq c n \) é válida.</p>
+            <p>Portanto, se \( n \geq 4 \), a hipótese de indução está correta para o limite superior. Assim:</p>
+            <p>\[ G(n) = O(n) \]</p>
+            <h3><b>Limite Inferior</b></h3>
+            <h4>Hipótese de Indução</h4>
+            <p>Vamos supor que existe uma constante \( k \) tal que:</p>
+            <p>\[ G(n) \geq k n \]</p>
+            <p>para algum \( k > 0 \) e para \( n \geq n_0 \), onde \( n_0 \) é um valor base para \( n \).</p>
+            <h4>Passo Indutivo</h4>
+            <p>Queremos provar que a hipótese é válida para \( n \) e que:</p>
+            <p>\[ G(n) \geq k n \]</p>
+            <p>Substituindo a hipótese na recorrência:</p>
+            <p>\[ G(n) \geq 2G(\sqrt{n}) \]</p>
+            <p>Usando a hipótese de indução:</p>
+            <p>\[ G(\sqrt{n}) \geq k \sqrt{n} \]</p>
+            <p>Substituindo na recorrência:</p>
+            <p>\[ G(n) \geq 2 \cdot k \sqrt{n} \]</p>
+            <p>\[ G(n) \geq 2k \sqrt{n} \]</p>
+            <p>Para garantir que \( G(n) \geq k n \), precisamos que:</p>
+            <p>\[ 2k \sqrt{n} \geq k n \]</p>
+            <p>Divida ambos os lados por \( k \sqrt{n} \):</p>
+            <p>\[ 2 \geq \sqrt{n} \]</p>
+            <p>\[ n \leq 4 \]</p>
+            <h4>Casos Base</h4>
+            <p>Para validar a nossa hipótese, verificamos os casos base:</p>
+            <p>Para \( n = 4 \):</p>
+            <p>\[ G(4) = 2G(\sqrt{4}) = 2G(2) \]</p>
+            <p>Se \( n_0 = 4 \), então a hipótese \( G(n) \geq k n \) é válida.</p>
+            <p>Portanto, se \( n \leq 4 \), a hipótese de indução está correta para o limite inferior. Assim:</p>
+            <p>\[ G(n) = \Omega(n) \]</p>
+            <h3>Conclusão</h3>
+            <p>A complexidade assintótica exata da recorrência é:</p>
+            <p>\[ G(n) = \Theta(n) \]</p>
+           </li>
+          
+        </ol>
+      </p>
+    </li>
+
+    <br> <br> <br> <br> <br> <br>
+
+
+    <!-- --------- Questão 3 -------------- -->
+    <li>
+      <h2><strong>Questão 3</strong></h2>
+
+
+      \[ \text{Queremos provar que } \mathbf{T(n) \ = \ O(n \log_2(n))}\]
+
+      <p>Para tal, precisamos mostrar que <strong>T(n) <= cn lgn</strong> para n>=n0, onde c e n0 são constantes</p>
+
+      <br>
+
+      <p><strong>Hipótese Indutiva:</strong> Suponha que para todo k com n0 <= k < n, T(k) <= ck lgk, onde c e n0 são constantes positivas.</p>
+
+      <p>Queremos provrar que: <strong>T(n) <= cn lgn</strong></p>
+      
+      \[ \mathbf{T(n) \ = \ 2T(\lfloor \frac{n}{2} \rfloor \ + \ 17) \ + \ n}\]
+
+
+      <br>
+
+      \[ \mathbf{<= \ 2c(\lfloor \frac{n}{2} \rfloor \ + \ 17) \ \log_2(\lfloor \frac{n}{2} \rfloor \ + \ 17) \ + \ n} \ \ \ \ \ \textbf{ (Hipótese Indutiva)}\]
+      
+      <br>
+
+      \[ \mathbf{<= \ 2c(\frac{n}{2} \ + \ 17) \ \log_2(\frac{n}{2} \ + \ 17) \ + \ n} \ \ \ \ \ \text{ (A fórmula é maior sem o piso)}\]
+
+      <br>
+
+      \[ \mathbf{= \ \cancel{2}c(\frac{n+34}{\cancel{2}}) \ \log_2(\frac{n+34}{2}) \ + \ n}\]
+
+      <br>
+
+      \[ \mathbf{= \ c(n+34) \ (\log_2(n+34) - \log_2(2)) \ + \ n} \ \ \ \ \ \ \ \ \ \ \ \ \text{(Usando a propriedade: } (\log_b(\frac{a}{c}) \ = \  \log_b(a) - \log_b(c))\]
+
+      <br>
+
+      \[ \mathbf{= \ c(n+34) \ \log_2(n+34) - c(n+34) \ + \ n} \ \ \ \ \ \ \ \ \ \ \ \ \text{(Distribuindo c(n+34). Além disso, lg2 é um) }\]
+
+      <br>
+      <br>
+
+      <p>Observe que não iremos conseguir desenvolver essa equação de modo que ela satisfaça <strong>cn lgn</strong>. Portanto, precisamos fortificar a hipótese de indução.</p>
+
+      <br>
+      
+      <p><strong>Nova Hipótese Indutiva:</strong> Suponha que para todo k com n0 <= k < n, <strong> T(k) <= c(k-34) lg(k-34) </strong>, onde c e n0 são constantes positivas.</p>
+
+      \[ \mathbf{T(n) \ = \ 2T(\lfloor \frac{n}{2} \rfloor \ + \ 17) \ + \ n}\]
+
+      <br>
+      \[ \mathbf{<= \ 2c(\lfloor \frac{n}{2} \rfloor \ + \ 17 -34) \ \log_2(\lfloor \frac{n}{2} \rfloor \ + \ 17 -34) \ + \ n} \ \ \ \ \ \textbf{ (Hipótese Indutiva)}\]
+
+      <br>
+      \[ \mathbf{<= \ \cancel{2}c(\frac{n}{\cancel{2}} \ - \ 17) \ \log_2(\frac{n}{2} \ - \ 17) \ + \ n} \]
+
+      <br>
+      \[ \mathbf{<= \ 2c(\frac{n}{2} \ - \ 17) \ \log_2(\frac{n}{2} \ - \ 17) \ + \ n} \]
+
+      <br>
+      \[ \mathbf{= \ \cancel{2}c(\frac{n-34}{\cancel{2}}) \ \log_2(\frac{n-34}{2}) \ + \ n} \]
+
+      <br>
+      \[ \mathbf{= \ c(n-34) \ (\log_2(n-34) - \log_2(2)) \ + \ n} \]
+
+      <br>
+      \[ \mathbf{= \ c(n-34) \ \log_2(n-34) \boxed{-  c(n-34) \ + \ n}} \]
+
+      <br>
+      <br>
+
+      <p>Agora precisamos se livrar da parte destacada para satisfazer a nossa hipótese.</p>
+
+      <br>
+      
+      \[ -  c(n-34) \ + \ n \ \ <= \ \ 0\]
+      \[ -  cn+34c \ + \ n \ \ <= \ \ 0\]
+      \[ -  cn \ + \ n \ \ <= \ \ -34c \]
+      \[ cn \ - \ n \ \ >= \ \ 34c\ \ \ \ \ \ \text{(Multiplicando ambos os lados por -1)} \]
+      \[ n(c-1) \ \ >= \ \ 34c \ \ \ \ \ \text{(Destacando n)} \]
+      \[ n \ \ >= \ \ \frac{34c}{c-1} \]
+
+      <br>
+      <br>
+
+      <p>Escolhendo <strong>c=2</strong> e <strong>n>=68</strong> temos que:</p>
+
+      <br>
+
+      \[ \mathbf{T(n) \ <= \ c(n-34) \ \log_2(n-34)}\]
+
+    </li>
+    <br> <br> <br> <br> <br> <br>
+
+    
+
+
+    <!-- --------- Questão 4 -------------- -->
+    <h2><strong>Questão 4</strong></h2>
+    <li>
+
+      \[ T(n) = 4T\left(\frac{n}{3}\right) + n \]
+      
+      <h3 align="center">Limite Superior</h3>
+      
+      <p><strong>Hipótese Indutiva:</strong> Suponha que para todo k com n0 <= k < n, \( T(k) \leq c k^{\log_3 4} \), onde c e n0 são constantes positivas.</p>
+
+      
+      <p>\[ T(n) = 4T\left(\frac{n}{3}\right) + n \]</p>
+
+      <p>\[ T\left(\frac{n}{3}\right) \leq c \left(\frac{n}{3}\right)^{\log_3 4} \]</p>
+      <p>Substituindo na recorrência:</p>
+      <p>\[ T(n) \leq 4 \left(c \left(\frac{n}{3}\right)^{\log_3 4}\right) + n \]</p>
+      <p>\[ T(n) \leq 4c \left(\frac{n^{\log_3 4}}{3^{\log_3 4}}\right) + n \]</p>
+      <p>Como \( 3^{\log_3 4} = 4 \):</p>
+      <p>\[ T(n) \leq 4c \left(\frac{n^{\log_3 4}}{4}\right) + n \]</p>
+      <p>\[ T(n) \leq c n^{\log_3 4} + n \]</p>
+      <p>Para garantir que \( T(n) \leq c n^{\log_3 4} \), precisamos que:</p>
+      <p>\[ c n^{\log_3 4} + n \leq c n^{\log_3 4} \]</p>
+      <p>\[ n \leq 0 \]</p>
+      <p>Essa desigualdade nunca é verdadeira para \( n > 0 \), então a hipótese falha.</p>
+      
+      <h3>Hipótese Ajustada</h3>
+      <p>\[ T(n) \leq c n^{\log_3 4} - k n \ \ \ \text{ (onde \( k \) é uma constante positiva).}\]</p>
+      <p></p>
+      
+      <p>Substituindo na recorrência:</p>
+      <p>\[ T(n) \leq 4 \left(c \left(\frac{n}{3}\right)^{\log_3 4} - k \frac{n}{3}\right) + n \]</p>
+      <p>\[ T(n) \leq 4 \left(c \frac{n^{\log_3 4}}{4} - k \frac{n}{3}\right) + n \]</p>
+      <p>\[ T(n) \leq c n^{\log_3 4} - \frac{4k n}{3} + n \]</p>
+      <p>Para garantir que \( T(n) \leq c n^{\log_3 4} - k n \), precisamos que:</p>
+      <p>\[ - \frac{4k n}{3} + n \leq -k n \]</p>
+      <p>\[ n - \frac{4k n}{3} \leq -k n \]</p>
+      <p>\[ n \leq \frac{4k n}{3} - k n \]</p>
+      <p>\[ n \leq \frac{k n}{3} \]</p>
+      <p>\[ 1 \leq \frac{k}{3} \]</p>
+      <p>Multiplique por *3</p>
+      <p>\[ 3 \leq K \]</p>
+      <p>Com \( k \) suficientemente grande, \( k \geq 3 \), a hipótese é válida.</p>
+      
+    </li>
+
+    <br> <br> <br> <br> <br> <br>
+
+
+  </ul>
+
+</body>
+
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Gustavo</title>
+
+  <!-- MATHJAX 3 (através da CDN) -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- MATHJAX 3 (salvo no computador) -->
+  <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+</head>
+<body>
+  <p>
+  <strong>ATENÇãO:</strong> Essa atividade deve ser entregue 
+  no formato MathJax (html + Latex) 
+  diretamente pelo Moodle. Não serão aceitas soluções em papel ou escaneadas. 
+  Junto com esta atividade, estou fornecendo 
+  o arquivo que eu usei para prepará-la. Leia-o e veja como eu fiz para escrever estas questões.
+  Os alunos que ainda tiverem dúvida sobre o formato podem pedir ajuda no 
+  grupo do telegram.
+  </p>
+  
+  <h1>Questões</h1>
+
+  <ul>
+    <li>
+      <p><strong>Questão 1.</strong>
+        Utilize o método da substituição para calcular a 
+        complexidade de tempo de pior caso do algoritmo abaixo. 
+        No algoritmo abaixo, o parâmetro \(N\) da função é um número inteiro.
+        A operação de divisão usada é a divisão inteira, ou seja, é a divisão que sempre resulta em um inteiro.
+        
+        <pre><code>
+        Algoritmo(N):
+          Se N == 0 entao
+            Retorne 0
+          Senao
+            soma = 0
+            Para j = 1, ..., N faça
+              soma = soma + j
+            Retorne soma + Algoritmo(N/2)
+        </code></pre>
+      </p>
+
+      <ul>
+        <li> <h4> Solução: </h4>
+          \[
+          \begin{array}{|l|l|l|}
+          \hline
+          \text{Algoritmo(N)} & \text{Custo} & \text{Qntd. vezes} \\
+          \hline
+          \text{1. Se N == 0 entao retorna 0} & c1 & 1 \\
+          \hline
+          \text{2. Senao} & c2 & 1 \\
+          \hline
+          \text{3.} \quad \text{ Para j = 1, ..., N faça} & c3 & N + 1 \\
+          \hline
+          \text{4.} \quad \quad \text{soma = soma + j} & c4 & N \\
+          \hline
+          \text{5. Retorne soma + Algoritmo(N/2)} & c5 & T(\lfloor N/2 \rfloor) \\
+          \hline
+          \end{array}
+          \]
+
+          <p> Desse modo, verificamos que \(T(N) = N + T(\lfloor N/2 \rfloor)\)</p>
+          
+          <p> <b>Queremos provar que</b> \( T(N) = O(N*log_2(N)) \) </p>
+          <p> Ou seja, \(T(N) \leq c*N*log_2(N)\)  </p> 
+
+          <p> Vamos provar por indução em N: </p>
+
+          <p> Provando caso base N = 2: </p>
+          <p> Para \(n_0\) = 2, </p> 
+          <p> \( T(2) = 2 + T(1) = 2 + 2 + T(0) = 4 + T(0) = 4 \) </p>
+          <p> \(\leq 4*log_2(2) \leq 4*log_2(2) = 4*1\)</p>
+          <p> Como \(4 \leq 4, n_0 = 2\) pode ser considerado o caso base </p>
+          <br />
+          <p><b>Hipótese de indução: </b> Suponha que \( T(k) \leq c *k*log_2(k), \forall n_0 \leq k < n  \) </p>
+          <p><b>Passo indutivo: </b> Queremos provar \(T(N) = c*N*log(N)\)</p>
+          \( T(N) = N + T(\lfloor N/2 \rfloor) \)
+          <br/>
+          <p>Substituição:</p>
+          \( T(N) = N + c * (\lfloor N/2 \rfloor) * log_2(\lfloor N/2 \rfloor)) \leq T(N) = N + c * (N/2) * log_2(N/2) \leq N + c *(N/2) * (log_2(N) - 1)\)
+          <br/>
+          \(= N + c*(N/2)*log_2(N) - c*(N/2)\)
+          <br/>
+          <br>
+          <p>Agora precisamos provar que \(N - c*(N/2) \leq 0\)</p>
+          <p>Se considerarmos c = 2, teriamos: </p>
+      
+          \( N - 2*(N/2) = N - N = 0 \)
+          <p> Logo, provamos que \(N - c*(N/2) \leq 0\) </p>
+          <p>Portanto, \(c * (N/2) * log_2(N) - c * (N/2) \leq c * (N/2) * log_2(N)\)</p>
+          <p>e \(c * (N/2) * log_2(N) \leq c * (N) * log_2(N)\) (como queriamos comprovar) </p>
+          <br> 
+
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <p><strong>Questão 2.</strong>
+        Utilizando o método de substituição, prove 
+        limitantes superiores e inferiores assintóticos 
+        para as recorrências a seguir:
+        <ol type="a">
+          <li>\(T(n) = T(n/2) + 15, \ \text{onde} \ T(1) = 1.\)</li>
+          <ul>
+            <li>
+              <h4>Solução:</h4>
+              <p><b>Queremos provar que \( T(n) = \Theta(lg(n)) \)</b></p>
+              <p>
+                Pela definição de \( \Theta\), \( \exists c_1, c_2, n_0 | 0 \leq c_1*lg(n) \leq T(n) \leq c_2*lg(n) \)
+              </p>
+
+              <p><b>Caso base: \(n = 2\)</b></p>
+              <p><b>Parte 1: </b>\( T(2) \geq c_1*lg(2)  \)</p>
+              <p>\( T(2) = T(1) + 15 = 1 + 15 = 16 \leq c_1*lg(2) = c_1\), que funciona para \( c_1 \geq 16\)</p>
+              <p>, logo, o caso base n = 2 funciona para a parte 1</p>
+
+              <p><b>Parte 2: </b>\( T(2) \leq c_2*lg(2) \)</p>
+              <p>\( T(2) = T(1) + 15 = 16 \leq c_1*lg(2) = c_1 \), que funciona para \(c_1 = 16\)</p>
+            
+              <p>Vamos provar por indução em n</p>
+              <p><b>Hipótese de indução: </b> \( 0 \leq c_1*lg(k) \leq T(k) \leq c_2*lg(k), \forall n_0 \leq k < n \) </p>
+              <p><b>Parte 1: </b>\( T(n) \geq c_1*lg(n)\)</p>
+              <p>\( T(n) = T( \frac{n}{2} ) + 15 \)</p>
+              <p> Substituição: </p>
+              <p> \( T(n) \geq c_1*lg( \frac{n}{2} ) + 15 \)</p>
+              <p> \( = c_1*(lg(n) - 1) + 15 \)</p>
+              <p> \( = c_1*lg(n) - c_1 + 15 \geq c_1*lg(n), \) para \( c_1 = 15 \) e n > 1</p>
+
+              <p><b>Parte 2: </b>\( T(n) \leq c_2*lg(n) \)</p>
+              <p>\( T(n) = T( \frac{n}{2} ) + 15 \)</p>
+
+              <p>Substituição: </p>
+
+              <p> \( T(n) \leq c_2*lg( \frac{n}{2} ) + 15 \) </p>
+              <p> \( = c_2*(lg( n ) - 1) + 15 \) </p>
+              <p> \( = c_2*lg( n ) - c_2 + 15 \leq c_2*lg(n),\) para \( c_2 \geq 15\) e n > 1 </p>
+
+              <p><b>Como provamos tanto para a parte 1 quanto para a parte 2, então \( T(n) = \Theta(lg(n)) \)</b></p>
+            </li>
+          </ul>
+
+          <li>\(F(n) = 2F(n/2) + n, \ \text{onde} \ F(1) = 1.\)</li>
+          <ul>
+            <li>
+              <b>Solução: </b> 
+              <p><b>Queremos provar que \( F(n) = \Theta(n*lg(n)) \)</b></p>
+              <p>
+                Pela definição de \( \Theta\), \( \exists c_1, c_2, n_0 | 0 \leq c_1*n*lg(n) \leq F(n) \leq c_2*n*lg(n) \)
+              </p>
+              <p><b>Caso base: n = 2</b></p>
+              <p><b>Parte 1:</b> \( F(2) = 2*F( \frac{2}{2}) + 2 = 2 + 2 = 4 \geq  c_1*2*lg(2) = c_1*2\), para \( c_1 = 2 \)</p>
+              <p><b>Parte 2:</b> \( F(2) = 2*F( \frac{2}{2}) + 2 = 2 + 2 = 4 \leq  c_2*2*lg(2) = c_2*2\), para \( c_2 \geq 2 \)</p>
+              <p><b>Hipótese de indução: </b> \( 0 \leq c_1*n*lg(k) \leq F(k) \leq c_2*n*lg(k) \)</p>
+
+              <p><b>Parte 1:</b> \( F(n) \geq c_1*n*lg(n) \)</p>
+              <p>\( F(n) = 2*F( \frac{n}{2}) + 2 \)</p>
+              <p>Substituição:</p>
+              <p>\( F(n) \geq \cancel{2}*c_1*( \frac{n}{\cancel{2}} )*lg( \frac{n}{2} ) + n  = c_1*n*(lg(n) - 1) + n\)</p>
+              <p>\( = c_1*n*lg(n) - c_1*n + n \geq c_1*n*lg(n) \), para \(c_1 \geq 1 \) e n_0 positivo</p>
+
+              <p><b>Parte 2:</b> \( F(n) \leq c_2*n*lg(n) \)</p>
+              <p>\( F(n) = 2*F( \frac{n}{2}) + 2 \)</p>
+              <p>Substituição:</p>
+              <p>\( F(n) \leq \cancel{2}*c_2*( \frac{n}{\cancel{2}} )*lg( \frac{n}{2} ) + n  = c_2*n*(lg(n) - 1) + n\)</p>
+              <p>\( = c_2*n*lg(n) - c_2*n + n \leq c_2*n*lg(n) \), para \(c_2 = 1 \) e n_0 positivo</p>
+              <p><b>Como provamos tanto para a parte 1 quanto para a parte 2, então \( F(n) = \Theta(n*lg(n))\)</b></p>
+            </li>
+          </ul>
+          
+          <li>\(G(n) = 2G(\sqrt{n}), \ \text{onde} \ G(1) = 1.\)</li>
+          <ul>
+            <li>
+              <b>Solução: </b>
+
+              <p><b>Limite superior:</b></p>
+              <p><b>Queremos provar que G(n) = O(n) </b></p>
+              <p>Pela definição de \( O \), temos que \( \exists c, n_0 | 0 \leq G(n) \leq c_2*(n) \)</p>
+              
+              <p><b> Caso base: \( n = 4 \) </b></p>
+
+              \( G(4) = 2*c*\sqrt{4} \)
+              \( = 2*c*2 = 4*c \leq 4 \), para \( c \geq 1 \)
+
+              <p><b>Hipótese de indução:</b> \( 0 \leq G(k) \leq c*lg(k), \forall n_0 \leq k < n \)</p>
+
+              \( G(n) = 2*G( \sqrt(n) ) \)
+
+              <p>Substituição:</p>
+
+              <p>\( G(n) \leq 2*c*n*lg( \sqrt{n} ) = \cancel{2}*c*n \frac{1}{\cancel{2}}*lg(n) \)</p>
+              <p>\( = c*n*lg(n) \leq c*n*lg(n) \), para \( c \geq 1\) e \( n\) positivo, como queriamos comprovar.</p>
+
+              <p><b>Limite superior:</b></p>
+
+              <p><b>Queremos provar que G(n) = \( \Omega(lg(n)) \)</b></p>
+              <p>Pela definição de \( \Omega \), temos que \( \exists c, n_0 | 0 \leq c_2*(n) \leq G(n) \)</p>
+              <p>Caso base \(n = 4\)</p>
+
+              \( G(4) = 2*c*lg(\sqrt{4}) \)
+              \( = \cancel{2}*c* \frac{1}{ \cancel{2}} lg(n) \)
+              <br>
+              \( = c*lg(n) \leq c*lg(n) \), para \( n \geq 1 \) e \( c \geq 1 \).
+              
+              <p><b>Hipótese de indução:</b> \( 0 \leq c*lg(k) \leq G(k), \forall n_0 \leq k < n \)</p>
+
+              \( G(n) = 2*G(\sqrt{n}) \)
+
+              <p>Substituição:</p>
+
+              <p>\( G(n) \leq 2*c*lg( \sqrt{n} ) \)</p>
+              <p>\( = \cancel{2} *c* \frac{1}{\cancel{2}} * lg(n) \)</p>
+              <p> \( = c*lg(n) \leq  c*lg(n) \), para \( c \geq 1\) e \( n\) positivo, como queriamos comprovar. </p>
+            </li>
+          </ul>
+        </ol>
+      </p>
+    </li>
+
+
+    <li>
+    <p><strong>Questão 3.</strong> 
+      Usando o método da substituição, prove que a solução 
+      para a relação de recorrência 
+      \(T(n) = 2T(\lfloor n/2 \rfloor + 17) + n\) é \(O(n \lg n)\).
+      
+
+      <ul>
+        <li>
+          <h4>Solução: </h4>
+          <b> Queremos provar nem \(T(n) = 2*T(\lfloor n/2 + 17\rfloor) + n\) é \( O(n*lg*n) \)</b>
+          <p> * Pela def. de Big O: \( \exists c, n_0 | T(n) \leq c * n * lg (n), \forall n >= n_0 \)  </p>
+          <p> Vamos provar a indução em n </p>
+          <p> <b>Hipótese de indução: </b> \(T(k) \leq c * k * lg(k) \) </p>
+          <p> <b>Passo indutivo: </b> Queremos provar que \(T(n) \leq c * n * lg(n)\)  </p>
+          <p> \(T(n) = 2*T(\lfloor n/2 \rfloor + 17) + n \) </p>
+          <p><b> Fazendo a substituição, temos: </b></p>
+          <p> \( T(n) \leq 2*c*(\lfloor n/2 \rfloor + 17)*lg(\lfloor n/2 \rfloor + 17) + n \leq 2*c*(n/2 + 17)*lg(n/2 + 17) + n \)</p>
+          <p> \(= \cancel{2} * c * ( \frac{n + 34}{\cancel{2}})*lg( \frac{n + 34}{2} ) + n \)</p>
+          <p> \(= c*(n + 34)*lg(n + 34) - c*(n + 34) + n \) </p>
+
+          <p> Como não foi possível chegarmos ao formato esperado, a hipótese deve ser alterada</p>
+
+          <p><b>Hipótese de indução 2: </b>  \(T(k) \leq c*(k-17)*lg(k - 17)\)</p>
+          <p><b>Passo indutivo: </b> Queremos provar que \(T(n) \leq c*(n - 17)*lg(n-17) \)</p>
+          <p> \( T(n) = 2* c * ( \lfloor n/2 \rfloor + 17 - 17) * lg( \lfloor n/2 \rfloor + 17 - 17) + n \)</p>
+          <p>\( \leq 2* c * ( n/2 ) * lg( n/2 ) + n = \cancel{2} * c * ( \frac{n}{\cancel{2}} ) * lg( \frac{n}{2} ) + n \)</p>
+          <p>\( c * (n) * lg(\frac{n}{2}) + n = c * (n) * (lg(n) - 1) + n = c*n*lg(n) - c*n + n\)</p>
+
+          <p>Precisamos provar que \( -c*n + n \leq 0\), isso é verdade para \( c \geq 1 \) e \( n \geq 1 \) </p>
+
+          <p>Portanto, temos que: \(c*n*lg(n) - c*n + n \leq c*n*lg(n) \). Como queriamos comprovar. </p>
+
+        </li>
+      </ul>
+
+      
+    </p></li>
+
+    <li>
+      <p><strong>Questão 4.</strong> 
+        É possível provar que a solução para a 
+        recorrência \(T(n) = 4T(n/3)+ n\) é 
+        \(T(n) = \Theta(n^{\log_3 4})\). 
+        Mostre que uma prova de substituição que 
+        considere \(T(n) \leq cn^{\log_3 4}\) falha. 
+        Depois, mostre como subtrair um termo de ordem 
+        mais baixa para fazer com que uma prova de 
+        substituição funcione. Basta provar apenas o limitante superior, não precisa provar o inferior.
+      </p>
+    </li>
+  
+    <ul>
+      <li>
+        <b>Solução:</b>
+
+        <p>Vamos provar por absurdo que \( T(n) \leq c*n^{log_3{4}} \) falha </p>
+        <p>Para isso, vamos supor que \( T(n) \leq c*n^{log_3{4}} \) é verdade</p>
+        <p>\( T(n) = 4*T( \frac{n}{3} ) + n \)</p>
+        <p>Aplicando a substituição: </p>
+        <p>\( T(n) \leq 4*c*( \frac{n}{3} )^{log_3{4}} + n \) = \( 4*c*( \frac{n^{log_3{4}}}{\cancel{3}^{log_\cancel{3}{4}}} ) + n \)</p>
+        <p>\( \cancel{4}*c*( \frac{n^{log_3{4}}}{\cancel{4}} ) + n \) = \( c*n^{log_3{4}} + n \)</p>
+        <p>Desse modo, para que fosse verdade, n deveria ser menor ou igual a zero (Absurdo)</p>
+      </li>
+    </ul>
+    </ul>
+
+</body>
+</html>

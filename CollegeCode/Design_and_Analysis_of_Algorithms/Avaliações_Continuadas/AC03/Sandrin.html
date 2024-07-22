@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Sandrin</title>
+
+    <!-- MATHJAX 3 (através da CDN) -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <!-- MATHJAX 3 (salvo no computador) -->
+    <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+  </head>
+  <body>
+    <h2>Questão 1</h2>
+
+    <pre>
+    Algoritmo(N):
+    Se N == 0 entao
+      Retorne 0
+    Senao
+      soma = 0
+      Para j = 1, ..., N faça ----- O(n)
+        soma = soma + j
+      Retorne soma + Algoritmo(N/2) ---- O(logn)
+ </pre
+    >
+    <p>
+      A ultima linha eu deduzi que seria log n pois o n sempre está sendo
+      dividido pela metade. Algo como n/2, n/4, /n8...1, com isso o algoritimo
+      seria \( O(N \log N) \).
+    </p>
+    <p>
+      A recorrencia completa seria \( T(N) = N + T\left(\left\lfloor \frac{N}{2}
+      \right\rfloor \right) \).
+    </p>
+
+    <p>
+      Vou utilizar metódo de substituição para provar que a complexidade é \(
+      O(N \log N) \) assim, usando indução em N. Primeiramente, a hipótese de
+      indução:
+    </p>
+    <p>
+      <strong>Hipótese de indução:</strong> Para todo inteiro K < N, T(K) <= C *
+      K Log K. sendo N0 < K < N.
+    </p>
+    <p>
+      <strong>Passo indutivo:</strong> Considere uma entrada de tamanho N
+      suficientemente grande. Quero provar que \(T(N) <= C * N \log N\)
+    </p>
+    <p>Substituindo isso na relação de recorrência:</p>
+    <pre>T(N) = N + T(N / 2)</pre>
+    <pre>T(N) &le; N + c (N / 2) log (N / 2)</pre>
+
+    <p>Usamos a propriedade log (N / 2) = log N - log 2:</p>
+    <pre>T(N) &le; N + c (N / 2) (log N - log 2)</pre>
+    <pre>T(N) &le; N + c (N / 2) log N - c (N / 2) log 2</pre>
+    <pre>T(N) &le; N + c * N log N - c (N / 2) log 2</pre>
+
+    <p>
+      Agora preciso retirar a parte negativa então vou usar \( N - \frac{cN}{2}
+      \log 2 < 1 \) com o N excedente.
+    </p>
+
+    <p><strong>Prova da Desigualdade</strong></p>
+
+    <p>Para provar a desigualdade:</p>
+    <p>\( N - \frac{cN}{2} \log 2 < 1 \)</p>
+
+    <p>1. Reescrever a Inequação</p>
+    <p>Reescrevemos a inequação para isolar \( c \):</p>
+    <p>\( N - \frac{cN}{2} \log 2 < 1 \)</p>
+    <p>Subtraímos \( N \) de ambos os lados:</p>
+    <p>\( - \frac{cN}{2} \log 2 < 1 - N \)</p>
+    <p>Multiplicamos ambos os lados por \(-1\) (invertendo a desigualdade):</p>
+    <p>\( \frac{cN}{2} \log 2 > N - 1 \)</p>
+    <p>Dividimos ambos os lados por \( \frac{N}{2} \log 2 \):</p>
+    <p>\( c > \frac{2(N - 1)}{N \log 2} \)</p>
+
+    <p>2. Escolher \( c \) Adequado</p>
+    <p>
+      Para garantir que a desigualdade seja verdadeira, escolhemos \( c \) maior
+      que:
+    </p>
+    <p>\( c > \frac{2(N - 1)}{N \log 2} \)</p>
+
+    <p>3. Exemplo Numérico</p>
+    <p>Se \( \log 2 \approx 0.693 \), então:</p>
+    <p>\( \frac{2}{\log 2} \approx \frac{2}{0.693} \approx 2.89 \)</p>
+    <p>
+      Então, para garantir que a desigualdade seja verdadeira, escolhemos \( c
+      \geq 3 \).
+    </p>
+    <p>Escolhendo \( c \geq 3 \), garantimos que:</p>
+    <p>\( N - \frac{cN}{2} \log 2 < 1 \)</p>
+    <p>para todos os \( N \) suficientemente grandes.</p>
+
+    <p>
+      <strong>Conclusão:</strong> Com isso, consigo provar que a complexidade é
+      \( T(N) &le; N \log N\)
+    </p>
+    <p><strong>Prova dos Casos Base para o Algoritmo</strong></p>
+
+    <p>A função de recorrência para o tempo de execução do algoritmo é:</p>
+    <p id="recurrence">
+      \( T(N) = N + T\left(\left\lfloor \frac{N}{2} \right\rfloor\right) \)
+    </p>
+
+    <p>Caso Base: \( T(1) \)</p>
+    <p>Para \( N = 1 \), o algoritmo faz o seguinte:</p>
+    <ul>
+      <li>Calcula a soma dos números de 1 até 1, que é \( 1 \).</li>
+      <li>Chama a função recursivamente com \( N/2 \), onde \( N/2 = 0 \).</li>
+    </ul>
+    <p>Portanto:</p>
+    <p>\( T(1) = 1 + T(0) \)</p>
+    <p>De acordo com o caso base definido, temos:</p>
+    <p>\( T(0) = 0 \)</p>
+    <p>Assim:</p>
+    <p>\( T(1) = 1 + 0 = 1 \)</p>
+
+    <p>Verificação da Hipótese para \( T(1) \)</p>
+    <p>
+      Suponha que nossa hipótese é que a complexidade de tempo de execução \(
+      T(N) \) é \( O(N \log N) \). Verificamos a hipótese para \( N = 1 \):
+    </p>
+    <p>\( T(1) \leq c \cdot 1 \cdot \log 1 \)</p>
+    <p>Sabemos que \( \log 1 = 0 \), então:</p>
+    <p>\( T(1) \leq c \cdot 1 \cdot 0 = 0 \)</p>
+    <p>Portanto, precisamos que:</p>
+    <p>\( 1 \leq 0 \)</p>
+    <p>
+      Esta desigualdade não é verdadeira. Portanto, a hipótese \( O(N \log N) \)
+      não é válida para \( N = 1 \). Em vez disso, a complexidade correta para
+      \( N = 1 \) é \( O(1) \).
+    </p>
+
+    <p>Caso Base: \( T(2) \)</p>
+    <p>Para \( N = 2 \), o algoritmo faz o seguinte:</p>
+    <ul>
+      <li>Calcula a soma dos números de 1 até 2, que é \( 1 + 2 = 3 \).</li>
+      <li>Chama a função recursivamente com \( N/2 \), onde \( N/2 = 1 \).</li>
+    </ul>
+    <p>Portanto:</p>
+    <p>\( T(2) = 2 + T(1) \)</p>
+    <p>Como já sabemos que:</p>
+    <p>\( T(1) = 1 \)</p>
+    <p>Temos:</p>
+    <p>\( T(2) = 2 + 1 = 3 \)</p>
+
+    <p>Verificação da Hipótese para \( T(2) \) com \( c = 3 \)</p>
+    <p>
+      Nossa hipótese é que a complexidade de tempo de execução \( T(N) \) é \(
+      O(N \log N) \). Verificamos para \( N = 2 \) com \( c = 3 \):
+    </p>
+    <p>\( T(2) \leq c \cdot 2 \cdot \log 2 \)</p>
+    <p>Como \( \log 2 = 1 \), então:</p>
+    <p>\( T(2) \leq 3 \cdot 2 \cdot 1 = 6 \)</p>
+    <p>Como \( T(2) = 3 \), verificamos:</p>
+    <p>\( 3 \leq 6 \)</p>
+    <p>
+      A desigualdade é verdadeira. Portanto, a hipótese \( O(N \log N) \) é
+      válida para \( c = 3 \) e \( N = 2 \).
+    </p>
+
+    <h3>Conclusão</h3>
+    <p>A hipótese é aceita a partir de N = 2.</p>
+    <h2>Questão 2</h2>
+    <p> <b>A) </b></p>
+    <h2>Recorrência Dada</h2>
+    <p>A recorrência dada é:</p>
+    <p>\[ T(n) = T\left(\frac{n}{2}\right) + 15 \]</p>
+
+    <h2>Limite Superior</h2>
+    
+    <h3>Hipótese de Indução</h3>
+    <p>Vamos supor que existe uma constante \( c \) tal que:</p>
+    <p>\[ T(n) \leq c \log n \]</p>
+    <p>para algum \( c > 0 \) e para \( n \geq n_0 \), onde \( n_0 \) é um valor base para \( n \).</p>
+    
+    <h3>Passo Indutivo</h3>
+    <p>Queremos provar que a hipótese é válida para \( n \) e que:</p>
+    <p>\[ T(n) \leq c \log n \]</p>
+    
+    <p>Substituindo a hipótese na recorrência:</p>
+    <p>\[ T(n) = T\left(\frac{n}{2}\right) + 15 \]</p>
+    <p>Usando a hipótese de indução:</p>
+    <p>\[ T\left(\frac{n}{2}\right) \leq c \log \left(\frac{n}{2}\right) \]</p>
+    <p>Sabemos que:</p>
+    <p>\[ \log \left(\frac{n}{2}\right) = \log n - \log 2 \]</p>
+    <p>Portanto:</p>
+    <p>\[ T\left(\frac{n}{2}\right) \leq c (\log n - \log 2) \]</p>
+    <p>Então:</p>
+    <p>\[ T(n) \leq c (\log n - \log 2) + 15 \]</p>
+    <p>Simplificando:</p>
+    <p>\[ T(n) \leq c \log n - c \log 2 + 15 \]</p>
+    <p>Para garantir que \( T(n) \leq c \log n \), precisamos que:</p>
+    <p>\[ -c \log 2 + 15 \leq 0 \]</p>
+    <p>Resolvendo para \( c \):</p>
+    <p>\[ c \log 2 \geq 15 \]</p>
+    <p>\[ c \geq \frac{15}{\log 2} \]</p>
+    <p>Aproximando \( \log 2 \approx 0.693 \):</p>
+    <p>\[ c \geq \frac{15}{0.693} \approx 21.64 \]</p>
+    <p>Portanto, se \( c \geq 22 \), a hipótese de indução está correta para o limite superior. Assim:</p>
+    <p>\[ T(n) = O(\log n) \]</p>
+    
+    <h2>Limite Inferior</h2>
+    
+    <h3>Hipótese de Indução</h3>
+    <p>Vamos supor que existe uma constante \( k \) tal que:</p>
+    <p>\[ T(n) \geq k \log n \]</p>
+    <p>para algum \( k > 0 \) e para \( n \geq n_0 \), onde \( n_0 \) é um valor base para \( n \).</p>
+    
+    <h3>Passo Indutivo</h3>
+    <p>Queremos provar que a hipótese é válida para \( n \) e que:</p>
+    <p>\[ T(n) \geq k \log n \]</p>
+    
+    <p>Substituindo a hipótese na recorrência:</p>
+    <p>\[ T(n) \geq T\left(\frac{n}{2}\right) + 15 \]</p>
+    <p>Usando a hipótese de indução:</p>
+    <p>\[ T\left(\frac{n}{2}\right) \geq k \log \left(\frac{n}{2}\right) \]</p>
+    <p>Substituindo:</p>
+    <p>\[ T\left(\frac{n}{2}\right) \geq k (\log n - \log 2) \]</p>
+    <p>Então:</p>
+    <p>\[ T(n) \geq k (\log n - \log 2) + 15 \]</p>
+    <p>Simplificando:</p>
+    <p>\[ T(n) \geq k \log n - k \log 2 + 15 \]</p>
+    <p>Para garantir que \( T(n) \geq k \log n \), precisamos que:</p>
+    <p>\[ -k \log 2 + 15 \geq 0 \]</p>
+    <p>Resolvendo para \( k \):</p>
+    <p>\[ k \log 2 \leq 15 \]</p>
+    <p>\[ k \leq \frac{15}{\log 2} \]</p>
+    <p>Aproximando \( \log 2 \approx 0.693 \):</p>
+    <p>\[ k \leq \frac{15}{0.693} \approx 21.64 \]</p>
+    <p>Portanto, se \( k \leq 21 \), a hipótese de indução está correta para o limite inferior. Assim:</p>
+    <p>\[ T(n) = \Omega(\log n) \]</p>
+    
+    <h2>Casos Base</h2>
+    <p>Vamos verificar os casos base para a nossa hipótese de indução.</p>
+    
+    <h3>Limite Superior</h3>
+    <p>Para \( n = 1 \):</p>
+    <p>\[ T(1) = 1 \]</p>
+    <p>\[ c \log 1 = 0 \]</p>
+    <p>Claramente, \( T(1) \leq c \log 1 \) é verdade para qualquer \( c \geq 0 \).</p>
+
+    <p>Para \( n = 2 \):</p>
+    <p>\[ T(2) = T(1) + 15 = 1 + 15 = 16 \]</p>
+    <p>\[ c \log 2 = c \cdot 0.693 \]</p>
+    <p>Portanto, para garantir que \( 16 \leq c \cdot 0.693 \), precisamos que \( c \geq \frac{16}{0.693} \approx 23.09 \). </p>
+
+    <h3>Limite Inferior</h3>
+    <p>Para \( n = 1 \):</p>
+    <p>\[ T(1) = 1 \]</p>
+    <p>\[ k \log 1 = 0 \]</p>
+    <p>Claramente, \( T(1) \geq k \log 1 \) é verdade para qualquer \( k \geq 0 \).</p>
+    
+    <p>Para \( n = 2 \):</p>
+    <p>\[ T(2) = T(1) + 15 = 1 + 15 = 16 \]</p>
+    <p>\[ k \log 2 = k \cdot 0.693 \]</p>
+    <p>Portanto, para garantir que \( 16 \geq k \cdot 0.693 \), precisamos que \( k \leq \frac{16}{0.693} \approx 23.09 \). </p>
+
+    <h3>Conclusão</h3>
+    <p>A complexidade assintótica exata da recorrência é:</p>
+    <p>\[ T(n) = \Theta(\log n) \]</p>
+<p><b>B)</b></p>
+<h2>Recorrência Dada</h2>
+    <p>A recorrência dada é:</p>
+    <p>\[ F(n) = 2F\left(\frac{n}{2}\right) + n \]</p>
+
+    <h2>Limite Superior</h2>
+    
+    <h3>Hipótese de Indução</h3>
+    <p>Vamos supor que existe uma constante \( c \) tal que:</p>
+    <p>\[ F(n) \leq c n \log n \]</p>
+    <p>para algum \( c > 0 \) e para \( n \geq n_0 \), onde \( n_0 \) é um valor base para \( n \).</p>
+    
+    <h3>Passo Indutivo</h3>
+    <p>Queremos provar que a hipótese é válida para \( n \) e que:</p>
+    <p>\[ F(n) \leq c n \log n \]</p>
+    
+    <p>Substituindo a hipótese na recorrência:</p>
+    <p>\[ F(n) = 2F\left(\frac{n}{2}\right) + n \]</p>
+    <p>Usando a hipótese de indução:</p>
+    <p>\[ F\left(\frac{n}{2}\right) \leq c \frac{n}{2} \log \left(\frac{n}{2}\right) \]</p>
+    <p>Sabemos que:</p>
+    <p>\[ \log \left(\frac{n}{2}\right) = \log n - \log 2 \]</p>
+    <p>Portanto:</p>
+    <p>\[ F\left(\frac{n}{2}\right) \leq c \frac{n}{2} (\log n - \log 2) \]</p>
+    <p>Substituindo na recorrência:</p>
+    <p>\[ F(n) \leq 2 \left[c \frac{n}{2} (\log n - \log 2)\right] + n \]</p>
+    <p>Simplificando:</p>
+    <p>\[ F(n) \leq c n (\log n - \log 2) + n \]</p>
+    <p>\[ F(n) \leq c n \log n - c n \log 2 + n \]</p>
+    <p>Para garantir que \( F(n) \leq c n \log n \), precisamos que:</p>
+    <p>\[ -c n \log 2 + n \leq 0 \]</p>
+    <p>Resolvendo para \( c \):</p>
+    <p>\[ c n \log 2 \geq n \]</p>
+    <p>\[ c \geq \frac{1}{\log 2} \]</p>
+    <p>Aproximando \( \log 2 \approx 0.693 \):</p>
+    <p>\[ c \geq \frac{1}{0.693} \approx 1.44 \]</p>
+    <p>Portanto, se \( c \geq 1.5 \), a hipótese de indução está correta para o limite superior. Assim:</p>
+    <p>\[ F(n) = O(n \log n) \]</p>
+
+    <h3>Casos Base</h3>
+    <p>Para validar nossa hipótese, verificamos os casos base. Para \( n = 1 \) e \( n = 2 \):</p>
+    <p>\[ F(1) = 1 \]</p>
+    <p>\[ F(2) = 2F\left(\frac{2}{2}\right) + 2 = 2F(1) + 2 = 2 \cdot 1 + 2 = 4 \]</p>
+    <p>O caso base para \( n = 2 \) deve satisfazer \( F(2) \leq c \cdot 2 \log 2 \):</p>
+    <p>\[ 4 \leq c \cdot 2 \cdot 1 \]</p>
+    <p>\[ 4 \leq 2c \]</p>
+    <p>\[ c \geq 2 \]</p>
+
+    <h2>Limite Inferior</h2>
+    
+    <h3>Hipótese de Indução</h3>
+    <p>Vamos supor que existe uma constante \( k \) tal que:</p>
+    <p>\[ F(n) \geq k n \log n \]</p>
+    <p>para algum \( k > 0 \) e para \( n \geq n_0 \), onde \( n_0 \) é um valor base para \( n \).</p>
+    
+    <h3>Passo Indutivo</h3>
+    <p>Queremos provar que a hipótese é válida para \( n \) e que:</p>
+    <p>\[ F(n) \geq k n \log n \]</p>
+    
+    <p>Substituindo a hipótese na recorrência:</p>
+    <p>\[ F(n) \geq 2F\left(\frac{n}{2}\right) + n \]</p>
+    <p>Usando a hipótese de indução:</p>
+    <p>\[ F\left(\frac{n}{2}\right) \geq k \frac{n}{2} \log \left(\frac{n}{2}\right) \]</p>
+    <p>Substituindo:</p>
+    <p>\[ F\left(\frac{n}{2}\right) \geq k \frac{n}{2} (\log n - \log 2) \]</p>
+    <p>Substituindo na recorrência:</p>
+    <p>\[ F(n) \geq 2 \left[k \frac{n}{2} (\log n - \log 2)\right] + n \]</p>
+    <p>Simplificando:</p>
+    <p>\[ F(n) \geq k n (\log n - \log 2) + n \]</p>
+    <p>\[ F(n) \geq k n \log n - k n \log 2 + n \]</p>
+    <p>Para garantir que \( F(n) \geq k n \log n \), precisamos que:</p>
+    <p>\[ -k n \log 2 + n \geq 0 \]</p>
+    <p>Resolvendo para \( k \):</p>
+    <p>\[ k n \log 2 \leq n \]</p>
+    <p>\[ k \leq \frac{1}{\log 2} \]</p>
+    <p>Aproximando \( \log 2 \approx 0.693 \):</p>
+    <p>\[ k \leq \frac{1}{0.693} \approx 1.44 \]</p>
+    <p>Portanto, se \( k \leq 1.5 \), a hipótese de indução está correta para o limite inferior. Assim:</p>
+    <p>\[ F(n) = \Omega(n \log n) \]</p>
+
+    <h3>Casos Base</h3>
+    <p>Para validar nossa hipótese, verificamos os casos base. Para \( n = 1 \) e \( n = 2 \):</p>
+    <p>\[ F(1) = 1 \]</p>
+    <p>\[ F(2) = 2F\left(\frac{2}{2}\right) + 2 = 2F(1) + 2 = 2 \cdot 1 + 2 = 4 \]</p>
+    <p>O caso base para \( n = 2 \) deve satisfazer \( F(2) \geq k \cdot 2 \log 2 \):</p>
+    <p>\[ 4 \geq k \cdot 2 \cdot 1 \]</p>
+    <p>\[ 4 \geq 2k \]</p>
+    <p>\[ k \leq 2 \]</p>
+    
+    <h3>Conclusão</h3>
+    <p>A complexidade assintótica exata da recorrência é:</p>
+    <p>\[ F(n) = \Theta(n \log n) \]</p>
+<p><b>C)</b></p>
+    <p>A recorrência dada é:</p>
+    <p>\[ G(n) = 2G(\sqrt{n}) \]</p>
+    <h3><b>Limite Superior</b></h3>
+    <h4>Hipótese de Indução</h4>
+    <p>Vamos supor que existe uma constante \( c \) tal que:</p>
+    <p>\[ G(n) \leq c n \]</p>
+    <p>para algum \( c > 0 \) e para \( n \geq n_0 \), onde \( n_0 \) é um valor base para \( n \).</p>
+    <h4>Passo Indutivo</h4>
+    <p>Queremos provar que a hipótese é válida para \( n \) e que:</p>
+    <p>\[ G(n) \leq c n \]</p>
+    <p>Substituindo a hipótese na recorrência:</p>
+    <p>\[ G(n) = 2G(\sqrt{n}) \]</p>
+    <p>Usando a hipótese de indução:</p>
+    <p>\[ G(\sqrt{n}) \leq c \sqrt{n} \]</p>
+    <p>Substituindo na recorrência:</p>
+    <p>\[ G(n) \leq 2 \cdot c \sqrt{n} \]</p>
+    <p>\[ G(n) \leq 2c \sqrt{n} \]</p>
+    <p>Para garantir que \( G(n) \leq c n \), precisamos que:</p>
+    <p>\[ 2c \sqrt{n} \leq c n \]</p>
+    <p>Divida ambos os lados por \( c \sqrt{n} \):</p>
+    <p>\[ 2 \leq \sqrt{n} \]</p>
+    <p>\[ n \geq 4 \]</p>
+    <h4>Casos Base</h4>
+    <p>Para validar a nossa hipótese, verificamos os casos base:</p>
+    <p>Para \( n = 4 \):</p>
+    <p>\[ G(4) = 2G(\sqrt{4}) = 2G(2) \]</p>
+    <p>Se \( n_0 = 4 \), então a hipótese \( G(n) \leq c n \) é válida.</p>
+    <p>Portanto, se \( n \geq 4 \), a hipótese de indução está correta para o limite superior. Assim:</p>
+    <p>\[ G(n) = O(n) \]</p>
+    <h3><b>Limite Inferior</b></h3>
+    <h4>Hipótese de Indução</h4>
+    <p>Vamos supor que existe uma constante \( k \) tal que:</p>
+    <p>\[ G(n) \geq k n \]</p>
+    <p>para algum \( k > 0 \) e para \( n \geq n_0 \), onde \( n_0 \) é um valor base para \( n \).</p>
+    <h4>Passo Indutivo</h4>
+    <p>Queremos provar que a hipótese é válida para \( n \) e que:</p>
+    <p>\[ G(n) \geq k n \]</p>
+    <p>Substituindo a hipótese na recorrência:</p>
+    <p>\[ G(n) \geq 2G(\sqrt{n}) \]</p>
+    <p>Usando a hipótese de indução:</p>
+    <p>\[ G(\sqrt{n}) \geq k \sqrt{n} \]</p>
+    <p>Substituindo na recorrência:</p>
+    <p>\[ G(n) \geq 2 \cdot k \sqrt{n} \]</p>
+    <p>\[ G(n) \geq 2k \sqrt{n} \]</p>
+    <p>Para garantir que \( G(n) \geq k n \), precisamos que:</p>
+    <p>\[ 2k \sqrt{n} \geq k n \]</p>
+    <p>Divida ambos os lados por \( k \sqrt{n} \):</p>
+    <p>\[ 2 \geq \sqrt{n} \]</p>
+    <p>\[ n \leq 4 \]</p>
+    <h4>Casos Base</h4>
+    <p>Para validar a nossa hipótese, verificamos os casos base:</p>
+    <p>Para \( n = 4 \):</p>
+    <p>\[ G(4) = 2G(\sqrt{4}) = 2G(2) \]</p>
+    <p>Se \( n_0 = 4 \), então a hipótese \( G(n) \geq k n \) é válida.</p>
+    <p>Portanto, se \( n \leq 4 \), a hipótese de indução está correta para o limite inferior. Assim:</p>
+    <p>\[ G(n) = \Omega(n) \]</p>
+    <h3>Conclusão</h3>
+    <p>A complexidade assintótica exata da recorrência é:</p>
+    <p>\[ G(n) = \Theta(n) \]</p>
+
+    <h2>Questão 3</h2>
+    <p>
+      Questão 3. Usando o método da substituição, prove que a solução para a
+      relação de recorrência \(T(n)=2T(⌊n/2⌋+17)+n\) é \(O(nlgn)\) .
+    </p>
+    <p>
+      Quero provar que \(T(n)=2T(⌊n/2⌋+17)+n\) é \(O(nlgn)\). Ou seja, \(T(n)
+      &le; C * N (\log N\)).
+    </p>
+    Vou usar indução em N
+    <p><b>Hipótese de indução:</b></p>
+    Suponha que \(T(K) &le; C * K (\log K\)) para \(N0 &le; K &le; N\), com
+    \(C\) e \(N0\) positivos.
+    <p><b>Passo indutivo:</b> Quero provar que \(T(n) &le; C * N (\log N\))</p>
+
+    <p>\(T(n)=2T(⌊n/2⌋+17)+n\)</p>
+    <p>\(= 2c (⌊n/2⌋ + 17) \log (⌊n/2⌋ + 17) + n\)</p>
+    <p>
+      \(\leq 2c \left(\frac{n}{2} + 17\right) \log \left(\frac{n}{2} + 17\right)
+      + n\)
+    </p>
+    <p>
+      \(=(\cancel{2}c \left(\frac{n + 34}{\cancel{2}}\right)) \log \left(\frac{n
+      + 34}{2}\right) + n\)
+    </p>
+    <p>\(= c (n + 34) (\log (n + 34) - 1) + n\)</p>
+    <p>\(= c (n + 34) (\log (n + 34))\) - \(c (n + 34) + n\)</p>
+    <p>
+      \(\leq c (n + 34) (\log (n + 34)\)) para todo \(N \geq 34\) e \(C
+      =(\frac{1}{2}\))
+    </p>
+    Para garantir que a parte negativa da expressão seja não positiva, consideramos:
+    \[
+    -C (n + 34) + n \leq 0
+    \]
+</p>
+<p>
+    Rearranjando os termos:
+    \[
+    n - C (n + 34) \leq 0
+    \]
+</p>
+<p>
+    \[
+    n - C n - 34 C \leq 0
+    \]
+    <p>Multiplica ambos os lados por -1</p>
+    \[
+    - n + C n + 34 C \ >= 0
+    \]
+    \[
+    n (C - 1) +34 \ >= 0
+    \]
+</p>
+<p>
+    \[
+     n (C - 1) \ >= -34 C
+    \]
+    \[
+     n \ >= 34 C/(C - 1)
+    \]
+    Escolhendo \( C = 1/2\) , garantimos que a expressão acima é não positiva. Portanto, para \( N \geq 34 \), temos:
+</p>
+<p>
+    \[
+    T(n) \leq C (n + 34) \log (n + 34)
+    \]
+</p>
+<p>Porém, a forma não é igual a da hipótese de indução teremos que modificar</p>
+<p><b>Hipótese de indução:</b></p>
+    <p>Suponha que \(T(K) \leq c(K - 34) \log(K - 34)\) para \(N_0 \leq K \leq N\), com \(c\) e \(N_0\) positivos.</p>
+    
+    <p><b>Passo indutivo:</b> Quero provar que \(T(n) \leq c(N - 34) \log(N - 34)\).</p>
+
+    <p>Dados:</p>
+    <p>\(T(n) = 2T(\lfloor n/2 \rfloor + 17) + n\)</p>
+
+    <p>Usando a hipótese de indução:</p>
+    <p>\[
+    T(n) \leq 2c(\lfloor n/2 \rfloor + 17 - 34) \log(\lfloor n/2 \rfloor + 17 - 34) + n
+    \]</p>
+    <p>\(= 2c(\lfloor n/2 \rfloor - 17) \log(\lfloor n/2 \rfloor - 17) + n\)</p>
+
+    <p>Para simplificar, observe que:</p>
+    <p>\(\lfloor n/2 \rfloor \leq \frac{n}{2}\)</p>
+    <p>Portanto:</p>
+    <p>\(\lfloor n/2 \rfloor - 17 \leq \frac{n}{2} - 17\)</p>
+
+    <p>Usando isso na nossa expressão:</p>
+    <p>\[
+    T(n) \leq 2c\left(\frac{n}{2} - 17\right) \log\left(\frac{n}{2} - 17\right) + n
+    \]</p>
+    <p>\(= c(n - 34) \log\left(\frac{n}{2} - 17\right) + n\)</p>
+
+    <p>Agora, considere a relação logarítmica:</p>
+    <p>\[
+    \log\left(\frac{n}{2} - 17\right) = \log\left(n - 34\right) - \log 2
+    \]</p>
+
+    <p>Substituindo:</p>
+    <p>\[
+    T(n) \leq c(n - 34) \left(\log(n - 34) - \log 2\right) + n
+    \]</p>
+    <p>\(= c(n - 34) \log(n - 34) - c(n - 34) \log 2 + n\)</p>
+
+    <p>Simplificando:</p>
+    <p>\[
+    T(n) \leq c(n - 34) \log(n - 34) - c(n - 34) \log 2 + n
+    \]</p>
+
+    <p>Para que a expressão seja menor ou igual a \(c(n - 34) \log(n - 34)\), precisamos garantir que:</p>
+    <p>\[
+    -c(n - 34) \log 2 + n \leq 0
+    \]</p>
+<p>Ambos os lados *-1</p>
+    <p>\[
+      = c(n - 34) * 1 - n \leq 0
+      \]</p>
+      
+      <p>\[
+        = c(n - 34) \leq n
+        \]</p>
+        <p>\[
+          = cn - 34c \leq n
+          \]</p>
+          <p>\[
+            = 1/2*n - 34*1/2 \leq n
+            \]</p>
+            <p>\[
+              = 1/2*34 - 34*1/2 \leq 34
+              \]</p>
+              \[
+              = 0 \leq 34
+              \]</p>
+        
+      
+  
+
+    <p>Essa escolha de \(c = 1/2\) garante que a expressão \(n - c(n - 34) \log 2 \leq 0\) seja verdadeira para \(n \geq 34\). Portanto, para \(N \geq 34\), temos:</p>
+    <p>\[
+    T(n) \leq c(n - 34) \log(n - 34)
+    \]</p>
+    <h2>Questão 4</h2>
+    <p>A recorrência dada é:</p>
+    <p>\[ T(n) = 4T\left(\frac{n}{3}\right) + n \]</p>
+    
+    
+    <p><b>Recorrência Dada</b></p>
+    <p>A recorrência dada é:</p>
+    <p>\[ T(n) = 4T\left(\frac{n}{3}\right) + n \]</p>
+    
+    <h3>Limite Superior</h3>
+    
+    <h3>Hipótese de Indução</h3>
+    <p>Vamos supor que existe uma constante \( c \) tal que:</p>
+    <p>\[ T(n) \leq c n^{\log_3 4} \]</p>
+    <p>para algum \( c > 0 \) e para \( n \geq n_0 \), onde \( n_0 \) é um valor base para \( n \).</p>
+    
+    <h3>Passo Indutivo</h3>
+    <p>Queremos provar que a hipótese é válida para \( n \) e que:</p>
+    <p>\[ T(n) \leq c n^{\log_3 4} \]</p>
+    
+    <p>Substituindo a hipótese na recorrência:</p>
+    <p>\[ T(n) = 4T\left(\frac{n}{3}\right) + n \]</p>
+    <p>Usando a hipótese de indução:</p>
+    <p>\[ T\left(\frac{n}{3}\right) \leq c \left(\frac{n}{3}\right)^{\log_3 4} \]</p>
+    <p>Substituindo na recorrência:</p>
+    <p>\[ T(n) \leq 4 \left(c \left(\frac{n}{3}\right)^{\log_3 4}\right) + n \]</p>
+    <p>\[ T(n) \leq 4c \left(\frac{n^{\log_3 4}}{3^{\log_3 4}}\right) + n \]</p>
+    <p>Como \( 3^{\log_3 4} = 4 \):</p>
+    <p>\[ T(n) \leq 4c \left(\frac{n^{\log_3 4}}{4}\right) + n \]</p>
+    <p>\[ T(n) \leq c n^{\log_3 4} + n \]</p>
+    <p>Para garantir que \( T(n) \leq c n^{\log_3 4} \), precisamos que:</p>
+    <p>\[ c n^{\log_3 4} + n \leq c n^{\log_3 4} \]</p>
+    <p>\[ n \leq 0 \]</p>
+    <p>Essa desigualdade nunca é verdadeira para \( n > 0 \), então a hipótese falha.</p>
+    
+    <h3>Hipótese Ajustada</h3>
+    <p>Vamos ajustar a hipótese para:</p>
+    <p>\[ T(n) \leq c n^{\log_3 4} - k n \]</p>
+    <p>onde \( k \) é uma constante positiva.</p>
+    
+    <p>Substituindo na recorrência:</p>
+    <p>\[ T(n) \leq 4 \left(c \left(\frac{n}{3}\right)^{\log_3 4} - k \frac{n}{3}\right) + n \]</p>
+    <p>\[ T(n) \leq 4 \left(c \frac{n^{\log_3 4}}{4} - k \frac{n}{3}\right) + n \]</p>
+    <p>\[ T(n) \leq c n^{\log_3 4} - \frac{4k n}{3} + n \]</p>
+    <p>Para garantir que \( T(n) \leq c n^{\log_3 4} - k n \), precisamos que:</p>
+    <p>\[ - \frac{4k n}{3} + n \leq -k n \]</p>
+    <p>\[ n - \frac{4k n}{3} \leq -k n \]</p>
+    <p>\[ n \leq \frac{4k n}{3} - k n \]</p>
+    <p>\[ n \leq \frac{k n}{3} \]</p>
+    <p>\[ 1 \leq \frac{k}{3} \]</p>
+    <p>Multiplique por *3</p>
+    <p>\[ 3 \leq K \]</p>
+    <p>Portanto, se escolhermos \( k \) suficientemente grande, por exemplo \( k \geq 3 \), a hipótese ajustada é válida.</p>
+    
+    <h3>Conclusão</h3>
+    <p>A complexidade assintótica superior é:</p>
+    <p>\[ T(n) = O(n^{\log_3 4}) \]</p>
+  </body>
+</html>

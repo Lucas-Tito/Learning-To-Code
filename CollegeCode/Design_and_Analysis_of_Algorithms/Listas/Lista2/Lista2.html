@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Lista 2</title>
+
+  <!-- MATHJAX 3 (através da CDN) -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- MATHJAX 3 (salvo no computador) -->
+  <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+</head>
+
+<body>
+  <h1>Lista 2 - Lucas Tito</h1>
+
+  <ul>
+    <li>
+      <h2><strong>Questão 1</strong></h2>
+
+
+
+      \[
+      \begin{array}{|l|l|l|}
+      \hline
+      \text{Algoritmo(S, X)} & \text{Custo} & \text{Qntd. vezes} \\
+      \hline
+      \text{1. Para i de 1 até S faça} & c1 & N \\
+      \hline
+      \quad\text{2. Para j de i+1 até S faça} & c2 & \sum_{i=1}^{N-1} (N-i+1) \\
+      \hline
+      \qquad\text{3. Se S[i] + S[j] = X} & c3 & \sum_{i=1}^{N-1} (N-i) \\
+      \hline
+      \qquad \quad \text{4. Retorne V} & c4 & 1 \\
+      \hline
+      \text{5. Retorne F} & c5 & 1 \\
+      \hline
+      \end{array}
+      \]
+
+      <br>
+      <strong>Comentários:</strong>
+      <br>
+      <div style="margin: 10px 0 0 20px;">
+        <p><strong>Linha 2:</strong> O for da linha 2 executa essa quantidade de vezes já que o primeiro for vai até N,
+          mas a cada execução do primeiro para, o segundo for roda mais N vezes.</p>
+        <p>Além disso, o +1 é por conta do incremento de falha.</p>
+      </div>
+
+
+      <br>
+
+      \[ \mathbf{\text{Melhor e Pior Caso}}\]
+
+      <p>No <strong>melhor dos casos</strong> S[i]+S[j] = X será verdadeiro na primeira execução do primeiro e do
+        segundo for. Assim, as linhas 1, 2 e 3 serão executadas apenas uma vez.</p>
+      <p>Ou seja, <strong>O(1)</strong></p>
+
+      <br>
+
+      <p>No <strong>pior caso</strong>, S[i]+S[j] = X nunca é satisfeito, o que obriga todas as linhas serem executadas
+        ao máximo.</p>
+      <p>Desse modo, começaremos desenvolvendo o somatório da linha 2:</p>
+
+      \[ \sum_{i=1}^{N-1} (N-i+1) \ = \ \sum_{i=1}^{N-1} (N) \ - \ \sum_{i=1}^{N-1} (i) \ + \ \sum_{i=1}^{N-1} (1) \]
+
+      \[ = \ N \sum_{i=1}^{N-1} (1) \ - \ \frac{N(N-1)}{2} \ + \ N-1 \]
+
+      \[ = \ N(N-1) \ - \ \frac{N² - N}{2} \ + \ N-1\]
+
+      \[ = \ N² - N \ - \ \frac{N² - N \ + \ 2N - 2}{2} \]
+
+      \[ = \ \frac{2N² - 2N \ - \ N² - N \ + \ 2N - 2}{2} \]
+
+      \[ = \ \mathbf{\frac{N² - N - 2}{2}}\]
+
+      <br>
+
+      <p>Agora iremos desenvolver o somatório da linha 3:</p>
+
+      \[ \sum_{i=1}^{N-1} (N-i) \ = \ \sum_{i=1}^{N-1} (N) \ - \ \sum_{i=1}^{N-1} (i) \]
+
+      \[ = \ N \sum_{i=1}^{N-1} (1) \ - \ \frac{N(N-1)}{2}\]
+
+      \[ = \ N(N-1) \ - \ \frac{N² - N}{2} \]
+
+      \[ = \ N²-N \ - \ \frac{N² - N}{2} \]
+
+      \[ = \frac{2N²-2N \ - \ N² - N}{2} \]
+
+      \[ = \mathbf{\frac{N²-N}{2}} \]
+
+      <br>
+
+      <p>Agora que temos os dois somatórios, iniciaremos o cálculo dos custos:</p>
+
+      \[ T(N) \ = \ c1*N \ \ + \ \ c2*(\frac{N²-N-2}{2}) \ \ + \ \ c3*(\frac{N²-N}{2}) \ \ + \ \ c4 + c5\]
+
+      <br>
+
+      <p>O que configura uma função da forma T(N) = an²+bn+c, onde a, b e c são constantes.</p>
+
+      <p>Portanto, <strong>O(n²)</strong>.</p>
+
+    </li>
+    <br> <br> <br> <br> <br> <br>
+
+    <li>
+      <h2><strong>Questão 2</strong></h2>
+      <strong>Pseudocodigo:</strong>
+
+      <p>
+        <br>
+        <strong>isPrime(X)</strong><br>
+      <pre>
+          <code>
+            1              Se X <= 1
+            2                 Retorne F
+            3              divisor = 2
+            4              Enquanto (divisor * divisor) <= X faça
+            5                 Se X % divisor == 0 faça
+            6                   Retorne F
+            7                 divisor++
+            8              Retorne V
+          </code>
+        </pre>
+      <br><br>
+      </p>
+
+      <p>
+        <strong>Comentários:</strong>
+        O algoritmo itera através de todos os números de 2 até a raiz quadrada de X, verificando se X é divisível por
+        cada um deles. Se nn for divisível por algum desses números, então X não é primo.
+      </p>
+
+    </li>
+    <br> <br> <br> <br> <br> <br>
+
+    <li>
+      <h2><strong>Questão 3</strong></h2>
+
+      \[
+      \begin{array}{|l|l|l|}
+      \hline
+      \text{Algoritmo2(N)} & \text{Custo} & \text{Qntd. vezes} \\
+      \hline
+      \text{1. i=1} & c1 & 1 \\
+      \hline
+      \text{2. soma=0} & c2 & 1 \\
+      \hline
+      \text{3. Enquanto i < N faça} & c3 & N \\ \hline \quad \text{4. Para j=1 até i faça} & c4 & \sum_{i=1}^{N-1} (N+1)
+        \\ \hline \qquad \text{5. soma++} & c5 & \\ \hline \quad \text{5. i=2*i} & c6 & \\ \hline \text{5. Retorne soma}
+        & c7 & 1 \\ \hline \end{array} \] <br>
+        \[ \mathbf{ \sum_{i=1}^{N-1} (2^i) \ \ = \ \ \text{{1, 2, 4, 8, ..., i}} } \]
+        <div style="margin: 8px 0 0 60px;">
+          <p>
+            Observando a variação de j no laço 4, percebemos que j é sempre o dobro de j-1, logo o somatório pode ser
+            descrito da seguinte maneira:
+          </p>
+        </div>
+
+    </li>
+
+
+    <br> <br> <br> <br> <br> <br>
+
+    <li>
+      <h2><strong>Questão 4</strong></h2>
+
+      <div style="text-align: left; display: inline-block;">
+        \[ \mathbf{\text{1.} \ \ \frac{N(N-10)}{2} \ \ = \ \ O(n²)} \]
+      </div>
+
+      <div style="margin: 8px 0 0 60px;">
+        <p>
+          Por definição uma função limitada por O(n²) significa que <strong>f(n) <= c*n² para todo n>= n₀</strong>
+        </p>
+      </div>
+
+      <br>
+
+      <p>
+        \[ \frac{N(N-10)}{2} \ \ = \ \ \frac{N²-10N}{2} \]
+
+        \[ = \ \ \frac{N²-10N}{2} \ \ <= \ \ c*n² \] </p>
+
+          <div style="margin: 8px 0 0 60px;">
+            <p>
+              Agora temos que escolher um c que satisfaça nossa inequação. Nesse caso, nosso f(n) é uma fração, o que
+              faz ser uma boa ideia começar por 1/2.
+            </p>
+          </div>
+
+          <p>
+            \[ \frac{N²-10N}{2} \ \ <= \ \ \frac{1}{2}*n² \] \[ \frac{N²-10N}{2} \ \ <=\ \ \frac{n²}{2} \] </p>
+
+
+
+              \[ \text{Ou seja, para c= 1/2 e para todo N >= 1,} \ \ \ \mathbf{\frac{N(N-10)}{2} \ \ = \ \ O(N²)} \]
+
+
+              <br><br><br>
+
+              <div style="text-align: left; display: inline-block;">
+                \[ \mathbf{\text{2.} \ \ \sum_{i=1}^{n} (i) \ \ = \ \ \Omega(n²)} \]
+              </div>
+
+
+              <div style="margin: 8px 0 0 60px;">
+                <p>
+                  Ao contrário do O que limita o teto da função, o ômega limita o chão. <br>
+                  <strong>Assim, temos que provar que:</strong>
+                </p>
+              </div>
+
+
+              <p>
+                \[ c*n² \ \ <= f(n) \] \[ c*n² \ \ <=\sum_{i=1}^{n} (i)\] \[ c*n² \ \ <=\frac{N²+N}{2}\] \[ 1/2*n² \ \
+                  <=\frac{N²+N}{2}\] \[ \frac{n²}{2} \ \ <=\frac{N²+N}{2}\] \[ \text{Para c=1/2 e para todo N>= 1} \]
+              </p>
+
+
+              <br><br><br>
+
+              <div style="text-align: left; display: inline-block;">
+                \[ \mathbf{\text{3.} \ \ \ 2^{n-1}\ \ = \ \ \Omega(2^{n})} \]
+              </div>
+
+              <p>
+                \[ c*2^n \ \ <= f(n) \] \[ c*2^n \ \ <=2^{n-1} \] \[ \text{Para c=e para todo N>= } \]
+              </p>
+
+
+              <br><br><br>
+
+              <div style="text-align: left; display: inline-block;">
+                \[ \mathbf{\text{4.} \ \ \ \binom{n}{2}\ \ = \ \ \Theta(n²)} \]
+              </div>
+
+              <p>
+                \[ \binom{n}{2} \ \ = \frac{n!}{2!(n-2)!} \]
+
+                \[ \text{Para c= e para todo N >= } \]
+              </p>
+
+    </li>
+
+    <br> <br> <br> <br> <br> <br>
+
+
+
+
+
+
+    <li>
+      <h2><strong>Questão 5</strong></h2>
+
+      <div style="text-align: left; display: inline-block;">
+        \[ \mathbf{\text{1.} \ \ \ f(n) \ \ = \ \ \log_2 (n²), \ \ \ g(n) \ \ = \ \ \log_2 (n+5)} \]
+      </div>
+
+      <div style="margin: 8px 0 0 60px;">
+        <p>
+          Podemos começar simplificando f(n) utilizando a regra do peteleco e depois verificando cada possibilidade.
+        </p>
+
+        <div style="text-align: left; display: inline-block;">
+          \[ \mathbf{\text{(i)} \ \ \ f(n) \ \ = \ \ O(g(n)) \ \ ? } \]
+        </div>
+
+        <p>
+          Por definição uma função limitada por O(g(n)) significa que <strong>f(n) <= c*g(n) para todo n>= n₀, logo
+              temos:</strong>
+        </p>
+      </div>
+
+      <br>
+
+      <p>
+        \[ \mathbf{2 \log_2 (n) \ \ <= \ \ c* \log_2 (n+5)} \] <br>
+
+          <div style="margin: 8px 0 0 60px;">
+            <p>
+              Agora temos que escolher um c que satisfaça nossa inequação.
+            </p>
+          </div>
+
+          <br>
+
+          <p>
+            \[ \mathbf{2 \log_2 (n) \ \ <= \ \ 2* \log_2 (n+5)} \] <br>
+
+              \[ \text{Tendo em vista que a função logaritmo é monótona crescente, e que n < n+5.} \] \[ \text{Assim,
+                para c=2 e para todo N>= 1,} \ \ \ \mathbf{f(n) \ \ = \ \ O(g(n))} \]
+
+                <br><br><br>
+
+                <div style="margin: 8px 0 0 60px;">
+                  <div style="text-align: left; display: inline-block;">
+                    \[ \mathbf{\text{(ii)} \ \ \ f(n) \ \ = \ \ \Omega(g(n)) \ \ ? } \]
+                  </div>
+
+                  <p>
+                    Por definição uma função limitada por O(g(n)) significa que <strong>f(n) >= c*g(n) para todo n>= n₀,
+                      logo temos:</strong>
+                  </p>
+
+                  \[ \mathbf{2 \log_2 (n) \ \ >= \ \ c* \log_2 (n+5)} \]
+
+                  <p>
+                    Tendo em vista que a função logaritmo é monótona crescente, podemos assumir que c=1, e n=6, o que
+                    resulta em:
+                  </p>
+
+                  \[ \mathbf{2n \ \ >= \ \ n+5} \]
+                  \[ \mathbf{2*6 \ \ >= \ \ 6+5 \ \ \ \ = \ \ \ \ 12 \ \ >= \ \ 11} \]
+
+                  <p>
+                    Assim, já que o O e o Ômega são satisfeitos temos que o Theta é satisfeito.
+                  </p>
+
+                  <br>
+
+                  \[ \mathbf{f(n) \ \ = \ \ \Theta(g(n))} \]
+                </div>
+
+
+                <br><br><br>
+
+
+                <div style="text-align: left; display: inline-block;">
+                  \[ \mathbf{\text{2.} \ \ \ f(n) \ \ = \ \ \log_2 (n), \ \ \ g(n) \ \ = \ \ \log_3 (n)} \]
+                </div>
+
+                <div style="margin: 8px 0 0 60px;">
+
+                  <div style="text-align: left; display: inline-block;">
+                    \[ \mathbf{\text{(i)} \ \ \ f(n) \ \ = \ \ O(g(n)) \ \ ? } \]
+                  </div>
+
+                  <p>
+                    Por definição uma função limitada por O(g(n)) significa que <strong>f(n) <= c*g(n) para todo n>= n₀,
+                        logo temos:</strong>
+                  </p>
+                </div>
+
+                <br>
+
+                <p>
+                  \[ \mathbf{\log_2 (n) \ \ <= \ \ c* \log_3 (n)} \] <div style="margin: 8px 0 0 60px;">
+                    <p>
+                      Aplicando a propriedade de mudança de base:
+                    </p>
+                    </div>
+                    \[ \mathbf{\log_2 (n) \ \ <= \ \ c* \frac{\log_2 (n)}{\log_2 (3)}} \] \[ \mathbf{\log_2 (n) \ *
+                      \log_2 (3) \ \ <=\ \ c* \log_2 (n)} \] <br>
+
+                      <div style="margin: 8px 0 0 60px;">
+                        <p>
+                          Tendo em vista que o logaritmo é uma função monótona crescente, temos:
+                        </p>
+                      </div>
+
+                      \[ \mathbf{n \ * \ 3 \ \ <= \ \ n * c} \] <br>
+
+                        \[ \text{Escolhendo c=1 e n >= 1, temos que: } \ \ \ \mathbf{f(n) \ \ = \ \ O(g(n))} \]
+                        <p>
+
+                          <br><br><br>
+
+                        <div style="margin: 8px 0 0 60px;">
+                          <div style="text-align: left; display: inline-block;">
+                            \[ \mathbf{\text{(ii)} \ \ \ f(n) \ \ = \ \ \Omega(g(n)) \ \ ? } \]
+                          </div>
+
+                          <p>
+                            Por definição uma função limitada por O(g(n)) significa que <strong>f(n) >= c*g(n) para todo
+                              n>= n₀, logo temos:</strong>
+                          </p>
+
+                          \[ \mathbf{\log_2 (n) \ \ >= \ \ c* \log_3 (n)} \]
+                          \[ \mathbf{\log_2 (n) \ \ >= \ \ c* \ \frac{\log_2 (n)}{\log_2 (3)} } \]
+                          \[ \mathbf{\log_2 (n) * \log_2 (3) \ \ >= \ \ c* \ \log_2 (n) } \]
+
+                          <p>
+                            Tendo em vista que o logaritmo é uma função monótona crescente, temos:
+                          </p>
+
+                          \[ \mathbf{\ n * 3 \ \ >= \ \ n* \ c } \]
+
+                          <p>
+                            Assumindo c=1, e n=1. A condição é satisfeita. Assim, já que o O e o Ômega são satisfeitos
+                            temos que o Theta é satisfeito.
+                          </p>
+
+                          <br>
+
+                          \[ \mathbf{f(n) \ \ = \ \ \Theta(g(n))} \]
+                        </div>
+
+
+
+
+
+
+    <!-- ---------------- 3 I ---------------- -->
+
+                        <br><br><br>
+
+
+                        <div style="text-align: left; display: inline-block;">
+                          \[ \mathbf{\text{3.} \ \ \ f(n) \ \ = \ \ \sqrt{n}, \ \ \ g(n) \ \ = \ \ \log_2 (n)} \]
+                        </div>
+
+                        <div style="margin: 8px 0 0 60px;">
+
+                          <div style="text-align: left; display: inline-block;">
+                            \[ \mathbf{\text{(i)} \ \ \ f(n) \ \ = \ \ O(g(n)) \ \ ? } \]
+                          </div>
+
+                          <p>
+                            Por definição uma função limitada por O(g(n)) significa que <strong>f(n) <= c*g(n) para todo
+                                n>= n₀, logo temos:</strong>
+                          </p>
+
+
+                          \[ \mathbf{\sqrt{n} \ \ <= \ \ c* \log_2 (n)} \] 
+                          \[ \mathbf{log_2 (\sqrt{n}) \ \ <=\ \ c* \log_2 (n)} \] 
+                            
+                            <p>
+                              Tendo em vista que o logaritmo é uma função monótona crescente, temos:
+                            </p>
+
+                \[ \mathbf{\sqrt{n} \ \ <= \ \ c* n} \] <p>
+                  Escolhendo c = 1 e n >= 4:
+          </p>
+
+          \[ \mathbf{\sqrt{4} \ \ <= \ \ 1* 4} \] \[ \mathbf{2 \ \ <=\ \ 4} \] <br>
+
+            \[ \text{Ou seja, para c= 1 e para todo N >= 4,} \ \ \ \mathbf{f(n) \ \ = \ \ O(g(n))} \]
+            </div>
+
+
+
+
+
+            <!-- ---------------- 3 II ---------------- -->
+
+            <br><br><br>
+            <div style="text-align: left; display: inline-block;">
+              \[ \mathbf{\text{3.} \ \ \ f(n) \ \ = \ \ \sqrt{n}, \ \ \ g(n) \ \ = \ \ \log_2 (n)} \]
+            </div>
+            <div style="margin: 8px 0 0 60px;">
+              <div style="text-align: left; display: inline-block;">
+                \[ \mathbf{\text{(ii)} \ \ \ f(n) \ \ = \ \ \Omega(g(n)) \ \ ? } \]
+              </div>
+
+              <div style="text-align: left; display: inline-block;">
+                \[ \mathbf{\text{Por definição uma função limitada por} \ \ \Omega(g(n)) \ \ \text{significa que  } \\ \textbf{f(n) >= c*g(n) para todo n>= n₀, logo temos:} } \]
+              </div>
+              
+
+              \[ \mathbf{\sqrt{n} \ \ >= \ \ c* \log_2 (n)} \] 
+              \[ \mathbf{n \ \ >=\ \ c* \log_2 (n)} \] 
+
+              <p>
+                Assumindo c=1, e n=8. A condição é satisfeita. Assim, já que o O e o Ômega são satisfeitos temos que o
+                Theta é satisfeito.
+              </p>
+
+              <br>
+
+              \[ \mathbf{f(n) \ \ = \ \ \Theta(g(n))} \]
+            </div>
+
+    </li>
+
+
+  </ul>
+
+</body>
+
+</html>
