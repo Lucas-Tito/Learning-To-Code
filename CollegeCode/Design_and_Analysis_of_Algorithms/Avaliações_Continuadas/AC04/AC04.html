@@ -20,42 +20,213 @@
   <ul>
 
     <!-- --------- Questão 1 -------------- -->
-    <h2><strong>Questão 1</strong></h2>
     <li>
-      
-      
-
+    <h2><strong>Questão 1</strong></h2>
     </li>
+    
+      \[\mathbf{T(n) = 4T(\lfloor \frac{n}{2} \rfloor) + cn}\]
+      
+      <br>
+      <p>No método da árvore de recorrência precisamos analisar algumas constantes. Assim, tomando:</p>
+      <p><b>a=4 b=2 f(n)=cn</b></p>
+      <p>temos constantes que ditam respectivamente: as divisões dos nós, o tamanho dos nós e o custo de cada nó. Além disso, no método da árvore podemos ignorar o piso.</p>
+
+      <br><br>
+      <div style="text-align: center;">
+        <img src="arvore.png" alt="imagem árvore" style="width: 400px; height: auto;">
+      </div>
+      <p style="text-align: center; font-size: small; color: grey;">Imagem apenas para meus estudos, avaliador favor ignorar.</p>
+
+      <br><br>
+      <p>Podemos utilizar uma tabela para analisar melhor a árvore:</p>
+
+      \begin{array} {|r|r|}\hline \text{Nível} & \text{Tamanho do Nó} & \text{N Nós} & \text{Custo por Nó} & \text{Custo do Nível} \\ \hline 0 & \frac{n}{2⁰} & 4⁰ & c*\frac{n}{2⁰} & 4⁰*c*\frac{n}{2⁰} \\ \hline 1 & \frac{n}{2¹} & 4¹ & c*\frac{n}{2¹}  & 4¹*c*\frac{n}{2¹} \\ \hline 2 & \frac{n}{2²} & 4² & c*\frac{n}{2²} & 4²*c*\frac{n}{2²} \\ \hline i & \frac{n}{2^{i}} & 4^{i} & c*\frac{n}{2^{i}} & 4^{i}*c*\frac{n}{2^{i}} \\ \hline log_2 (n) & \frac{n}{2^h}=1 & 4^{log_2 (n)} & \Theta(1) & n²\\ \hline  \end{array}
+
+      <br>
+      <p>A nosso última linha da tabela corresponde ao último nível da árvore. Nesse momento o nosso tamanho do nó é dado por \( \ \ \mathbf{\frac{n}{2^{h}} \ = \ 1 \ \ } \) isso procede já que estamos igualando a nossa forma genérica descoberta na linha anterior da tabela a 1, que é quando chegamos nas folhas da árvores (que correspondem a \( \Theta(1) \)).</p>
+
+      <br><br>
+      <p>Para determinar a altura do último nível podemos desenvolver o tamanho do nó da seguinte maneira:</p>
+
+      \[ \frac{n}{2^{h}} =  1 \ \ \ \ =  \ \ \ \ n  =  2^{h} \ \ \ \ = \ \ \ \ log_2 (n)  =  log_2 (2^{h}) \ \ \ \ = \ \ \ \ log_2 (n)  =  h * log_2 (2) \]
+      \[  = \ \ \ \mathbf{log_2 (n)  =  h} \]
+
+      <br><br>
+      <p>Por fim, para determinar o custo total da recorrência devemos usar um somatório que vai do primeiro nível até o pneultimo nível da árvore. Além disso, no termo do somatório temos a soma do custo até o penúltimo nível mais o último nível da árvore, logo temos:</p>
+
+      \[ T(n) \ = \ \sum_{i=0}^{log_2 (n-1)} \ 4^{i} * c * \frac{n}{2^{i}} + n²\]
+      \[ = \ \sum_{i=0}^{log_2 (n-1)} \ cn * (\frac{4}{2})^i + n²\]
+      \[ = \ cn* \ \ \sum_{i=0}^{log_2 (n-1)} \ (\frac{4}{2})^i + n²\]
+
+      <br>
+      <p>Pela propriedade do somatório: \( \boxed{\sum_{i=0}^{n} x^{k} \ \ = \ \ \frac{x^{n+1}-1}{x-1}} \)</p>
+      <br>
+
+      \[ = \ cn* \ \ (\frac{(\frac{4}{2})^{lgn}-1}{(\frac{4}{2})-1}) + n²\]
+      \[ = \ cn* \ \ (\frac{\frac{4^{lgn}}{2^{lgn}}-1}{\frac{4-2}{2}}) + n²\]
+      \[ = \ cn* \ \ (\frac{4^{lgn}}{n^{lg2}}-1) + n²\]
+      \[ = \ (\frac{4^{lgn} * c \cancel{n}}{\cancel{n^{1}}}-cn) + n²\]
+      \[ = \ n^{lg4} * c -cn + n²\]
+      \[ = \ 2n² * c -cn\]
+      \[ = \ 2c * n² -cn \ \ <= \ \ 2c * n²\]
+
+      <br>
+      <p>Ou seja, para qualquer constantes c positivas, <b>T(n) = O(n²)</b></p>
 
     <br> <br> <br> <br> <br> <br>
-    <!-- --------- Questão 2 A -------------- -->
+    <!-- --------- Questão 2 -------------- -->
     <li>
       <h2><strong>Questão 2</strong></h2>
+
+      \[\mathbf{T(n) = 4T(\lfloor \frac{n}{2} \rfloor) + cn}\]
       
+      <br>
+      <p>Suponha que T(n) é O(n²), ou seja, <b>T(n) <= c n²</b> para n>=n0, onde c e n0 são constantes positivas.</p>
+      <br>
+
+
+      <br>
+      <p><b>Hipótese Indutiva: </b>suponha que para todo k com n0 <= k < n, T(k) <= d k²</p>
+      <br>
+
+      \[T(n) = 4T(\lfloor \frac{n}{2} \rfloor) + cn\]
+      \[ <= \ \ 4 \ (d (\frac{n}{2})^2) + cn\]
+      \[ = \ \ \cancel{4}d \frac{n²}{\cancel{4}} + cn\]
+      \[ = \ \ dn² + cn\]
+      
+
+      <br>
+      <p>Perceba que não conseguimos satisfazer a nossa hipótese. Assim, iremos modificá-la para: <b>T(k) <= d k² - k</b>.</p>
+      <br>
+
+      \[T(n) = 4T(\lfloor \frac{n}{2} \rfloor) + cn\]
+      \[ <= \ \ 4 \ (d (\frac{n}{2})^2 - (\frac{n}{2})) + cn\]
+      \[ = \ \ \cancel{4}d \frac{n²}{\cancel{4}} - \cancel{4}(\frac{n}{\cancel{2}}) + cn\]
+      \[ = \ \ dn² - 2n + cn\]
+      \[ = \ \ dn² - n \boxed{- n + cn}\]
+
+      <p>É necessário mostrar que - n + cn <= 0</p>
+
+      \[ - n + cn \ \ <= \ \ 0\]
+      \[= \ \  n - cn \ \ >= \ \ 0 \ \ \ \ \  \textbf{para n>=0 e c<=1} \]
+
     </li>
 
     <br> <br> <br> <br> <br> <br>
 
 
-    <!-- --------- Questão 3 -------------- -->
+    <!-- --------- Questão 3 A-------------- -->
     <li>
       <h2><strong>Questão 3</strong></h2>
+      <p>
+        <ol type="a">
+          <li>
+            \(\mathbf{T(n) = 2T(n/4) + 1}\)
 
+            <p>Perceba que podemos identificar as seguintes constantes:</p>
+            <p><b>a=2 b=4 f(n)=1</b></p>
+            <br>
+
+            <p>Para melhor identificar o caso do teorema mestre, temos que desenvolver \( \ \mathbf{n^{\log_b a}}\)</p>
+            <br>
+            
+            \(n^{\log_b a} \ = \ n^{\log_4 2} \ = \ n^{0.5}\)
+
+            <br>
+
+            <p>Veja que \( \mathbf{f(n) \ = \ 1 \ >= \ n^{0.5 - \varepsilon}}\)  \(\ \ \ \ \text{ para } \ \varepsilon \ = \ 0.5\)</p>
+
+            <br>
+            <p>Deste modo, pelo Caso 1 temos que: \(\mathbf{T(n) \ = \ \Theta(n^{0.5})}\)</p>
+
+          </li>
+
+
+                    <!-- --------- Questão 3 B-------------- -->
+          <br><br><br><br><br><br><br><br>
+          <li>
+            \(\mathbf{T(n) = 2T(n/4) + n²}\)
+
+            <p>Perceba que podemos identificar as seguintes constantes:</p>
+            <p><b>a=2 b=4 f(n)=n²</b></p>
+            <br>
+
+            <p>Para melhor identificar o caso do teorema mestre, temos que desenvolver \( \ \mathbf{n^{\log_b a}}\)</p>
+            <br>
+            
+            \(n^{\log_b a} \ = \ n^{\log_4 2} \ = \ n^{0.5}\)
+
+            <br>
+
+            <p>Veja que \( \mathbf{f(n) \ = \ n² \ >= \ n^{0.5 + \varepsilon}}\)  \(\ \ \ \ \text{ para } \ \varepsilon \ = \ 0.1\)</p>
+
+            <br>
+            <p>Como estamos tentando provar pelo Caso 3 é necessário mostrar que: \(\mathbf{a \ f(\frac{n}{b}) \ <= \ c \ f(n)}\)</p>
+            <br>
+
+            \[ 2 \ f(\frac{n}{4}) \ <= \ c \ f(n) \]
+            \[ = \ 2 \ (\frac{n}{4})² \ <= \ c \ n² \]
+            \[ = \ \cancel{2} \ \frac{n²}{\cancel{16}} \ <= \ c \ n² \]
+            \[ = \ \frac{n²}{8} \ <= \ c \ n² \ \ \ \ \ \textbf{ para c=0.5}\]
+
+            <p>Logo, pelo Caso 3 temos: \(\mathbf{T(n) \ = \ \Theta(n^{2})}\)</p>
+          </li>
+
+                    <!-- --------- Questão 3 C-------------- -->
+          <br><br><br><br><br><br><br><br>
+          <li>
+            \(\mathbf{T(n) = 2T(n/4) + n}\)
+
+            <p>Perceba que podemos identificar as seguintes constantes:</p>
+            <p><b>a=2 b=4 f(n)=n</b></p>
+            <br>
+
+            <p>Para melhor identificar o caso do teorema mestre, temos que desenvolver \( \ \mathbf{n^{\log_b a}}\)</p>
+            <br>
+            
+            \(n^{\log_b a} \ = \ n^{\log_4 2} \ = \ n^{0.5}\)
+
+            <br>
+
+            <p>Veja que \( \mathbf{f(n) \ = \ n² \ >= \ n^{0.5 + \varepsilon}}\)  \(\ \ \ \ \text{ para } \ \varepsilon \ = \ 0.1\)</p>
+
+            <br>
+            <p>Como estamos tentando provar pelo Caso 3 é necessário mostrar que: \(\mathbf{a \ f(\frac{n}{b}) \ <= \ c \ f(n)}\)</p>
+            <br>
+
+            \[ 2 \ f(\frac{n}{4}) \ <= \ c \ f(n) \]
+            \[ = \ \cancel{2} \ \frac{n}{\cancel{4}} \ <= \ c \ n \]
+            \[ = \ \frac{n}{2} \ <= \ c \ n \ \ \ \ \ \textbf{ para c=0.5}\]
+
+            <p>Logo, pelo Caso 3 temos: \(\mathbf{T(n) \ = \ \Theta(n)}\)</p>
+          </li>
+
+                              <!-- --------- Questão 3 D-------------- -->
+          <br><br><br><br><br><br><br><br>
+          <li>
+            \(\mathbf{T(n) = 2T(n/4) + \sqrt{n}}\)
+
+            <p>Perceba que podemos identificar as seguintes constantes:</p>
+            <p><b>a=2 b=4 f(n)=\(\mathbf{\sqrt{n}}\)</b></p>
+            <br>
+
+            <p>Para melhor identificar o caso do teorema mestre, temos que desenvolver \( \ \mathbf{n^{\log_b a}}\)</p>
+            <br>
+            
+            \(n^{\log_b a} \ = \ n^{\log_4 2} \ = \ n^{0.5}\)
+
+            <br>
+
+            <p>Veja que \( \mathbf{f(n) \ = \ \sqrt{n} \ = \ n^{0.5} \ \log^{K}n}\)  \(\ \ \ \ \text{ para } \ K \ = \ 0\)</p>
+
+            <br>
+
+            <p>Logo, pelo Caso 2 temos: \(\mathbf{T(n) \ = \ \Theta(\sqrt{n} \ = \ n^{0.5} \ \log^{1}n)}\)</p>
+          </li>
+        </ol>
+      </p>
 
     </li>
-    <br> <br> <br> <br> <br> <br>
-
-    
-
-
-    <!-- --------- Questão 4 -------------- -->
-    <h2><strong>Questão 4</strong></h2>
-    <li>
-
-      
-    </li>
-
-    <br> <br> <br> <br> <br> <br>
 
 
   </ul>
