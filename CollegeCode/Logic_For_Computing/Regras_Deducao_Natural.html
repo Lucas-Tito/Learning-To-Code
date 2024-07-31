@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Dedução Natural</title>
+
+  <!-- MATHJAX 3 (através da CDN) -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- MATHJAX 3 (salvo no computador) -->
+  <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+</head>
+
+<body>
+  <h1 align="center">Regras da Dedução Natural - Lucas Tito</h1>
+
+  <br><br>
+  
+
+  <ul>
+    <!-- -------Regras de Precedêndica------- -->
+    <h3>Regras de Precedência</h3>
+    \begin{array} {|r|r|}\hline \textbf{Precedência} & \textbf{Operador} \\ \hline Maior Precedência & \textbf{¬} \ \ Negação \\ \hline ↑ & \textbf{∧} (e) \\ \hline ↑ & \textbf{∨} (ou) \\ \hline Menor Precedência & →Condicional \\ \hline  \end{array}
+
+    <br>
+    <p>Além das regras acima, também é importante lembrar que quando você tem operadores da mesma precedência encadeados, a precedência age como se houvessem parêntesis alinhados à direita.</p>
+    <p>Segue um exemplo:</p>
+
+    \[ P \rightarrow Q \rightarrow R \rightarrow L\]
+    \[= \ \ \ (P \rightarrow (Q \rightarrow (R \rightarrow L)))\]
+    
+
+    <!-- -------Regras de Operadores------- -->
+    <h3>Regras de Operadores</h3>
+
+    <h4 align="center">∧(e)</h4>
+    <h4 align="center" style="color: #525252;">Eliminação</h4>
+    
+    <p>Como o ∧ garante que ambos os átomos são verdadeiros, você pode conseguir qualquer um dos átomos a partir do ∧.</p>
+    <p>Segue um exemplo:</p>
+
+    \[
+    \begin{array}{ll}
+      1. & P \land Q \quad \text{pre} \\
+      2. & P \quad \quad \ \ \land e \ 1 \\
+      3. & Q \quad \quad \ \ \land e \ 1 \\
+    \end{array}
+    \]
+
+
+  </ul>
+
+</body>
+
+</html>
