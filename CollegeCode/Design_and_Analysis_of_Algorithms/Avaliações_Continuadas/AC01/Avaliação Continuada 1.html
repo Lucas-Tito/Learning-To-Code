@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Modelo de uso do MathJax (HTML+Latex)</title>
+
+    <!-- MATHJAX 3 (através da CDN) -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <!-- MATHJAX 3 (salvo no computador) -->
+    <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+  </head>
+  <body>
+    <h4>Questão 1</h4>
+    <pre>
+      <code>
+         Rayz-Quadrada(N)
+1              se N==0 faça
+2                 retorne N
+
+3              i=1
+4              aux=1
+5              enquanto aux <= N faça
+6                 i=i+1
+7                 aux=i*i
+
+8              retorne i-1
+      </code>
+    </pre>
+
+    <h4>Comentários</h4>
+    <ul>
+      <li>Linha 1: não existe raiz de 0.</li>
+      <li>Linha 5: a partir de 1, tente todos os números até i*i for maior ou igual a N.</li>
+      <li>Linha 8: -1 serve para remover a última iteração de i, já que o enquanto só para
+          quando i*i é maior que N.
+      </li>  
+    </ul>
+
+    <br>
+    <hr>
+    <p>
+  
+    <h4>Questão 2</h4>
+    <pre>
+      <code>
+         Ordernação-por-Seleção(Array, N)
+1              menor-elemento=0
+              
+2              para i=0 até n-2 faça
+3                menor-elemento=i
+4                para j=i+1 até n-1 faça
+5                      se Array[j] < Array[menor-elemento] faça
+6                          menor-elemento = j
+
+7                aux=Array[menor-elemento]
+8                Array[menor-elemento]=Array[i]
+9                Array[i]=aux
+      </code>
+    </pre>
+    <h4>Comentários</h4>
+    <ul>
+      <li>Linha 2: vai até n-2 já que o para interno cobre o restante.</li>
+      <li>Linha 4: vai até n-1 já que está para compara i e i+1.</li>
+      <li>Linha 7 a 9: realiza a troca dos elementos.</li>
+    </ul>
+    
+
+    <br>
+    <p>
+      <h2>Número de Instruções</h2>
+
+      <!-- LaTeX table -->
+      <div id="latex-table">
+          \[
+          \begin{array}{|l|l|l|}
+              \hline 
+              \text{Ordernação-por-Seleção(Array, N)} & \text{Custo} & \text{Qnts vezes} \\ 
+              \hline
+              \text{1. menor-elemento=0} & c1 & 1 \\ 
+              \hline
+              \text{2. para i=0 até n-2 faça} & c2 & n-1 \\ 
+              \hline
+              \quad\text{3. menor-elemento=i} & c3 & n-2 \\ 
+              \hline
+              \quad \text{4. para j=i+1 até n-1 faça} & c4 & \sum_{j=1}^{n} j \\ 
+              \hline
+              \qquad \text{5. se Array[j] < Array[menor-elemento] faça} & c5 & \sum_{j=1}^{n} (j - 1) \\ 
+              \hline
+              \qquad \qquad \text{6. menor-elemento = j} &  & \ \\ 
+              \hline
+              \qquad \text{7. aux=Array[menor-elemento]} & c6 & n-2\\ 
+              \hline
+              \qquad \text{8. Array[menor-elemento]=Array[i]} & c7 &  n-2\\ 
+              \hline
+              \qquad \text{9. Array[i]=aux} & c8 &  n-2\\ 
+              \hline
+          \end{array}
+          \]</p>
+          <p>
+            \[
+            (T(n)) =
+            c_{1} + c_{2}(n-1) + c_{3}(n-2) + c_{4}\sum_{j=1}^{n} j + c_{5}\sum_{j=1}^{n} (j - 1) + c_{6}(n-2) + c_{7}(n-2) + c_{8}(n-2)
+            \]
+          </p>
+    <p>
+      <ul>
+        <li><strong>Resultado:</strong>
+        Já que temos dois paras encadeados que irão executar até N cada independentemente do tamanho
+        da entrada, podemos concluir que esse algoritmo é O(N^2) tanto para o pior, quanto para o melhor caso.
+      </li>
+      </ul>
+      <br><br>
+      <strong>Considerações Finais:</strong>
+      Não consegui desenvolver T(N) para fazer a demonstração formal, tive problemas em encaixar a formúla da PA
+      no somatório. Além de ter dúvidas quanto a quantidade de vezes que a linha 6 executaria por achar que nem 
+      sempre se entra na condição do se.
+    </p>
+
+
+    <br><br><br>
+    <h4>Questão 3</h4>
+    anulada
+  </body>
+</html>

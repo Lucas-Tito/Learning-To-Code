@@ -108,7 +108,16 @@
       <p>É necessário mostrar que - n + cn <= 0</p>
 
       \[ - n + cn \ \ <= \ \ 0\]
-      \[= \ \  n - cn \ \ >= \ \ 0 \ \ \ \ \  \textbf{para n>=0 e c<=1} \]
+      \[= \ \  n - cn \ \ >= \ \ 0 \ \ \ \ \  \textbf{para n>=1 e c<=1} \]
+      
+      <br><br>
+      <p align="center"><b>Provondo o Caso Base</b></p>
+
+      \(T(n) \ = \ 4T(\lfloor \frac{n}{2} \rfloor) \ + \ cn \ \ \ <= \ \ \ dn²-n\)
+      <br><br>
+      \(T(1) \ = \ 4T(0) \ + \ c \ \ \ <= \ \ \ d\)
+      <br><br>
+      \(T(1) \ = \ c \ \ \ <= \ \ \ d \ \ \ \ \ \textbf{para d>=1} \)
 
     </li>
 
