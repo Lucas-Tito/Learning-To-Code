@@ -23,25 +23,209 @@
     <li>
     <h2><strong>Questão 1</strong></h2>
     </li>
-    
+
+    <!-- --------- Abordagem 1  -------------- -->
+    <h2><strong>Abordagem de dividir o subproblema em n/2</strong></h2>
+
+    \[
+    \begin{array}{|l|l|l|}
+    \hline
+    \textbf{Max_element(arr, left, right)} & \text{Custo} & \text{Qntd. vezes} \\
+    \hline
+    \text{1. Se left >= right  entao retorna arr[left]} & c1 & 1 \\
+    \hline
+    \text{2. Senao} & c2 & 1 \\
+    \hline
+    \text{3.} \quad \text{ mid = (left+right)/2} & c3 & 1 \\
+    \hline
+    \text{4.} \quad \text{max_left = Max_element(arr, left, mid)} & c4 & T(n/2) \\
+    \hline
+    \text{5.} \quad \text{max_right = Max_element(arr, mid+1, right)} & c5 & T(n/2) \\
+    \hline
+    \text{6.} \quad \text{retorna max(max_left, max_right)} & c6 & 1\\
+    \hline
+    \end{array}
+    \]
+
+    <p> Observando a tabela temos que: \(T(n) = 2T(\frac{n}{2})+1\). Desse modo, <b>tentaremos provar que \( \mathbf{T(n) = O(n*log_2(n))} \)</b>.</p>
       
+    <br>
+    <p><strong>Hipótese Indutiva:</strong> Suponha que para todo k com n0 <= k < n, T(k) <= ck lgk, onde c e n0 são constantes positivas.</p>
+
+    <p>Queremos provar que: <strong>T(n) <= cn lgn</strong></p>
+
+    \[ \mathbf{T(n) = 2T(\frac{n}{2})+1}\]
+
+    \[ \mathbf{= \cancel{2}c \ \frac{n}{\cancel{2}} \ log_2(\frac{n}{2})+1}\]
+
+    \[ \mathbf{= c \ n \ (log_2(n)-log_2(2))+1}\]
+
+    \[ \mathbf{= c \ n \ log_2(n)- c \ n \ log_2(2)+1}\]
+
+    \[ \mathbf{= c \ n \ log_2(n) \boxed{- c \ n \ +1}}\]
+    
+    <br>
+
+    <p>Observe que a parte destacada precisa ser removida para provar a nossa hipótese. Deste modo, devemos provar que \( \mathbf{- c \ n \ +1 \leq 0}\).</p>
+    
+    \[ - c \ n \ +1 \leq 0 \ \ \ \ \text{multiplicando por -1} \]
+    \[ = cn+1 \geq 0 \ \ \ \ \text{para c e n } \geq 0 \]
+
+    <br> <br> <br> <br> 
+
+
+    <p align="center"> <b>Provando caso base:</b> </p>
+    <p> \( T(1) = 2T(0)+1 \leq cn \ lgn \) </p>
+    <p> \( T(1) = 1 \leq cn \ lgn \ \ \ \ \text{para c } \geq \text{ e n } \geq 2 \) </p>
+    <br />
+
+
+    <br> <br> <br> <br><br>
+    <!-- --------- Abordagem 2  -------------- -->
+
+    <h2><strong>Abordagem de dividir o subproblema em n-1</strong></h2>
+
+    \[
+    \begin{array}{|l|l|l|}
+    \hline
+    \textbf{Max_element(arr, n)} & \text{Custo} & \text{Qntd. vezes} \\
+    \hline
+    \text{1. Se n == 1  entao retorna arr[0]} & c1 & 1 \\
+    \hline
+    \text{2. retorna max(arr[n-1], Max_element(arr[n-1]))} & c2 & T(n-1) \\
+    \hline
+    \end{array}
+    \]
+
+    <br>
+    <p>Ao analisar o algoritmo acima, é possível notar que:</p>
+
+    \begin{array} {|r|r|}\hline \text{Nível} & \text{Tamanho do Nó} & \text{Custo por Nó} \\ \hline 1 & n-1 & 1*n-1 \\ \hline 2 & n-2 & 1*n-2 \\ \hline i & n-i & 1*n-i \\ \hline  \end{array}
+
+    <br>
+    <p>Ao analisar o algoritmo acima, é possível notar que:</p>
+
+    \[ T(n) = 1+1+...+1*n-1+ \Theta(1)\]
+    \[ \leq c*n\]
+    <p>Onde \( \Theta(1) \) é o custo no último nível</p>
+    <br> <br> <br> <br>
+
+    <h2><strong>Comparando as abordagens</strong></h2>
+
+    <p>Analisando o quesito de complexidade de tempo, é possível notar que a segunda abordagem (n-1) se faz mais efetiva. Além disso, outro critério a ser analisado é o quão limpo o código é, no qual é sabido que a abordagem n-1 se mostra bem enxuto.</p>
+
 
     <br> <br> <br> <br> <br> <br>
     <!-- --------- Questão 2 -------------- -->
     <li>
       <h2><strong>Questão 2</strong></h2>
     </li>
+    <!-- --------- Abordagem Matriz  -------------- -->
+    <h2><strong>Abordagem com Matriz de Adjacências</strong></h2>
+
+    \[
+    \begin{array}{|l|l|l|}
+    \hline
+    \textbf{Transposed_graph(matrix, n)} & \text{Custo} & \text{Qntd. vezes} \\
+    \hline
+    \text{1. n = matrix.lenght} & c1 & 1 \\
+    \hline
+    \text{2. transposed_matrix = [[0] * n for _ in range(n)]} & c2 & n \\
+    \hline
+    \text{3. for u in range(n):} & c3 & n \\
+    \hline
+    \text{4.} \quad \text{for v in range(n):} & c4 & n² \\
+    \hline
+    \text{5.} \quad \quad \text{if matrix[u][v]==1} & c5 &  \\
+    \hline
+    \text{6.} \quad \quad \text{transposed_matrix[v][u] = 1} & c6 &  \\
+    \hline
+    \text{7. return transposed_matrix} & c7 & 1 \\
+    \hline
+    \end{array}
+    \]
+
+    <br>
+    <p>A <b>Linha 2</b> preenche a matrix que representa o grafo transposto com n linhas que possuem n elementos = 0.</p>
+    <br>
+    <h3><strong>Complexidade</strong></h3>
+    <p>Temos uma complexidade de tempo de n², já que percorremos todos os pares de vértices (u,v).</p>
+    
+
+    <br> <br> <br> <br>
+     <!-- --------- Abordagem Listas -------------- -->
+     <h2><strong>Abordagem com Lista de Adjacências</strong></h2>
+
+     \[
+     \begin{array}{|l|l|l|}
+     \hline
+     \textbf{Transposed_graph(graph)} & \text{Custo} & \text{Qntd. vezes} \\
+     \hline
+     \text{1. vertices = list(graph.keys())} & c1 & 1 \\
+     \hline
+     \text{2. transposed_list = {v: [] for v in vertices}} & c2 & n \\
+     \hline
+     \text{3. for u in vertices:} & c3 & n \\
+     \hline
+     \text{4.} \quad \text{for v in graph[u]:} & c4 & n² \\
+     \hline
+     \text{5.} \quad \quad \text{transposed_list[v].append(u)} & c5 &  \\
+     \hline
+     \text{6. return transposed_list} & c7 & 1 \\
+     \hline
+     \end{array}
+     \]
+
+     <br>
+     <p>*graph é um dicionário que contém uma chave (que representa o vértice) e um valor (que representa a lista de adjacências).</p>
+     
+     <p>A <b>Linha 2</b> inicializa transpose_list com listas vazias.</p>
+
+     <p>A <b>Linha 6</b> adiciona a aresta inveretida (v, u) em trasposed_list.</p>
+     <br>
+     <h3><strong>Complexidade</strong></h3>
+     <p>O algoritmo percorre todos os vertices uma única vez, o que faz ele se configurar como O(n).</p>
+     <br> <br> <br> <br> <br> <br>
 
 
-    <br> <br> <br> <br> <br> <br>
-
-
-    <!-- --------- Questão 3 A-------------- -->
+    <!-- --------- Questão 3 -------------- -->
     <li>
       <h2><strong>Questão 3</strong></h2>
     </li>
 
+    \[
+    \begin{array}{|l|l|l|}
+    \hline
+    \textbf{Sorvedouro_universal_finder(matriz)} & \text{Custo} & \text{Qntd. vezes} \\
+    \hline
+    \text{1. n = matriz.lenght} & c1 & 1 \\
+    \hline
+    \text{2. sovedouro = 0} & c2 & 1 \\
+    \hline
+    \text{3. for i in range(1, n):} & c3 & n \\
+    \hline
+    \text{4.} \quad \text{if matriz[sovedouro][i] == 1} & c4 &  \\
+    \hline
+    \text{5. for j in range(n):} & c5 & n \\
+    \hline
+    \text{6.} \quad \text{if j != sovedouro} & c6 &  \\
+    \hline
+    \text{7.} \quad \quad \text{if matriz[sovedouro][j] == 1 or matriz[j][sovedouro] == 0} & c6 &  \\
+    \hline
+    \text{7.} \quad \quad \quad \text{return -1} & c6 &  \\
+    \hline
+    \text{8. return sovedouro} & c7 & 1 \\
+    \hline
+    \end{array}
+    \]
 
+    <h3><strong>Descrição</strong></h3>
+    <p>Podemos separar o nosso algoritmo em dois passos, primeiro é necessário encontrar um candidato a sovedouro universal. Dessa maneira, é escolhido arbitrariamente o vértice 0 como o primeiro candidato a sovaroudo, em seguida todos os vértices do grafo são percorridos comparando-os com o candidato do sovedouro. Assim, caso exista uma aresta do candidato a sovedouro para o vértice que está sendo verificado atualmente, então o candidato a sovedouro atual é falso, e a aresta atual se torna o novo candidato.</p>
+    <p>Por fim, o nosso segundo e último passo é encarregado por verificar se o candidato é realmente um sovedouro universal. Dessarte, todos os vértices j do grafo de modo a verificar o grau de entrade e de saída do candidato ao sorvedouro universal.</p>
+    <br><br>
+    <h3><strong>Complexidade</strong></h3>
+    <p>Neste algoritmo não temos nenhuma linha que passe da ordem de n, logo pode-se afirmar O(n).</p>
+    
   </ul>
 
 </body>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Sandrin</title>
+
+    <!-- MATHJAX 3 (através da CDN) -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <!-- MATHJAX 3 (salvo no computador) -->
+    <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+  </head>
+  <body>
+    <h2>Questão 1</h2>
+
+    <h2>Abordagem 1: Subproblema de Tamanho \( n-1 \)</h2>
+
+    <pre>
+def max_element(arr, n):
+    if n == 1:
+        return arr[0]
+    else:
+        max_of_rest = max_element(arr, n-1)  # Linha 3
+        return max(max_of_rest, arr[n-1])  # Linha 4
+    </pre>
+
+    <h3>Custos das Linhas</h3>
+    <ul>
+        <li><strong>Linha 3 (Recursão):</strong> Cada chamada recursiva reduz o tamanho do problema em 1, o que leva a \( n-1 \) chamadas recursivas. O custo é constante para cada chamada recursiva, ou seja, \( O(1) \) por chamada.</li>
+        <li><strong>Linha 4 (Comparação):</strong> A operação <code>max(max_of_rest, arr[n-1])</code> é uma operação de comparação, que também tem custo \( O(1) \).</li>
+    </ul>
+
+    <h3>Complexidade no Pior Caso</h3>
+    <p>
+        A relação de recorrência para a Abordagem 1 é:
+        \[
+        T(n) = T(n-1) + O(1)
+        \]
+        Vamos resolver essa recorrência por expansão:
+        \begin{align*}
+        T(n) &= T(n-1) + O(1) \\
+        &= \left(T(n-2) + O(1)\right) + O(1) \\
+        &= \left(\left(T(n-3) + O(1)\right) + O(1)\right) + O(1) \\
+        &= \dots \\
+        &= T(1) + (n-1) \cdot O(1) \\
+        \end{align*}
+        Se assumirmos que \( T(1) \) é uma constante \( c \), então:
+        \begin{align*}
+        T(n) &= c + (n-1) \cdot O(1) \\
+        &= O(n)
+        \end{align*}
+        <strong>Complexidade no pior caso:</strong> \( O(n) \).
+    </p>
+
+    <h2>Abordagem 2: Divisão em Subproblemas de Tamanho \( \frac{n}{2} \)</h2>
+
+    <pre>
+def max_element_divide_and_conquer(arr, left, right):
+    if left == right:
+        return arr[left]
+    else:
+        mid = (left + right) // 2  # Linha 3
+        max_left = max_element_divide_and_conquer(arr, left, mid)  # Linha 4
+        max_right = max_element_divide_and_conquer(arr, mid + 1, right)  # Linha 5
+        return max(max_left, max_right)  # Linha 6
+    </pre>
+
+    <h3>Custos das Linhas</h3>
+    <ul>
+        <li><strong>Linha 3 (Cálculo do meio):</strong> O cálculo de <code>mid</code> é uma operação aritmética simples, com custo \( O(1) \).</li>
+        <li><strong>Linha 4 e Linha 5 (Recursão):</strong> Cada chamada recursiva divide o problema em duas metades, levando a 2 chamadas recursivas para cada nível de profundidade. Para um vetor de tamanho \( n \), a profundidade da árvore de recursão é \( \log n \). Portanto, o número total de chamadas recursivas é \( 2^{\log n} = n \), e cada chamada tem custo constante \( O(1) \) por linha.</li>
+        <li><strong>Linha 6 (Comparação):</strong> A operação <code>max(max_left, max_right)</code> tem custo \( O(1) \).</li>
+    </ul>
+
+    <h3>Complexidade no Pior Caso</h3>
+    <p>
+        A relação de recorrência é:
+        \[
+        T(n) = 2T\left(\frac{n}{2}\right) + O(1)
+        \]
+        Usando o Teorema Mestre para resolver a recorrência, temos:
+        \begin{itemize}
+            <li>\( a = 2 \)</li>
+            <li>\( b = 2 \)</li>
+            <li>\( d = 0 \)</li>
+        </ul>
+        Comparando \( n^{\log_b a} = n^{\log_2 2} = n \) com \( O(n^d) = O(1) \), o caso 2 do Teorema Mestre se aplica, o que resulta em:
+        \[
+        T(n) = O(n)
+        \]
+        <strong>Complexidade no pior caso:</strong> \( O(n) \).
+    </p>
+
+    <h2>Comparação Final</h2>
+    <p>
+        Ambas as abordagens têm a mesma complexidade no pior caso de \( O(n) \). No entanto, a abordagem de subproblema de tamanho \( n-1 \) pode ser mais direta e intuitiva para este problema específico, enquanto a abordagem de divisão em dois subproblemas é uma técnica clássica de divisão e conquista, que é útil para problemas mais complexos.
+    </p>
+    <h2>Questão 2</h2>
+
+    <h2>Representação com Lista de Adjacências</h2>
+
+    <p>
+        Dado um grafo \( G \) representado por uma lista de adjacências, o algoritmo para calcular o grafo transposto \( G^T \) é o seguinte:
+    </p>
+
+    <pre>
+def transposed_graph_list_adjacency(graph):
+    # graph é um dicionário onde a chave é o vértice e o valor é a lista de adjacências
+    vertices = list(graph.keys())
+    L_T = {v: [] for v in vertices}  # Inicializa a lista de adjacências do grafo transposto
+
+    for u in vertices:
+        for v in graph[u]:
+            L_T[v].append(u)  # Adiciona a aresta invertida (v, u) em L_T
+
+    return L_T
+    </pre>
+
+    <h3>Complexidade</h3>
+    <p>
+        <strong>Tempo:</strong> O algoritmo percorre todas as arestas de \( G \). Se \( E \) é o número de arestas e \( V \) é o número de vértices, a complexidade é \( O(E) \).
+    </p>
+
+
+    <h2>Representação com Matriz de Adjacências</h2>
+
+    <p>
+        Dado um grafo \( G \) representado por uma matriz de adjacências, o algoritmo para calcular o grafo transposto \( G^T \) é o seguinte:
+    </p>
+
+    <pre>
+def transposed_graph_adjacency_matrix(matrix):
+    n = len(matrix)  # número de vértices
+    M_T = [[0] * n for _ in range(n)]  # Inicializa a matriz de adjacências do grafo transposto
+
+    for u in range(n):
+        for v in range(n):
+            if matrix[u][v] == 1:
+                M_T[v][u] = 1  # Adiciona a aresta invertida (v, u) em M_T
+
+    return M_T
+    </pre>
+
+    <h3>Complexidade</h3>
+    <p>
+        <strong>Tempo:</strong> O algoritmo percorre todos os pares de vértices \( (u, v) \) na matriz de adjacências, o que leva a um tempo de \( O(V^2) \), onde \( V \) é o número de vértices.
+    </p>
+ 
+
+    <h2>Resumo</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Representação</th>
+                <th>Tempo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Lista de Adjacências</td>
+                <td>\( O(E) \)</td>
+            </tr>
+            <tr>
+                <td>Matriz de Adjacências</td>
+                <td>\( O(V^2) \)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        A escolha entre essas representações depende do tipo de grafo e das operações que serão realizadas. Para grafos esparsos (onde \( E \) é muito menor que \( V^2 \)), a lista de adjacências é mais eficiente, enquanto para grafos densos (onde \( E \) é próximo de \( V^2 \)), a matriz de adjacências pode ser mais adequada.
+    </p>
+<p>Questão 3</p>
+<p>
+    Dado um grafo direcionado \( G = (V, E) \), um <strong>sorvedouro universal</strong> é um vértice de \( G \) que possui grau de entrada \( |V| - 1 \) (ou seja, ele recebe arestas de todos os outros vértices) e grau de saída 0 (ou seja, ele não possui arestas saindo dele).
+</p>
+
+<h2>Descrição do Algoritmo</h2>
+
+<p>O algoritmo consiste em dois passos principais:</p>
+
+<h3>Passo 1: Encontrar um Candidato a Sorvedouro Universal</h3>
+<p>
+    Comece com um candidato arbitrário, por exemplo, o vértice \( 0 \). Percorra todos os vértices do grafo. Para cada vértice \( i \), compare-o com o candidato atual \( c \). Se existir uma aresta de \( c \) para \( i \) (\( \text{Matriz}[c][i] = 1 \)), então \( c \) não pode ser um sorvedouro, e \( i \) se torna o novo candidato. Se não existir uma aresta de \( c \) para \( i \), então \( i \) não pode ser um sorvedouro, e o candidato \( c \) permanece.
+</p>
+
+<h3>Passo 2: Verificar se o Candidato é Realmente um Sorvedouro Universal</h3>
+<p>
+    Verifique se o candidato \( c \) tem grau de entrada \( |V| - 1 \) e grau de saída 0. Para isso, percorra todos os vértices \( j \) do grafo:
+</p>
+<ul>
+    <li>Se \( j \neq c \) e \( \text{Matriz}[j][c] = 0 \), então \( c \) não tem grau de entrada suficiente e não pode ser um sorvedouro.</li>
+    <li>Se \( \text{Matriz}[c][j] = 1 \), então \( c \) não tem grau de saída 0 e, portanto, não pode ser um sorvedouro.</li>
+</ul>
+<p>Se o candidato \( c \) satisfizer ambas as condições, então \( c \) é um sorvedouro universal. Caso contrário, não existe sorvedouro universal no grafo.</p>
+
+<h2>Pseudocódigo</h2>
+
+<pre>
+def encontrar_sorvedouro_universal(matriz):
+n = len(matriz)  # número de vértices
+c = 0  # candidato a sorvedouro universal
+
+# Passo 1: Encontrar o candidato a sorvedouro universal
+for i in range(1, n):
+    if matriz[c][i] == 1:
+        c = i  # Atualiza o candidato
+
+# Passo 2: Verificar se o candidato é realmente um sorvedouro universal
+for j in range(n):
+    if j != c:
+        if matriz[c][j] == 1 or matriz[j][c] == 0:
+            return -1  # Não há sorvedouro universal
+
+return c  # Retorna o índice do sorvedouro universal
+</pre>
+
+<h2>Análise de Complexidade</h2>
+<p>
+    <strong>Passo 1:</strong> Encontrar o candidato a sorvedouro universal percorre todos os \( V \) vértices uma vez, realizando comparações de \( O(1) \) por vértice. A complexidade é \( O(V) \).
+</p>
+<p>
+    <strong>Passo 2:</strong> Verificar se o candidato é realmente um sorvedouro universal também percorre todos os \( V \) vértices uma vez, com comparações de \( O(1) \) por vértice. A complexidade é \( O(V) \).
+</p>
+<p>
+    <strong>Complexidade Total:</strong> A complexidade total do algoritmo é \( O(V) + O(V) = O(V) \).
+</p>
+
+<h2>Conclusão</h2>
+<p>
+    O algoritmo descrito consegue determinar se um grafo direcionado contém um sorvedouro universal em tempo \( O(V) \), mesmo quando o grafo é representado por uma matriz de adjacências, que normalmente exigiria \( O(V^2) \) tempo para outras operações. Esse algoritmo é eficiente porque reduz o problema ao mínimo necessário de comparações, explorando a natureza das propriedades de um sorvedouro universal.
+</p>
+  </body>
+</html>
