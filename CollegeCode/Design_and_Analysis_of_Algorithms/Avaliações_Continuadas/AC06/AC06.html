@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>AC06</title>
+
+  <!-- MATHJAX 3 (através da CDN) -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- MATHJAX 3 (salvo no computador) -->
+  <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+</head>
+
+<body>
+  <h1>AC06 - Lucas Tito</h1>
+
+  <ul>
+
+    <!-- --------- Questão 1 -------------- -->
+    <li>
+    <h2><strong>Questão 1</strong></h2>
+    </li>
+    \[
+\begin{array}{|l|}
+\hline
+\textbf{BFS(s)} \\
+\hline
+\text{1. const visitado = Array(V).fill(false)} \\
+\hline
+\text{2. const queue = [ ]} \\
+\hline
+\text{3. visitado[s] = true} \\
+\hline
+\text{4. queue.push(s)} \\
+\hline
+\text{5. While (queue.lenght) do} \\
+\hline
+\quad \text{6. const curr = queue.shift()} \\
+\hline
+\quad \text{7. Print curr} \\
+\hline
+\quad \text{8. For each x in adj[curr], do} \\
+\hline
+\quad \quad \text{9. If visitado[x] = false, then} \\
+\hline
+\quad \quad \quad \text{10. visitado[x] = true} \\
+\hline
+\quad \quad \quad \text{11. queue.push(x)} \\
+\hline
+\end{array}
+\]
+
+\[
+\begin{array}{|l|}
+\hline
+\textbf{addEdge(u, v)} \\
+\hline
+\text{1. adj[u].push(v)} \\
+\hline
+\text{2. adj[v].push(u)} \\
+\hline
+\end{array}
+\]
+
+    <p>Fazendo o teste de mesa no grafo fornecido, temos:</p>
+    <h3><strong>1. Inicialização</strong></h3>
+    Começando no nó a, a fila queue inicialmente contém apenas esse nó A. A distância de A é 0 e seu predecessor é null.
+
+    <br><br>
+    <h3><strong>2. Primeira iteração</strong></h3>
+    O nó A é visitado e removido da fila, os adjacentes de A são B,P. Os adjacentes de A são visitados e adicionados à fila. A distância de B e P é 1 e têm A como predecessor e a fila agora contém [B, P].
+
+
+    <br><br>
+    <h3><strong>3. Segunda iteração</strong></h3>
+    O nó B é visitado e removido da fila. Seus adjacentes são [A,C], como A já foi visitado ele é ignorado. C é visitado e adicionado à fila, ele tem 2 como distância e B como predecessor. A fila agora contém [P,C].
+
+    <br><br>
+    <h3><strong>4. Terceira iteração</strong></h3>
+    O nó P é visitado e removido da fila e seus adjacentes são [A, N], como A já foi visitado, visita-se N que é adicionado na fila. N tem 2 como distância e P como predecessor. A fila agora contém [C, N].
+
+    <br><br>
+    <h3><strong>5. Quarta iteração</strong></h3>
+    O nó C é visitado e removido da fila, os adjacentes de C são B,M, como B já foi visitado, visita-se M que é adicionado na fila. A distância de M é 3 e têm C como predecessor e a fila agora contém [N, M]. 
+
+    <br><br>
+    <h3><strong>6. Quinta iteração</strong></h3>
+    O nó N é visitado e removido da fila, seus adjacentes são P, L. P já foi visitado, logo visita-se L, que é adicionado na fila. A distância de L é 3 e têm N como predecessor e a fila agora contém [M, L].
+    
+    <br><br>
+    <h3><strong>7. Sexta iteração</strong></h3>
+    O nó M é visitado e removido da fila e seus adjacentes são [C, D, J], como C já foi visitado, visita-se D e J e ambos são adicionados na fila. D e J têm 4 como distância, e suas relações de precedência seguem: D:M, J:M. A fila agora contém [L, D, J].
+
+    <br><br>
+    <h3><strong>8. Sétima iteração</strong></h3>
+    O nó L é visitado e removido da fila, os adjacentes de L são N, K, como N já foi visitado, visita-se K que é adicionado na fila. A distância de K é 4 e têm L como predecessor e a fila agora contém [D, J, K]. 
+    
+    <br><br>
+    <h3><strong>9. Oitava iteração</strong></h3>
+    O nó D é visitado e removido da fila, seus adjacentes são M, E. M já foi visitado, logo visita-se E, que é adicionado na fila. A distância de E é 5 e têm D como predecessor e a fila agora contém [J, K, E].
+    
+    <br><br>
+    <h3><strong>10. Nona iteração</strong></h3>
+    O nó J é visitado e removido da fila, os adjacentes de J são [M, K, I], como M e K já foram visitados, visita-se I que é adicionado na fila. A distância de I é 5 e têm J como predecessor e a fila agora contém [K, E, I]. 
+    
+    <br><br>
+    <h3><strong>11. Décima iteração</strong></h3>
+    O nó K é visitado e removido da fila, os adjacentes de K são [L, J, H], como L e J já foram visitados, visita-se H que é adicionado na fila. A distância de H é 5 e têm K como predecessor e a fila agora contém [E, I, H]. 
+    
+    <br><br>
+    <h3><strong>12. Décima primeira iteração</strong></h3>
+    O nó E é visitado e removido da fila, seus adjacentes são [D, F, H]. D e H já foram visitados, logo visita-se F, que é adicionado na fila. A distância de F é 6 e têm E como predecessor e a fila agora contém [I, H, F].
+    <br><br>
+    
+    <h3><strong>13. Décima segunda iteração</strong></h3>
+    O nó I é visitado e removido da fila, seus adjacentes são [J, G], como J já foi visitado, visita-se G que é adicionado na fila. A distância de G é 6 e têm I como predecessor e a fila agora contém [H, F, G]. 
+    <br><br>
+    
+    <h3><strong>14. Décima terceira iteração</strong></h3>
+    O nó H é visitado e removido da fila, seus adjacentes são [E, G, K], todos seus adjacentes são ignorados, já que já foram visitados. A fila agora contém [F, G].
+    <br><br>
+
+    <h3><strong>15. Décima quarta iteração</strong></h3>
+    O nó F é visitado e removido da fila, seu adjacente é E, que já foi visitado. A fila agora contém [G].
+    <br><br>
+
+    <h3><strong>16. Décima quinta iteração</strong></h3>
+    O nó G é visitado e removido da fila, seus adjacentes são H e I, que já foram visitados. A fila está vazia.
+    <br><br>
+
+    <br><br><br><br>
+    \[
+    \begin{array}{|c|c|}
+    \hline
+    \textbf{Nó} & \textbf{Distância} & \textbf{Predecessor} \\
+    \hline
+    \text{A} & 0 & \text{null} \\
+    \text{B} & 1 & \text{A} \\
+    \text{P} & 1 & \text{A} \\
+    \text{C} & 2 & \text{B} \\
+    \text{N} & 2 & \text{P} \\
+    \text{M} & 3 & \text{C} \\
+    \text{L} & 3 & \text{N} \\
+    \text{D} & 4 & \text{M} \\
+    \text{J} & 4 & \text{M} \\
+    \text{K} & 4 & \text{L} \\
+    \text{E} & 5 & \text{D} \\
+    \text{I} & 5 & \text{K} \\
+    \text{H} & 5 & \text{J} \\
+    \text{F} & 6 & \text{E} \\
+    \text{G} & 6 & \text{I} \\
+    \hline
+    \end{array}
+    \]
+    
+  
+
+    <br> <br> <br> <br> <br> <br>
+    <!-- --------- Questão 2 -------------- -->
+    <li>
+      <h2><strong>Questão 2</strong></h2>
+    </li>
+     
+    <p>Vamos executar o teste de mesa para o algoritmo de busca em profundidade (DFS) no grafo fornecido.</p>
+
+
+<h3>Passo a Passo do DFS</h3>
+<ol>
+    <li><strong>Visitando o nó `a`:</strong>
+        <ul>
+            <li>Tempo: 1</li>
+            <li>\( d[a] = 1 \)</li>
+            <li>Predecessor: null</li>
+            <li>Cor de `a`: <strong>cinza</strong></li>
+            <li>Vizinhos de `a` (em ordem alfabética): b, d, e, j</li>
+        </ul>
+    </li>
+    <li><strong>Visitando o nó `b` (primeiro vizinho de `a`):</strong>
+        <ul>
+            <li>Tempo: 2</li>
+            <li>\( d[b] = 2 \)</li>
+            <li>Predecessor: a</li>
+            <li>Cor de `b`: <strong>cinza</strong></li>
+            <li>Vizinhos de `b`: a, e</li>
+        </ul>
+    </li>
+    <li><strong>Voltando ao nó `a` (já foi visitado):</strong>
+        <ul>
+            <li>Continuar explorando outros vizinhos de `b`.</li>
+        </ul>
+    </li>
+    <li><strong>Visitando o nó `e` (vizinho de `b`):</strong>
+        <ul>
+            <li>Tempo: 3</li>
+            <li>\( d[e] = 3 \)</li>
+            <li>Predecessor: b</li>
+            <li>Cor de `e`: <strong>cinza</strong></li>
+            <li>Vizinhos de `e`: a, k, i</li>
+        </ul>
+    </li>
+    <li><strong>Visitando o nó `k` (primeiro vizinho de `e`):</strong>
+        <ul>
+            <li>Tempo: 4</li>
+            <li>\( d[k] = 4 \)</li>
+            <li>Predecessor: e</li>
+            <li>Cor de `k`: <strong>cinza</strong></li>
+            <li>Vizinhos de `k`: L</li>
+        </ul>
+    </li>
+    <li><strong>Visitando o nó `L` (vizinho de `k`):</strong>
+        <ul>
+            <li>Tempo: 5</li>
+            <li>\( d[L] = 5 \)</li>
+            <li>Predecessor: k</li>
+            <li>Cor de `L`: <strong>cinza</strong></li>
+            <li>Vizinhos de `L`: d</li>
+        </ul>
+    </li>
+    <li><strong>Visitando o nó `d` (vizinho de `L`):</strong>
+        <ul>
+            <li>Tempo: 6</li>
+            <li>\( d[d] = 6 \)</li>
+            <li>Predecessor: L</li>
+            <li>Cor de `d`: <strong>cinza</strong></li>
+            <li>Vizinhos de `d`: e, h</li>
+        </ul>
+    </li>
+    <li><strong>Voltando ao nó `e` (já foi visitado):</strong>
+        <ul>
+            <li>Continuar explorando outros vizinhos de `d`.</li>
+        </ul>
+    </li>
+    <li><strong>Visitando o nó `h` (vizinho de `d`):</strong>
+        <ul>
+            <li>Tempo: 7</li>
+            <li>\( d[h] = 7 \)</li>
+            <li>Predecessor: d</li>
+            <li>Cor de `h`: <strong>cinza</strong></li>
+            <li>Vizinhos de `h`: f</li>
+        </ul>
+    </li>
+    <li><strong>Visitando o nó `f` (vizinho de `h`):</strong>
+        <ul>
+            <li>Tempo: 8</li>
+            <li>\( d[f] = 8 \)</li>
+            <li>Predecessor: h</li>
+            <li>Cor de `f`: <strong>cinza</strong></li>
+            <li>Vizinhos de `f`: g</li>
+        </ul>
+    </li>
+    <li><strong>Visitando o nó `g` (vizinho de `f`):</strong>
+        <ul>
+            <li>Tempo: 9</li>
+            <li>\( d[g] = 9 \)</li>
+            <li>Predecessor: f</li>
+            <li>Cor de `g`: <strong>cinza</strong></li>
+            <li>Vizinhos de `g`: j</li>
+        </ul>
+    </li>
+    <li><strong>Visitando o nó `j` (vizinho de `g`):</strong>
+        <ul>
+            <li>Tempo: 10</li>
+            <li>\( d[j] = 10 \)</li>
+            <li>Predecessor: g</li>
+            <li>Cor de `j`: <strong>cinza</strong></li>
+            <li>Vizinhos de `j`: g</li>
+        </ul>
+    </li>
+    <li><strong>Finalizando o nó `j` (não há mais vizinhos não visitados):</strong>
+        <ul>
+            <li>Tempo: 11</li>
+            <li>\( f[j] = 11 \)</li>
+            <li>Cor de `j`: <strong>preto</strong></li>
+            <li>Retornar ao nó `g`</li>
+        </ul>
+    </li>
+    <!-- Continue the same pattern for the remaining steps -->
+</ol>
+
+
+<br><br><br><br>
+    \[
+    \begin{array}{|c|c|}
+    \hline
+    \textbf{Nó} & \textbf{Descoberta} & \textbf{Predecessor} & \textbf{Finalização} \\
+    \hline
+    \text{A} & 1 & \text{null} & 24 \\
+    \text{B} & 2 & \text{A} & 23 \\
+    \text{C} & 19 & \text{I} & 20 \\
+    \text{D} & 6 & \text{L} & 15 \\
+    \text{E} & 3 & \text{B} & 22 \\
+    \text{F} & 8 & \text{H} & 13 \\
+    \text{G} & 9 & \text{F} & 12 \\
+    \text{H} & 7 & \text{D} & 14 \\
+    \text{I} & 18 & \text{E} & 21 \\
+    \text{J} & 10 & \text{G} & 11 \\
+    \text{K} & 4 & \text{E} & 17 \\
+    \text{L} & 5 & \text{K} & 16 \\
+    \hline
+    \end{array}
+    \]
+
+
+    <br><br><br><br>
+    <h2><strong>Parte 2 Questão 2</strong></h2>
+  
+    <p>Para encontrar os <strong>componentes fortemente conexos (CFCs)</strong> de um grafo direcionado, o <strong>algoritmo de Kosaraju</strong> será usado, que envolve dois passos principais:</p>
+
+<ol>
+    <li><strong>Primeira Passagem (DFS normal):</strong> Realizar uma busca em profundidade (DFS) no grafo original, registrando a ordem de finalização dos nós.</li>
+    <li><strong>Segunda Passagem (DFS no grafo transposto):</strong> Realizar uma DFS no grafo transposto (todos os arcos invertidos), seguindo a ordem decrescente de finalização obtida na primeira passagem. Os componentes fortemente conexos serão identificados durante essa segunda DFS.</li>
+</ol>
+
+<h3>Passo 1: Primeira Passagem (DFS no Grafo Original)</h3>
+<p>Vou seguir a mesma ordem de descoberta e finalização que obtivemos anteriormente, já que isso corresponde à primeira passagem do algoritmo de Kosaraju:</p>
+
+<p><strong>Ordem de finalização (decrescente):</strong></p>
+<ul>
+    <li>a (24)</li>
+    <li>b (23)</li>
+    <li>e (22)</li>
+    <li>i (21)</li>
+    <li>c (20)</li>
+    <li>k (17)</li>
+    <li>L (16)</li>
+    <li>d (15)</li>
+    <li>h (14)</li>
+    <li>f (13)</li>
+    <li>g (12)</li>
+    <li>j (11)</li>
+</ul>
+
+<h3>Passo 2: Segunda Passagem (DFS no Grafo Transposto)</h3>
+<p>Agora, vou realizar a DFS no grafo transposto, seguindo a ordem decrescente de finalização. Vamos explorar cada nó, agrupando os nós que pertencem ao mesmo componente fortemente conexo.</p>
+
+<p><strong>Ordem Decrescente de Finalização:</strong> a, b, e, i, c, k, L, d, h, f, g, j</p>
+
+<ol>
+    <li><strong>DFS a partir de `a`:</strong></li>
+    <ul>
+        <li>Visita: a</li>
+        <li>Adjacentes de a no grafo transposto: b, e</li>
+        <li>Visita b, então e</li>
+        <li>Adjacente de b (em e já foi visitado): a (já visitado)</li>
+        <li>Adjacente de e: a, b (ambos já visitados)</li>
+        <li><strong>Componente Fortemente Conexo 1:</strong> {a, b, e}</li>
+    </ul>
+
+    <li><strong>DFS a partir de `i`:</strong></li>
+    <ul>
+        <li>Visita: i</li>
+        <li>Adjacentes de i no grafo transposto: e (já visitado)</li>
+        <li><strong>Componente Fortemente Conexo 2:</strong> {i}</li>
+    </ul>
+
+    <li><strong>DFS a partir de `c`:</strong></li>
+    <ul>
+        <li>Visita: c</li>
+        <li>Adjacentes de c no grafo transposto: i (já visitado)</li>
+        <li><strong>Componente Fortemente Conexo 3:</strong> {c}</li>
+    </ul>
+
+    <li><strong>DFS a partir de `k`:</strong></li>
+    <ul>
+        <li>Visita: k</li>
+        <li>Adjacentes de k no grafo transposto: e (já visitado)</li>
+        <li><strong>Componente Fortemente Conexo 4:</strong> {k}</li>
+    </ul>
+
+    <li><strong>DFS a partir de `L`:</strong></li>
+    <ul>
+        <li>Visita: L</li>
+        <li>Adjacentes de L no grafo transposto: k (já visitado)</li>
+        <li><strong>Componente Fortemente Conexo 5:</strong> {L}</li>
+    </ul>
+
+    <li><strong>DFS a partir de `d`:</strong></li>
+    <ul>
+        <li>Visita: d</li>
+        <li>Adjacentes de d no grafo transposto: L (já visitado)</li>
+        <li><strong>Componente Fortemente Conexo 6:</strong> {d}</li>
+    </ul>
+
+    <li><strong>DFS a partir de `h`:</strong></li>
+    <ul>
+        <li>Visita: h</li>
+        <li>Adjacentes de h no grafo transposto: d (já visitado)</li>
+        <li><strong>Componente Fortemente Conexo 7:</strong> {h}</li>
+    </ul>
+
+    <li><strong>DFS a partir de `f`:</strong></li>
+    <ul>
+        <li>Visita: f</li>
+        <li>Adjacentes de f no grafo transposto: h</li>
+        <li>Visita h (já visitado)</li>
+        <li><strong>Componente Fortemente Conexo 8:</strong> {f}</li>
+    </ul>
+
+    <li><strong>DFS a partir de `g`:</strong></li>
+    <ul>
+        <li>Visita: g</li>
+        <li>Adjacentes de g no grafo transposto: f</li>
+        <li>Visita f (já visitado)</li>
+        <li><strong>Componente Fortemente Conexo 9:</strong> {g}</li>
+    </ul>
+
+    <li><strong>DFS a partir de `j`:</strong></li>
+    <ul>
+        <li>Visita: j</li>
+        <li>Adjacentes de j no grafo transposto: g</li>
+        <li>Visita g (já visitado)</li>
+        <li><strong>Componente Fortemente Conexo 10:</strong> {j}</li>
+    </ul>
+</ol>
+
+<h3>Componentes Fortemente Conexos Identificados</h3>
+
+<ol>
+    <li><strong>Componente 1:</strong> {a, b, e}</li>
+    <li><strong>Componente 2:</strong> {i}</li>
+    <li><strong>Componente 3:</strong> {c}</li>
+    <li><strong>Componente 4:</strong> {k}</li>
+    <li><strong>Componente 5:</strong> {L}</li>
+    <li><strong>Componente 6:</strong> {d}</li>
+    <li><strong>Componente 7:</strong> {h}</li>
+    <li><strong>Componente 8:</strong> {f}</li>
+    <li><strong>Componente 9:</strong> {g}</li>
+    <li><strong>Componente 10:</strong> {j}</li>
+</ol>
+
+<p>Esses são os componentes fortemente conexos (CFCs) encontrados no grafo dado. Cada conjunto representa um grupo de vértices que são mutuamente alcançáveis entre si no grafo direcionado original.</p>
+
+
+<ol>
+  <table>
+    <thead>
+        <tr>
+            <th>Pseudocódigo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td><strong>1.</strong> <strong>Kosaraju</strong>(G)</td></tr>
+        <tr><td><strong>2.</strong> tempo &larr; 0</td></tr>
+        <tr><td><strong>3.</strong> Para cada vértice <em>u</em> em <em>V</em> faça</td></tr>
+        <tr><td><strong>4.</strong> &nbsp;&nbsp;&nbsp; cor[u] &larr; branco</td></tr>
+        <tr><td><strong>5.</strong> Para cada vértice <em>u</em> em <em>V</em> faça</td></tr>
+        <tr><td><strong>6.</strong> &nbsp;&nbsp;&nbsp; Se cor[u] = branco então</td></tr>
+        <tr><td><strong>7.</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DFS-visit(u)</td></tr>
+        <tr><td><strong>8.</strong> Transpose(G) <em>// Inverte as direções de todas as arestas de G</em></td></tr>
+        <tr><td><strong>9.</strong> Para cada vértice <em>u</em> em <em>V</em> faça</td></tr>
+        <tr><td><strong>10.</strong> &nbsp;&nbsp;&nbsp; cor[u] &larr; branco</td></tr>
+        <tr><td><strong>11.</strong> Enquanto pilha não está vazia faça</td></tr>
+        <tr><td><strong>12.</strong> &nbsp;&nbsp;&nbsp; u &larr; desempilha da pilha</td></tr>
+        <tr><td><strong>13.</strong> &nbsp;&nbsp;&nbsp; Se cor[u] = branco então</td></tr>
+        <tr><td><strong>14.</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DFS-visit(u) <em>// no grafo transposto</em></td></tr>
+        <tr><td><strong>15.</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Imprime todos os vértices alcançáveis a partir de u como um CFC</td></tr>
+    </tbody>
+</table>
+
+    <br> <br> <br> <br> <br> <br>
+  </ul>
+
+</body>
+
+</html>

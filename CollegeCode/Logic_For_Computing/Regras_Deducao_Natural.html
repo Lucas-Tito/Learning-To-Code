@@ -86,19 +86,19 @@
     <h4 align="center" style="color: #525252;">Introdução</h4>
 
     <p>Para introduzir um condicional, é necessário supor o precedente da sentença.</p>
-    <p>Segue um exemplo onde se pretende provar que \( \ P \rightarrow Q \vdash P \land R \rightarrow Q \):</p>
+    <p>Segue um exemplo onde se pretende provar que \( \ P \rightarrow Q \vdash P \land R \rightarrow Q \)</p>
 
     \[
     \begin{array}{rl}
-      1. & P \rightarrow Q \quad \quad \ \ \text{pre} \\
+      1. & P \rightarrow Q \quad \quad s\quad \quad \ \ \text{pre} \\
       & \boxed{
           \begin{array}{rl}
-            2. & P \land R \quad \text{hip} \\
-            3. & P \quad \quad \land e \ 2 \\
-            4. & Q \quad \quad \rightarrow e \ 1,3 \\
+            2. & P \land R \quad \quad \text{hip} \\
+            3. & P \quad \quad \quad \ \ \land e \ 2 \\
+            4. & Q \quad \quad \quad \ \ \rightarrow e \ 1,3 \\
           \end{array}
         } \\
-        5. & P \land R \rightarrow Q \quad \quad \text{i 2-4} \\
+        5. & P \land R \rightarrow Q \quad \quad \quad \rightarrow \text{i 2-4} \\
     \end{array}
     \]
 
@@ -124,7 +124,7 @@
     <h4 align="center" style="color: #525252;">Eliminação</h4>
 
     <p>Primeiro uma caixa é aberta com o  átomo a direita do ou e depois outra caixa é aberta com o átomo a esquerda do ou. Se ambas as caixas obtiverem a mesma conclusão, então você pode extrair essa conclusão para fora das caixas.</p>
-    <p>Segue um exemplo onde se pretende provar que \( \ P \vee Q \vdash Q \vee P \):</p>
+    <p>Segue um exemplo onde se pretende provar que \( \ P \vee Q \vdash Q \vee P \)</p>
 
     \[
     \begin{array}{rl}
@@ -177,7 +177,7 @@
         <h4 align="center" style="color: #525252;">Eliminação</h4>
     
         <p>Primeiro uma caixa é aberta com o  átomo a direita do ou e depois outra caixa é aberta com o átomo a esquerda do ou. Se ambas as caixas obtiverem a mesma conclusão, então você pode extrair essa conclusão para fora das caixas.</p>
-        <p>Segue um exemplo onde se pretende provar que \( \ P \vee Q \vdash Q \vee P \):</p>
+        <p>Segue um exemplo onde se pretende provar que \( \ P \vee Q \vdash Q \vee P \)</p>
     
         \[
         \begin{array}{rl}
@@ -206,7 +206,7 @@
         <h2 align="center">Redução ao  Absurdo</h2>
         <p>Esta regra é usada para provar um átomo P abrindo uma caixa negando esse átomo P e chegando em um absurdo.Por fim você deve indicar a caixa que contém a contradição.</p>
 
-        <p>Segue um exemplo onde se pretende provar que \( \ (P \land \neg Q) \longrightarrow R, \ \neg R, \ P \ \ \vdash \ \ Q \):</p>
+        <p>Segue um exemplo onde se pretende provar que \( \ (P \land \neg Q) \longrightarrow R, \ \neg R, \ P \ \ \vdash \ \ Q \)</p>
     
         \[
         \begin{array}{rl}
@@ -228,6 +228,150 @@
             \vdots \\
         \end{array}
         \]
+
+
+        <br><br><br><br>
+            <!-- -------Regras de Precedêndica------- -->
+        <h1>Regras de Quantificadores</h1>
+        <p>Antes de partir para as regras dos quantificadores, é necessário entender o conceito de  Substituição e Substituível.</p>
+        
+            <!-- -------Substituição e Substituível------- -->
+        <br>
+        <h3>Substituição</h3>
+        
+        <p>A <b>substituição</b> só pode ser feita em variáveis que estejam livres. Dizemos que uma variável é livre quando ela não está ligada a nenhum quantificador (seja universal ou seja existencial). Observe a substituição a seguir:</p>
+        <br>
+
+        \[
+        {\Large (\forall y (P(x,y) \rightarrow \forall x M(x)))^x_a = \forall y (P(a,y) \rightarrow \forall x M(x))}
+        \]
+
+        <br>
+        <p>Note que apenas o X mais a esquerda estava livre, então na nossa substituição de X por A, apenas o X a esquerda foi substituído.</p>
+
+        <br><br>
+        <p>Observe que nesse exemplo que segue, é demonstrado que é possível fazer a substituição de uma variável de modo a ligá-la com o quantificador:</p>
+        <br>
+
+        \[
+        {\Large (\forall y (P(x,y) \rightarrow M(y)))^x_y = \forall y (P(y,y) \rightarrow M(y))}
+        \]
+
+        <br><br>
+        <h3>Substituível</h3>
+
+        <p>Dizemos que uma variável <i>A</i> é <b>substituível</b> para outra variável <i>X</i> quando ao aplicar a substituição de <i>X</i> por <i>A</i>, <i>A</i> não estará ligado a nenhum quantificador (continuar livre). Observe os exemplos abaixo:</p>
+
+        <ul>
+          <li>
+            \( a \) é substituível para \( x \) em \( \forall y (P(x,y) \rightarrow M(y)) \)
+          </li>
+          <li>
+            \( y \) não é substituível para \( x \) em \( \forall y (P(x,y) \rightarrow M(y)) \)
+          </li>
+        </ul>
+
+
+
+        <br><br><br><br>
+        <!-- -------Universal------- -->
+        <h2 align="center">\(\forall\) (para todo)</h2>
+        <h4 align="center" style="color: #525252;">Eliminação</h4>
+    
+        <p>Note que um para todo expressa que a fórmula que ele recebe vale para todos os elementos do conjunto. Então, se vale para todos, você tem a liberdade de instanciar uma variável na fórmula ainda mantendo a lógica.
+        </p>
+        <p>Segue um exemplo onde se pretende provar que \( \ \forall x (H(x) \rightarrow M(x)), \ H(s) \ \vdash \ M(s) \)</p>
+        <br>
+
+        \[
+        \begin{array}{rl}
+          1. & \forall x (H(x) \rightarrow M(x)) \quad \quad \ \ \text{pre} \\
+          2. &  H(s) \quad \quad \quad \quad \quad \quad \quad \quad \ \ \text{pre} \\
+          3. & H(s) \rightarrow M(s) \quad \quad \quad \quad \ \ \ \forall e \ 1\\
+          4. & M(s) \quad \quad \quad \quad \quad \quad \quad \quad \ \rightarrow e \ 2,3\\
+        \end{array}
+        \]
+
+        <br><br>
+        <h4 align="center" style="color: #525252;">Introdução</h4>
+
+        <p>Quando se busca provar um para todo, é necessário abrir uma caixa assumindo uma variável arbitrária (qualquer e não usada anteriormente a não ser em caixas que já foram fechadas) e no final da caixa você deve demonstrar a fórmula que você deseja atribuir o para todo.
+        </p>
+
+        <p>Segue um exemplo onde se pretende provar que \( \ \forall x (H(x) \rightarrow M(x)), \ \forall x H(x) \ \vdash \ \forall x M(x) \)</p>
+        <br>
+
+
+        \[
+        \begin{array}{rl}
+          1. & \forall x (H(x) \rightarrow M(x)) \quad \quad \ \ \text{pre} \\
+          2. & \forall x H(x) \quad \quad \quad \quad \quad \quad \quad \ \text{pre} \\
+          & \boxed{
+              \begin{array}{rl}
+                3. & x0 \\
+                4. & H(x0) \rightarrow M(x0) \quad \quad \forall e \ 1 \\
+                5. & H(x0) \quad \quad \quad \quad \quad \quad \ \ \forall e \ 2 \\
+                6. & M(x0) \quad \quad \quad \quad \quad \quad  \ \rightarrow e \ 5,4 \\
+              \end{array}
+            } \\
+            7. & \forall x M(x) \quad \quad \quad \quad \quad \quad \quad \ \ \forall \ \text{i 2-4} \\
+        \end{array}
+        \]
+
+
+        <br><br><br><br>
+        <!-- -------Existencial------- -->
+        <h2 align="center">\(\exists\) (existencial)</h2>
+        <h4 align="center" style="color: #525252;">Introdução</h4>
+    
+        <p>Se existe uma fórmula <i>P</i> atribuída a uma variável <i>A</i> e <i>X</i> é substituível por <i>A</i>, isso significa que existe um <i>X</i> que tem a fórmula <i>P</i> (se vale para <i>A</i>, então é porque <i>P</i> vale para alguém).
+        </p>
+        <p>Segue um exemplo onde se pretende provar que \( \ P(a), \ \exists x P(x) \rightarrow B \ \vdash \ B \)</p>
+        <br>
+
+        \[
+        \begin{array}{rl}
+          1. & P(a) \quad \quad \quad \quad \quad \quad \text{pre} \\
+          2. & \exists x P(x) \rightarrow B \quad \quad \ \ \text{pre} \\
+          3. & \exists x P(x) \quad \quad \quad \quad \ \ \ \exists i \ 1\\
+          4. & B \quad \quad \quad \quad \quad \quad \quad \rightarrow e \ 3,2\\
+        \end{array}
+        \]
+
+        <br><br>
+        <h4 align="center" style="color: #525252;">Eliminação</h4>
+
+        <p>É necessário abrir uma caixa assumindo por hipótese a fórmula ligada ao existencial, porém atribuída a uma variável <i>A</i> não usada anteriormente a não ser em caixas que já foram fechadas. Desse modo, é possível tirar qualquer coisa da conclusão, desde que essa coisa não esteja relacionada com a variável <i>A</i> da hipótese.
+        </p>
+
+        <p>Segue um exemplo onde se pretende provar que \( \ \forall x (H(x) \rightarrow M(x)), \ \forall x \neg M(x) \ \vdash \ \neg \exists x H(x) \)</p>
+        <br>
+
+
+        \[
+        \begin{array}{rl}
+          1. & \forall x (H(x) \rightarrow M(x)) \quad \quad \quad \quad \quad \quad \ \ \text{pre} \\
+          2. & \forall x \neg M(x) \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \ \ \text{pre} \\
+          & \boxed{
+              \begin{array}{rl}
+                3. & \exists x H(x) \quad \quad \quad \quad \quad \quad \quad \quad \quad \ \text{hip} \\
+                & \boxed{
+                  \begin{array}{rl}
+                    4. & x0 \quad H(a) \quad \quad \quad \quad \quad \quad \ \text{hip} \\
+                    5. & \quad H(a) \rightarrow M(a) \quad \quad \quad \ \ \forall e 1 \\
+                    6. & \quad M(a) \quad \quad \quad \quad \quad \quad \quad \rightarrow \ 4,5 \\
+                    7. & \quad \neg M(a) \quad \quad \quad \quad \quad \quad \ \ \ \forall e 2 \\
+                    8. & \quad \bot \quad \quad \quad \quad \quad \quad \quad \quad \quad \neg e \ 6,7 \\
+                  \end{array}
+                } \\
+                9. & \bot \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \exists e \ 3, \ 4,8 \\
+              \end{array}
+            } \\
+            10. & \neg \exists x H(x) \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \neg \ \text{i 3-9} \\
+        \end{array}
+        \]
+
+
   </ul>
 
 </body>
